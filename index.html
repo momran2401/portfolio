@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustafa Omran | Engineering & Autonomy</title>
+    <title>Mustafa Omran | Portfolio</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +34,10 @@
                         accent: {
                             blue: '#3b82f6',
                             purple: '#8b5cf6',
-                            cyan: '#06b6d4'
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e'
                         }
                     },
                     animation: {
@@ -105,6 +108,12 @@
         .project-card:hover {
             transform: scale(1.02) rotate(1deg);
         }
+
+        /* Invert signature for dark mode */
+        .signature-invert {
+            filter: invert(1) brightness(2);
+            mix-blend-mode: screen;
+        }
         
         @media (max-width: 768px) {
             .timeline-line::before {
@@ -126,10 +135,10 @@
     <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:shadow-blue-500/50 transition-all duration-300">
-                    <i data-lucide="rocket" class="w-6 h-6"></i>
+                <!-- Signature Logo -->
+                <div class="h-12 overflow-hidden flex items-center">
+                    <img src="assets/img/9C84A200-66FB-426A-9902-DE94B015D86E.jpg" alt="Mustafa Omran Signature" class="h-24 w-auto object-cover signature-invert -ml-4">
                 </div>
-                <span class="font-display font-bold text-xl tracking-tight text-white">Mustafa<span class="text-blue-500">Omran</span></span>
             </div>
             
             <!-- Desktop Menu -->
@@ -172,22 +181,13 @@
         
         <!-- Hero Section -->
         <section class="max-w-7xl mx-auto px-6 min-h-[85vh] flex flex-col justify-center items-center text-center relative">
-            <div data-aos="fade-up" data-aos-duration="1000" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-8">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-                <span>Electrical & Computer Engineering at the University of Texas at Austin</span>
-            </div>
-
             <h1 data-aos="fade-up" data-aos-delay="100" class="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
-                Engineering <br>
-                <span class="gradient-text animate-float inline-block">Autonomy</span>
+                Mustafa's <br>
+                <span class="gradient-text animate-float inline-block">Portfolio</span>
             </h1>
 
-            <p data-aos="fade-up" data-aos-delay="200" class="text-xl md:text-2xl text-slate-400 max-w-3xl leading-relaxed mb-10">
-                I build sensor-driven systems that work in the real world. <br class="hidden md:block">
-                Specializing in <span class="text-white">Embedded Systems</span>, <span class="text-white">Robotics</span>, and <span class="text-white">UAVs</span>.
+            <p data-aos="fade-up" data-aos-delay="200" class="text-xl md:text-2xl text-slate-400 max-w-4xl leading-relaxed mb-10">
+                Honors Electrical & Computer Engineering in the Architecture, Computer Systems, and Embedded Systems (ACSES) track at the University of Texas at Austin.
             </p>
 
             <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
@@ -270,14 +270,47 @@
 
                 <div class="relative timeline-line space-y-12">
                     
-                    <!-- FAA -->
+                    <!-- 1. UT Austin (Jan 2026 - Present) -->
+                    <!-- Title Right, Desc Left (Alternating start) -->
                     <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <!-- Desc Side (Left) -->
+                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
+                             <div class="md:hidden mb-2 pl-2">
+                                <span class="text-amber-400 text-sm font-bold">Jan 2026 - Present</span>
+                                <h3 class="text-xl font-bold text-white">The University of Texas at Austin</h3>
+                             </div>
+                             <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-amber-500">
+                                    <li>Conduct research as part of Project DUAL (Developmental Understanding Across Languages), a longitudinal study in the Department of Human Development and Family Sciences.</li>
+                                    <li>Assist with data processing and management for bilingual and immigrant family research, ensuring accuracy across multi-year datasets.</li>
+                                    <li>Transcribe and code Spanish- and English-language interviews for qualitative analyses.</li>
+                                    <li>Support study operations including participant communication and IRB compliance.</li>
+                                    <li>Collaborate with a multidisciplinary team examining bilingualism and physiological stress outcomes.</li>
+                                </ul>
+                             </div>
+                        </div>
+                        <!-- Dot -->
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <!-- Title Side (Right) -->
+                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
+                            <h3 class="text-2xl font-bold text-white">The University of Texas at Austin</h3>
+                            <p class="text-slate-400 font-medium">Research Assistant - Project DUAL</p>
+                            <span class="text-amber-400 font-bold tracking-wider text-sm uppercase">Jan 2026 - Present</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. FAA (May 2025 - Sept 2025) -->
+                    <!-- Title Left, Desc Right -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <!-- Title Side (Left) -->
                         <div class="hidden md:block text-right pr-10" data-aos="fade-right">
                             <span class="text-blue-400 font-bold tracking-wider text-sm uppercase">May 2025 - Sept 2025</span>
                             <h3 class="text-2xl font-bold text-white mt-1">Federal Aviation Administration</h3>
                             <p class="text-slate-400 font-medium">Engineering Intern</p>
                         </div>
+                        <!-- Dot -->
                         <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <!-- Desc Side (Right) -->
                         <div class="pl-10 md:pl-10" data-aos="fade-left">
                             <div class="md:hidden mb-2">
                                 <span class="text-blue-400 text-sm font-bold">May 2025 - Sept 2025</span>
@@ -285,56 +318,187 @@
                             </div>
                             <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
                                 <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-blue-500">
-                                    <li>Built a <strong>rugged LiDAR measurement device</strong> (R-Pi + Arduino) with redundant logging (~2000 LOC C++/Python).</li>
-                                    <li>Developed a mobile-friendly <strong>Radar FOV tool</strong> to visualize coverage and optimize placement.</li>
-                                    <li>Rebuilt and flight-tested a hexacopter on <strong>ArduPilot</strong> for sensor payloads (11 min flight time).</li>
-                                    <li>Designed a 3-axis remote gimbal controller with real-time "mirror gimbal" feedback.</li>
+                                    <li>Designed and built a field-ready LiDAR measurement device (Raspberry Pi + Arduino) with IMU-based orientation guidance, calibration + sensor self-tests, and redundant data capture (SD + cloud); ~2000 lines of Python + C++.</li>
+                                    <li>Delivered a rugged 3D-printed enclosure and serviceable wiring layout; implemented fault checks to detect sensor/connection issues.</li>
+                                    <li>Developed a mobile-friendly radar field-of-view web app to visualize radar cones and recommend alignment.</li>
+                                    <li>Rebuilt and flight-tested a decommissioned hexacopter using ArduPilot with redundant comms and safety power management.</li>
+                                    <li>Built a 3-axis remote gimbal controller using 900 MHz (RFD900X) with real-time feedback.</li>
+                                    <li>Created clear user-facing documentation to support reliable field use.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- TAMU S-RISE (Now Aligned Like FAA) -->
+                    <!-- 3. TAMU S-RISE (May 2025 - Aug 2025) -->
+                    <!-- Title Right, Desc Left -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
+                            <div class="md:hidden mb-2 pl-2">
+                                <span class="text-emerald-400 text-sm font-bold">May 2025 - Aug 2025</span>
+                                <h3 class="text-xl font-bold text-white">Texas A&M University (S-RISE)</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-emerald-500">
+                                    <li>Selected for S-RISE, a competitive, university-funded undergraduate research program.</li>
+                                    <li>Developed and tested conductive cement composites using carbon-based additives to improve multifunctional performance for smart infrastructure.</li>
+                                    <li>Mixed and cast cementitious specimens and performed mechanical testing.</li>
+                                    <li>Conducted electrical characterization and analyzed results using Python/Excel.</li>
+                                    <li>Produced and delivered the final research presentation for the program showcase.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
+                            <h3 class="text-2xl font-bold text-white">Texas A&M University (S-RISE)</h3>
+                            <p class="text-slate-400 font-medium">S-RISE Scholar - Student Research Assistant</p>
+                            <span class="text-emerald-400 font-bold tracking-wider text-sm uppercase">May 2025 - Aug 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. TAMU Undergraduate Research (Sept 2024 - Aug 2025) -->
+                    <!-- Title Left, Desc Right -->
                     <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
                         <div class="hidden md:block text-right pr-10" data-aos="fade-right">
-                            <span class="text-purple-400 font-bold tracking-wider text-sm uppercase">May 2025 - Aug 2025</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">Texas A&M University (S-RISE)</h3>
-                            <p class="text-slate-400 font-medium">Student Research Assistant</p>
+                            <span class="text-cyan-400 font-bold tracking-wider text-sm uppercase">Sept 2024 - Aug 2025</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">Texas A&M University - Corpus Christi</h3>
+                            <p class="text-slate-400 font-medium">Undergraduate Research Assistant</p>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="pl-10 md:pl-10" data-aos="fade-left">
+                            <div class="md:hidden mb-2">
+                                <span class="text-cyan-400 text-sm font-bold">Sept 2024 - Aug 2025</span>
+                                <h3 class="text-xl font-bold text-white">Texas A&M University - Corpus Christi</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-cyan-500">
+                                    <li>Co-authored a peer-reviewed journal article in Construction and Building Materials (2025) on nano-carbon black (nCB) dispersed cement composites.</li>
+                                    <li>Supported research on conductive composite supercapacitors for energy storage.</li>
+                                    <li>Built/modified test setups and wiring for electrical measurements; ensured clean data collection.</li>
+                                    <li>Performed charge/discharge cycling and processed results into clear plots.</li>
+                                    <li>Led data processing and analysis to support ongoing research deliverables.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Material Science Grader (Feb 2025 - May 2025) -->
+                    <!-- Title Right, Desc Left -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
+                            <div class="md:hidden mb-2 pl-2">
+                                <span class="text-purple-400 text-sm font-bold">Feb 2025 - May 2025</span>
+                                <h3 class="text-xl font-bold text-white">TAMU - Corpus Christi</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-purple-500">
+                                    <li>Graded labs and assignments for Construction Materials Design and Materials Science courses.</li>
+                                    <li>Applied consistent grading standards and maintained accurate records.</li>
+                                    <li>Coordinated with course staff to resolve edge cases and ensure rubric alignment.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
+                            <h3 class="text-2xl font-bold text-white">TAMU - Corpus Christi</h3>
+                            <p class="text-slate-400 font-medium">Material Science & Construction Grader</p>
+                            <span class="text-purple-400 font-bold tracking-wider text-sm uppercase">Feb 2025 - May 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- 6. BASEC (Mar 2023 - June 2024) -->
+                    <!-- Title Left, Desc Right -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
+                            <span class="text-rose-400 font-bold tracking-wider text-sm uppercase">Mar 2023 - June 2024</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">BASEC</h3>
+                            <p class="text-slate-400 font-medium">Assistant Educator</p>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-rose-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="pl-10 md:pl-10" data-aos="fade-left">
+                            <div class="md:hidden mb-2">
+                                <span class="text-rose-400 text-sm font-bold">Mar 2023 - June 2024</span>
+                                <h3 class="text-xl font-bold text-white">BASEC</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-rose-500">
+                                    <li>Led and managed a group of ~30 middle school students with disabilities, maintaining a structured environment.</li>
+                                    <li>Delivered 1:1 homework tutoring across a general middle-school curriculum.</li>
+                                    <li>Facilitated small-group review sessions and guided students through answers.</li>
+                                    <li>Used gamified challenges to re-engage reluctant learners.</li>
+                                    <li>Applied behavior-support training and maintained student safety as CPR-certified staff.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Harvard (July 2023 - Aug 2023) -->
+                    <!-- Title Right, Desc Left -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
+                            <div class="md:hidden mb-2 pl-2">
+                                <span class="text-accent-blue text-sm font-bold">July 2023 - Aug 2023</span>
+                                <h3 class="text-xl font-bold text-white">Harvard University</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-blue-500">
+                                    <li>Oversaw the preparation and maintenance of critical lab equipment to support engineering projects for 30+ students.</li>
+                                    <li>Ensured adherence to applicable precise standards.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-blue-600 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
+                            <h3 class="text-2xl font-bold text-white">Harvard University</h3>
+                            <p class="text-slate-400 font-medium">Student Assistant</p>
+                            <span class="text-blue-500 font-bold tracking-wider text-sm uppercase">July 2023 - Aug 2023</span>
+                        </div>
+                    </div>
+
+                    <!-- 8. MIT Intern (July 2023) -->
+                    <!-- Title Left, Desc Right -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
+                            <span class="text-purple-400 font-bold tracking-wider text-sm uppercase">July 2023</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">MIT Jameel Clinic</h3>
+                            <p class="text-slate-400 font-medium">Student Intern</p>
                         </div>
                         <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
                         <div class="pl-10 md:pl-10" data-aos="fade-left">
                             <div class="md:hidden mb-2">
-                                <span class="text-purple-400 text-sm font-bold">May 2025 - Aug 2025</span>
-                                <h3 class="text-xl font-bold text-white">Texas A&M University (S-RISE)</h3>
+                                <span class="text-purple-400 text-sm font-bold">July 2023</span>
+                                <h3 class="text-xl font-bold text-white">MIT Jameel Clinic</h3>
                             </div>
                             <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
                                 <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-purple-500">
-                                    <li>Researched <strong>nano carbon black additives</strong> in concrete for smart infrastructure.</li>
-                                    <li>Tested electrical performance for self-heating and energy storage capabilities.</li>
-                                    <li>Presented findings at the final research showcase.</li>
+                                    <li>Learned about machine learning models for tumor recognition in medical imaging.</li>
+                                    <li>Employed rigorous data analysis and algorithm development.</li>
+                                    <li>Delivered presentations to cross-functional teams.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- MIT & Harvard -->
+                    <!-- 9. MIT Research (Jun 2021 - Sept 2021) -->
+                    <!-- Title Right, Desc Left -->
                     <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
-                            <span class="text-cyan-400 font-bold tracking-wider text-sm uppercase">2021 - 2023</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">MIT & Harvard</h3>
-                            <p class="text-slate-400 font-medium">Intern & Research Assistant</p>
+                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
+                            <div class="md:hidden mb-2 pl-2">
+                                <span class="text-cyan-400 text-sm font-bold">Jun 2021 - Sept 2021</span>
+                                <h3 class="text-xl font-bold text-white">MIT School of Engineering</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-cyan-500">
+                                    <li>MIT Concrete Sustainability Hub (MIT CSHub).</li>
+                                    <li>Conducted technical research on advanced material properties, contributing to electron conductivity projects.</li>
+                                    <li>Applied analytical methods to materials science.</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="pl-10 md:pl-10" data-aos="fade-left">
-                             <div class="md:hidden mb-2">
-                                <span class="text-cyan-400 text-sm font-bold">2021 - 2023</span>
-                                <h3 class="text-xl font-bold text-white">MIT & Harvard</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
-                                <p class="mb-2"><strong class="text-white">MIT Jameel Clinic:</strong> ML models for tumor recognition in medical imaging.</p>
-                                <p class="mb-2"><strong class="text-white">Harvard:</strong> Managed lab equipment for 30+ engineering students.</p>
-                                <p><strong class="text-white">MIT CSHub:</strong> Analyzed concrete electron conductivity properties.</p>
-                            </div>
+                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
+                            <h3 class="text-2xl font-bold text-white">MIT School of Engineering</h3>
+                            <p class="text-slate-400 font-medium">Research Assistant</p>
+                            <span class="text-cyan-400 font-bold tracking-wider text-sm uppercase">Jun 2021 - Sept 2021</span>
                         </div>
                     </div>
 
@@ -436,7 +600,7 @@
                             I'm an engineer obsessed with reliability. Whether it's a UAV flying an autonomous mission or a sensor node collecting data in the field, I enjoy the challenge of building systems that <em class="text-white not-italic">just work</em>.
                         </p>
                         <p>
-                            Currently pursuing <strong>Aerospace Engineering</strong> at UT Austin, with a background in Electrical/Computer Engineering. I thrive in roles where I can own the full build: requirements → wiring → firmware → testing.
+                            Currently pursuing <strong>Electrical & Computer Engineering</strong> at UT Austin. I thrive in roles where I can own the full build: requirements → wiring → firmware → testing.
                         </p>
                         <p>
                             Bilingual in English, Arabic, and French. When I'm not soldering or coding, I'm a competitive swimmer and rugby player.
