@@ -1,535 +1,482 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa Omran | Engineering & Autonomy</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-  <title>Mustafa Omran</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-  <!-- Favicons -->
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: MyResume - v4.8.1
-  * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            height: 100%;
+            width: 2px;
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 20px;
+            }
+        }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
-<body>
-
-  <!-- ======= Mobile nav toggle button ======= -->
-  <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex flex-column justify-content-center">
-
-    <nav id="navbar" class="navbar nav-menu">
-      <ul>
-        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-      </ul>
-    </nav><!-- .nav-menu -->
-
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Mustafa Omran</h1>
-      <p><span class="typed" data-typed-items="Website under maintenance - Mustafa"></span></p>
-      <div class="social-links">
-        <a href="https://twitter.com/mustaflemme" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/mustafa.omran.98/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.linkedin.com/in/mustafaahmedomran/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://github.com/momran2401" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-        <a href="https://www.youtube.com/channel/UCW8MnQEILLB4y-muiGeUfBQ" target="_blank" class="github"><i class="bx bi-youtube"></i></a>
-      </div>
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
     </div>
-  </section><!-- End Hero -->
 
-  <!-- ======= Hero Section ======= -->
-  <!-- <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Mustafa Omran</h1>
-      <p>I'm <span class="typed" data-typed-items="an Engineer,a Scientist,a Photographer (kinda),an Athlete,a Developer,basically a Nerd"></span></p>
-      <div class="social-links">
-        <a href="https://twitter.com/mustaflemme" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/mustafa.omran.98/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.linkedin.com/in/mustafa-omran-a32236244/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://github.com/momran2401" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-        <a href="https://www.youtube.com/channel/UCW8MnQEILLB4y-muiGeUfBQ" target="_blank" class="github"><i class="bx bi-youtube"></i></a>
-      </div>
-    </div>
-  </section> -->
-  <!-- End Hero -->
-
-  <main id="main">
-
-  <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio section-bg">
-    <div class="container" data-aos="fade-up">
-      <div class="section-title">
-        <h2>Portfolio</h2>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-course">Courses</li>
-            <li data-filter=".filter-card">Other</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-          <ul id="portfolio-flters">
-          </ul>
-        </div>
-      </div>
-
-      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-course">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/PHYSCI-70.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <div class="portfolio-links">
-                <a href="html/PHYS_S-12.html" target="_blank" title="App 2"><i class="bx bx-link"></i></a>
-              </div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:shadow-blue-500/50 transition-all duration-300">
+                    <i data-lucide="rocket" class="w-6 h-6"></i>
+                </div>
+                <span class="font-display font-bold text-xl tracking-tight text-white">Mustafa<span class="text-blue-500">Omran</span></span>
             </div>
-          </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="#about" class="hover:text-white transition-colors relative group py-2">
+                    About
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#experience" class="hover:text-white transition-colors relative group py-2">
+                    Experience
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#projects" class="hover:text-white transition-colors relative group py-2">
+                    Projects
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#contact" class="px-5 py-2.5 bg-white/5 hover:bg-white/10 text-white rounded-lg border border-white/10 transition-all">
+                    Contact Me
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
         </div>
 
-        <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-course">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/CS50AI.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <div class="portfolio-links">
-                <a href="html/cs50ai.html" target="_blank" title="App 2"><i class="bx bx-link"></i></a>
-              </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-white/10 p-4">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="text-slate-300 hover:text-white">About</a>
+                <a href="#experience" class="text-slate-300 hover:text-white">Experience</a>
+                <a href="#projects" class="text-slate-300 hover:text-white">Projects</a>
+                <a href="#contact" class="text-blue-400 font-medium">Contact</a>
             </div>
-          </div>
-        </div> -->
-
-      </div>
-
-    </div>
-  </section><!-- End Portfolio Section -->
-
-    <!-- ======= Facts Section ======= -->
-    <!-- <section id="facts" class="facts">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Facts</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
+    </nav>
 
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <p>GPA 4.0 scale</p>
-              <span>3.87</span>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <p>More than Projects</p>
-              <span data-purecounter-start="0" data-purecounter-end="276" data-purecounter-duration="1" class="purecounter"></span>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="bi bi-award"></i>
-              <p>Awards</p>
-              <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section> -->
-    <!-- End Facts Section -->
-
-    <!-- ======= Skills Section ======= -->
-    <!-- <section id="skills" class="skills section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row skills-content">
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill">CSS <i class="val">40%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Hero Section -->
+        <section class="max-w-7xl mx-auto px-6 min-h-[85vh] flex flex-col justify-center items-center text-center relative">
+            <div data-aos="fade-up" data-aos-duration="1000" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-8">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+                <span>Aerospace Engineering @ UT Austin</span>
             </div>
 
-            <div class="progress">
-              <span class="skill">HTML <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
+            <h1 data-aos="fade-up" data-aos-delay="100" class="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
+                Engineering <br>
+                <span class="gradient-text animate-float inline-block">Autonomy</span>
+            </h1>
 
-            <div class="progress">
-              <span class="skill">SQLite <i class="val">95%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">GoLang <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Computer Aided Design (CAD) <i class="val">60%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Graphical User Interface (GuI) <i class="val">60%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Stock Market Investing <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6">
-            <div class="progress">
-              <span class="skill">Photoshop <i class="val">50%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Python <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">C/C++ <i class="val">95%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Microcontroller Programming <i class="val">95%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Internet of Things (IoT) <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Lightroom <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- End Skills Section -->
-
-    <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Resume</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-            <h3 class="resume-title">Activities</h3>
-            <div class="resume-item pb-0">
-              <h4>Swim</h4>
-              <ul>
-                <li>🥉 <b>Quebec Provincial Championship</b> - MEN, 100M BREASTSTROKE, 11 - 12 YEARS — 2018-11-10</li>
-                <li>🥉 <b>Regional Championship</b> - MEN, 100M BREASTSTROKE, 11 - 12 YEARS — 2018-03-24</li>
-                <li>🥈 <b>Regional Championship</b> - MEN, 100M FREESTYLE, 10 - 11 YEARS — 2017-12-09</li>
-                <li>🥉 <b>Invitation Regional Championship</b> - MEN, 50M BACKSTROKE, 11 - 12 YEARS — 2018-03-24</li>
-                <li>🥇 <b>Invitation Regional Championship</b> - MEN, 50M BREASTSTROKE, 10 - 11 YEARS</li>
-                <li>🥉 <b>Sherbrooke Age Group Championship</b> - MEN, 200M BREASTSTROKE, 11 - 12 YEARS — 2018-05-06</li>
-                <li>🥈 <b>Sherbrooke Age Group Championship</b> - MEN, 100M BACKSTROKE, 11 - 12 YEARS — 2018-05-05</li>
-              </ul>
-            </div>
-            <div class="resume-item pb-0">
-              <h4>Rugby</h4>
-              <ul>
-                <li>🥇 MIAA Division 1 Rugby State Championship - 06/18/22</li>
-              </ul>
-            </div>
-
-            <h3 class="resume-title">Courses & Certificates</h3>
-            <div class="resume-item">
-              <h4></h4>
-              <h5>2015 - 2016</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-            </div>
-            <div class="resume-item">
-              <h4>CS50AI/T/X</h4>
-              <h5>2010 - 2014</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Summer School</h4>
-              <h5>June 2022 - August 2022</h5>
-              <p><em><b>Harvard Science Center</b>, Cambridge, MA, United States</em></p>
-            </div>
-            <div class="resume-item">
-              <h4>High School</h4>
-              <h5>September 2020 - Present</h5>
-              <p><em><b>Belmont High School</b>, Belmont, MA, United States</em></p>
-            </div>
-            <div class="resume-item">
-              <h4>Middle School</h4>
-              <h5>February 2019 - June 2020</h5>
-              <p><em><b>W.L Chenery Middle School</b>, Belmont, MA, United States</em></p>
-            </div>
-            <div class="resume-item">
-              <h4>Secondary School School</h4>
-              <h5>September 2018 - February 2019</h5>
-              <p><em><b>Séminaire de Sherbrooke</b>, Sherbrooke, QC, Canada</em></p>
-            </div>
-            <div class="resume-item">
-              <h4>Primary School</h4>
-              <h5>September 2012 - June 2018</h5>
-              <p><em><b>École Plein Soleil (IB)</b>, Sherbrooke, QC, Canada</em></p>
-              <h5>September 2010 - June 2012</h5>
-              <p><em><b>École Vision</b>, Sherbrooke, QC, Canada</em></p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Resume Section -->
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>About</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <img src="assets/img/B5ECFFD3-0AC8-4120-8097-F213C9BF6C5E_1_105_c.jpeg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>17 May 2006</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+1 (857) 248-2722</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthplace:</strong> <span>Sherbrooke, QC, Canada</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Nationality:</strong> <span>Canadian-Egyptian</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>16</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Current City:</strong> <span>Boston, MA, US</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Languages:</strong> <span>Arabic, French, English</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Sports:</strong> <span>Rugby, Swimming, Karate</span></li>
-                </ul>
-              </div>
-            </div>
-            <p>
-              Mustafa is a 16-year-old rising junior at Belmont High School in Belmont, MA. Although he was born in Quebec, Canada and lived there for 13 years, he is originally from Egypt thus explaining his trilingual nature (Arabic, French, English). Mustafa plays Rugby and Swimming where he is respectively state and provincial champion. He has a deep passion for Computer Science, Photography, and Engineering. Mustafa always has been fascinated by technology and the advancments it brings to humanity. In college, he plans to study either Computer Science or Mechanical Engineering. Perhaps, both!
+            <p data-aos="fade-up" data-aos-delay="200" class="text-xl md:text-2xl text-slate-400 max-w-3xl leading-relaxed mb-10">
+                I build sensor-driven systems that work in the real world. <br class="hidden md:block">
+                Specializing in <span class="text-white">Embedded Systems</span>, <span class="text-white">Robotics</span>, and <span class="text-white">UAVs</span>.
             </p>
-          </div>
-        </div>
 
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-        </div>
-
-        <div class="row mt-1">
-
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <a href="html/address.html"><i class="bi bi-geo-alt"></i></a>
-                <h4>Location:</h4>
-                <p>Belmont, MA</p>
-              </div>
-
-              <div class="email">
-                <a href="mailto: momran2401@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
-                <h4>Email:</h4>
-                <p>momran2401@gmail.com</p>
-              </div>
-
-              <div class="phone">
-                <a href="tel:857-248-2722" target="_blank"><i class="bi bi-phone"></i></a>
-                <h4>Call:</h4>
-                <p>+1 (857) 248-2722</p>
-              </div>
+            <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="#projects" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all shadow-lg shadow-blue-600/25 flex items-center group">
+                    View My Work
+                    <i data-lucide="arrow-down" class="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
+                </a>
+                <a href="#contact" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-medium transition-all border border-slate-700 hover:border-slate-600 flex items-center">
+                    <i data-lucide="mail" class="mr-2 w-5 h-5"></i>
+                    Get in Touch
+                </a>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Contact Section -->
 
-  </main><!-- End #main -->
+            <!-- Tech Stack Ticker -->
+            <div data-aos="fade-in" data-aos-delay="600" class="mt-20 pt-10 border-t border-white/5 w-full max-w-4xl">
+                <p class="text-sm text-slate-500 mb-6 uppercase tracking-widest font-semibold">Technologies I use</p>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="cpu" class="w-8 h-8"></i><span class="text-xs">Embedded</span></div>
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="plane" class="w-8 h-8"></i><span class="text-xs">ArduPilot</span></div>
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="code-2" class="w-8 h-8"></i><span class="text-xs">C++ / Python</span></div>
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="wifi" class="w-8 h-8"></i><span class="text-xs">IoT & RF</span></div>
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="box" class="w-8 h-8"></i><span class="text-xs">3D Design</span></div>
+                </div>
+            </div>
+        </section>
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <p>A man of mystery and power, whose power is exceeded only by his mystery.</p>
-      <div class="social-links">
-        <a href="https://twitter.com/mustaflemme" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/mustafa.omran.98/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.linkedin.com/in/mustafa-omran-a32236244/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://github.com/momran2401" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-        <a href="https://www.youtube.com/channel/UCW8MnQEILLB4y-muiGeUfBQ" target="_blank" class="github"><i class="bx bi-youtube"></i></a>
-      </div>
-      <div class="copyright">
-        &copy; Copyright <strong><span>Mustafa Omran</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: [license-url] -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/ -->
-      </div>
-    </div>
-  </footer><!-- End Footer -->
+        <!-- Experience Timeline Section -->
+        <section id="experience" class="py-24 relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">Professional Journey</h2>
+                    <p class="text-slate-400">From research labs to the FAA.</p>
+                </div>
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+                <div class="relative timeline-line space-y-12">
+                    
+                    <!-- FAA -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
+                            <span class="text-blue-400 font-bold tracking-wider text-sm uppercase">May 2025 - Sept 2025</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">Federal Aviation Administration</h3>
+                            <p class="text-slate-400 font-medium">Engineering Intern</p>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="pl-10 md:pl-10" data-aos="fade-left">
+                            <div class="md:hidden mb-2">
+                                <span class="text-blue-400 text-sm font-bold">May 2025 - Sept 2025</span>
+                                <h3 class="text-xl font-bold text-white">Federal Aviation Administration</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-blue-500">
+                                    <li>Built a <strong>rugged LiDAR measurement device</strong> (R-Pi + Arduino) with redundant logging (~2000 LOC C++/Python).</li>
+                                    <li>Developed a mobile-friendly <strong>Radar FOV tool</strong> to visualize coverage and optimize placement.</li>
+                                    <li>Rebuilt and flight-tested a hexacopter on <strong>ArduPilot</strong> for sensor payloads (11 min flight time).</li>
+                                    <li>Designed a 3-axis remote gimbal controller with real-time "mirror gimbal" feedback.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+                    <!-- TAMU S-RISE -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
+                            <div class="md:hidden mb-2 pl-2">
+                                <span class="text-purple-400 text-sm font-bold">May 2025 - Aug 2025</span>
+                                <h3 class="text-xl font-bold text-white">Texas A&M University (S-RISE)</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-purple-500">
+                                    <li>Researched <strong>nano carbon black additives</strong> in concrete for smart infrastructure.</li>
+                                    <li>Tested electrical performance for self-heating and energy storage capabilities.</li>
+                                    <li>Presented findings at the final research showcase.</li>
+                                </ul>
+                            </div>
+                            <div class="hidden md:block mt-2">
+                                <h3 class="text-2xl font-bold text-white">Texas A&M University (S-RISE)</h3>
+                                <p class="text-slate-400 font-medium">Student Research Assistant</p>
+                                <span class="text-purple-400 font-bold tracking-wider text-sm uppercase">May 2025 - Aug 2025</span>
+                            </div>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="hidden md:block pl-10 order-2"></div>
+                    </div>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+                    <!-- MIT & Harvard -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
+                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
+                            <span class="text-cyan-400 font-bold tracking-wider text-sm uppercase">2021 - 2023</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">MIT & Harvard</h3>
+                            <p class="text-slate-400 font-medium">Intern & Research Assistant</p>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="pl-10 md:pl-10" data-aos="fade-left">
+                             <div class="md:hidden mb-2">
+                                <span class="text-cyan-400 text-sm font-bold">2021 - 2023</span>
+                                <h3 class="text-xl font-bold text-white">MIT & Harvard</h3>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                                <p class="mb-2"><strong class="text-white">MIT Jameel Clinic:</strong> ML models for tumor recognition in medical imaging.</p>
+                                <p class="mb-2"><strong class="text-white">Harvard:</strong> Managed lab equipment for 30+ engineering students.</p>
+                                <p><strong class="text-white">MIT CSHub:</strong> Analyzed concrete electron conductivity properties.</p>
+                            </div>
+                        </div>
+                    </div>
 
-<!-- Code injected by live-server -->
-<script type="text/javascript">
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script></body>
+                </div>
+            </div>
+        </section>
 
+        <!-- Projects Grid -->
+        <section id="projects" class="py-24 bg-slate-900/50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                    <div>
+                        <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">Engineering Portfolio</h2>
+                        <p class="text-slate-400 max-w-xl">A collection of hardware, software, and fabrication projects.</p>
+                    </div>
+                </div>
+
+                <!-- Highlight Project (LiDAR) -->
+                <div data-aos="fade-up" class="group relative rounded-3xl overflow-hidden bg-slate-800 border border-white/10 mb-12">
+                    <div class="grid md:grid-cols-5 h-full">
+                        <div class="md:col-span-3 relative h-64 md:h-auto overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=1000" alt="LiDAR Device" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
+                        </div>
+                        <div class="md:col-span-2 p-8 md:p-12 flex flex-col justify-center relative">
+                            <div class="absolute top-0 right-0 p-36 bg-blue-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                            
+                            <div class="flex items-center space-x-2 mb-6">
+                                <span class="px-3 py-1 text-xs font-bold text-blue-400 bg-blue-400/10 border border-blue-400/20 rounded-full">Embedded C++</span>
+                                <span class="px-3 py-1 text-xs font-bold text-white bg-slate-700 rounded-full">FAA</span>
+                            </div>
+                            
+                            <h3 class="text-3xl font-bold text-white mb-4">Rugged LiDAR Measurement Device</h3>
+                            <p class="text-slate-400 mb-8 leading-relaxed">
+                                A field-ready measurement tool built for FAA engineers. Features an IMU-based orientation guidance system, redundant SD+Cloud logging, and dual LCD interface. Written in ~2000 lines of C++ and Python.
+                            </p>
+                            
+                            <ul class="flex flex-wrap gap-2 mb-8 text-sm text-slate-500">
+                                <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-1 text-green-500"></i> Raspberry Pi</li>
+                                <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-1 text-green-500"></i> Arduino</li>
+                                <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-1 text-green-500"></i> 3D Printed Enclosure</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Hexacopter -->
+                    <article data-aos="fade-up" data-aos-delay="100" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 transition-all">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Drone">
+                            <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">ArduPilot Hexacopter</h4>
+                            <p class="text-slate-400 text-sm mb-4">Rebuilt a decommissioned UAV with redundant comms and safety power management. 11-min flight time with 7S payload.</p>
+                            <span class="text-xs font-mono text-blue-300">#UAV #Robotics</span>
+                        </div>
+                    </article>
+
+                    <!-- Radar Tool -->
+                    <article data-aos="fade-up" data-aos-delay="200" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 transition-all">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Radar">
+                            <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Radar FOV Visualizer</h4>
+                            <p class="text-slate-400 text-sm mb-4">Mobile web app using HTML5 Canvas to visualize radar cones and recommend placement geometry for field ops.</p>
+                            <span class="text-xs font-mono text-blue-300">#WebTool #Geometry</span>
+                        </div>
+                    </article>
+
+                    <!-- Digital Fab -->
+                    <article data-aos="fade-up" data-aos-delay="300" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 transition-all">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/img/portfolio/IMG_0153.jpg" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=500'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Fab">
+                            <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Digital Fabrication</h4>
+                            <p class="text-slate-400 text-sm mb-4">A collection of 10+ weeks of projects from PHYS S-12, including laser cutting, molding, and IoT machines.</p>
+                            <a href="html/PHYS_S-12.html" class="text-xs font-bold text-white hover:text-blue-400 flex items-center mt-2">View Coursework <i data-lucide="arrow-right" class="w-3 h-3 ml-1"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Skills -->
+        <section id="about" class="py-24">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">About Me</h2>
+                    <div class="space-y-4 text-slate-400 text-lg leading-relaxed">
+                        <p>
+                            I'm an engineer obsessed with reliability. Whether it's a UAV flying an autonomous mission or a sensor node collecting data in the field, I enjoy the challenge of building systems that <em class="text-white not-italic">just work</em>.
+                        </p>
+                        <p>
+                            Currently pursuing <strong>Aerospace Engineering</strong> at UT Austin, with a background in Electrical/Computer Engineering. I thrive in roles where I can own the full build: requirements → wiring → firmware → testing.
+                        </p>
+                        <p>
+                            Bilingual in English, Arabic, and French. When I'm not soldering or coding, I'm a competitive swimmer and rugby player.
+                        </p>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="bg-slate-800/30 p-8 rounded-3xl border border-white/5">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center"><i data-lucide="wrench" class="mr-2 text-blue-500"></i> Technical Toolbox</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-slate-300">Embedded (C/C++, Arduino, Pi)</span>
+                                <span class="text-blue-400">95%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 w-[95%]"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-slate-300">Python & Data Science</span>
+                                <span class="text-blue-400">90%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 w-[90%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-slate-300">Robotics & ArduPilot</span>
+                                <span class="text-blue-400">85%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 w-[85%]"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-slate-300">CAD & Fabrication</span>
+                                <span class="text-blue-400">75%</span>
+                            </div>
+                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 w-[75%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="bg-black py-20 border-t border-white/10">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-8">Ready to Build?</h2>
+                <p class="text-slate-500 mb-10">Currently open to internships and research opportunities in Autonomy & Robotics.</p>
+                
+                <div class="flex justify-center space-x-6 mb-16">
+                    <a href="mailto:momran2401@gmail.com" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
+                        <i data-lucide="mail" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mustafaahmedomran" target="_blank" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
+                    </a>
+                    <a href="https://github.com/momran2401" target="_blank" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
+                        <i data-lucide="github" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
+                    </a>
+                </div>
+                
+                <div class="text-slate-600 text-sm">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
 </html>
