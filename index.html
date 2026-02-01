@@ -98,6 +98,14 @@
             transform: translateX(-50%);
         }
         
+        /* Project Tilt Effect */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .project-card:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+        
         @media (max-width: 768px) {
             .timeline-line::before {
                 left: 20px;
@@ -169,7 +177,7 @@
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
-                <span>Aerospace Engineering @ UT Austin</span>
+                <span>Electrical & Computer Engineering at the University of Texas at Austin</span>
             </div>
 
             <h1 data-aos="fade-up" data-aos-delay="100" class="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
@@ -193,15 +201,62 @@
                 </a>
             </div>
 
-            <!-- Tech Stack Ticker -->
-            <div data-aos="fade-in" data-aos-delay="600" class="mt-20 pt-10 border-t border-white/5 w-full max-w-4xl">
-                <p class="text-sm text-slate-500 mb-6 uppercase tracking-widest font-semibold">Technologies I use</p>
-                <div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-                    <div class="flex flex-col items-center gap-2"><i data-lucide="cpu" class="w-8 h-8"></i><span class="text-xs">Embedded</span></div>
-                    <div class="flex flex-col items-center gap-2"><i data-lucide="plane" class="w-8 h-8"></i><span class="text-xs">ArduPilot</span></div>
-                    <div class="flex flex-col items-center gap-2"><i data-lucide="code-2" class="w-8 h-8"></i><span class="text-xs">C++ / Python</span></div>
-                    <div class="flex flex-col items-center gap-2"><i data-lucide="wifi" class="w-8 h-8"></i><span class="text-xs">IoT & RF</span></div>
-                    <div class="flex flex-col items-center gap-2"><i data-lucide="box" class="w-8 h-8"></i><span class="text-xs">3D Design</span></div>
+            <!-- Tech Stack Expanded -->
+            <div data-aos="fade-in" data-aos-delay="600" class="mt-20 pt-10 border-t border-white/5 w-full max-w-5xl">
+                <p class="text-sm text-slate-500 mb-6 uppercase tracking-widest font-semibold">Technical Toolbox</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+                    <!-- Embedded -->
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 hover:border-blue-500/30 transition-colors">
+                        <div class="flex items-center space-x-2 mb-2 text-blue-400 font-bold text-sm">
+                            <i data-lucide="cpu" class="w-4 h-4"></i> <span>Embedded</span>
+                        </div>
+                        <ul class="text-slate-400 text-sm space-y-1">
+                            <li>C / C++</li>
+                            <li>Raspberry Pi & Arduino</li>
+                            <li>ESP32 / IoT</li>
+                            <li>Sensors & I2C/SPI</li>
+                        </ul>
+                    </div>
+
+                    <!-- Robotics -->
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 hover:border-purple-500/30 transition-colors">
+                        <div class="flex items-center space-x-2 mb-2 text-purple-400 font-bold text-sm">
+                            <i data-lucide="plane" class="w-4 h-4"></i> <span>Robotics</span>
+                        </div>
+                        <ul class="text-slate-400 text-sm space-y-1">
+                            <li>ArduPilot / PX4</li>
+                            <li>UAV Systems</li>
+                            <li>Motor Control</li>
+                            <li>PID Tuning</li>
+                        </ul>
+                    </div>
+
+                    <!-- Software -->
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 hover:border-cyan-500/30 transition-colors">
+                        <div class="flex items-center space-x-2 mb-2 text-cyan-400 font-bold text-sm">
+                            <i data-lucide="code" class="w-4 h-4"></i> <span>Software</span>
+                        </div>
+                        <ul class="text-slate-400 text-sm space-y-1">
+                            <li>Python & Data Science</li>
+                            <li>MATLAB</li>
+                            <li>HTML/JS/CSS</li>
+                            <li>Git & Linux</li>
+                        </ul>
+                    </div>
+
+                    <!-- Design -->
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 hover:border-pink-500/30 transition-colors">
+                        <div class="flex items-center space-x-2 mb-2 text-pink-400 font-bold text-sm">
+                            <i data-lucide="box" class="w-4 h-4"></i> <span>Fabrication</span>
+                        </div>
+                        <ul class="text-slate-400 text-sm space-y-1">
+                            <li>CAD (SolidWorks/Fusion)</li>
+                            <li>3D Printing</li>
+                            <li>Laser Cutting</li>
+                            <li>PCB Design</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -210,8 +265,7 @@
         <section id="experience" class="py-24 relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">Professional Journey</h2>
-                    <p class="text-slate-400">From research labs to the FAA.</p>
+                    <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">Experience</h2>
                 </div>
 
                 <div class="relative timeline-line space-y-12">
@@ -240,28 +294,27 @@
                         </div>
                     </div>
 
-                    <!-- TAMU S-RISE -->
+                    <!-- TAMU S-RISE (Now Aligned Like FAA) -->
                     <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
-                            <div class="md:hidden mb-2 pl-2">
+                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
+                            <span class="text-purple-400 font-bold tracking-wider text-sm uppercase">May 2025 - Aug 2025</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">Texas A&M University (S-RISE)</h3>
+                            <p class="text-slate-400 font-medium">Student Research Assistant</p>
+                        </div>
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
+                        <div class="pl-10 md:pl-10" data-aos="fade-left">
+                            <div class="md:hidden mb-2">
                                 <span class="text-purple-400 text-sm font-bold">May 2025 - Aug 2025</span>
                                 <h3 class="text-xl font-bold text-white">Texas A&M University (S-RISE)</h3>
                             </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-purple-500">
+                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-purple-500">
                                     <li>Researched <strong>nano carbon black additives</strong> in concrete for smart infrastructure.</li>
                                     <li>Tested electrical performance for self-heating and energy storage capabilities.</li>
                                     <li>Presented findings at the final research showcase.</li>
                                 </ul>
                             </div>
-                            <div class="hidden md:block mt-2">
-                                <h3 class="text-2xl font-bold text-white">Texas A&M University (S-RISE)</h3>
-                                <p class="text-slate-400 font-medium">Student Research Assistant</p>
-                                <span class="text-purple-400 font-bold tracking-wider text-sm uppercase">May 2025 - Aug 2025</span>
-                            </div>
                         </div>
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="hidden md:block pl-10 order-2"></div>
                     </div>
 
                     <!-- MIT & Harvard -->
@@ -300,7 +353,7 @@
                 </div>
 
                 <!-- Highlight Project (LiDAR) -->
-                <div data-aos="fade-up" class="group relative rounded-3xl overflow-hidden bg-slate-800 border border-white/10 mb-12">
+                <div data-aos="fade-up" class="group relative rounded-3xl overflow-hidden bg-slate-800 border border-white/10 mb-12 project-card">
                     <div class="grid md:grid-cols-5 h-full">
                         <div class="md:col-span-3 relative h-64 md:h-auto overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=1000" alt="LiDAR Device" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -332,7 +385,7 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
                     <!-- Hexacopter -->
-                    <article data-aos="fade-up" data-aos-delay="100" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 transition-all">
+                    <article data-aos="fade-up" data-aos-delay="100" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 project-card">
                         <div class="h-48 overflow-hidden relative">
                             <img src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Drone">
                             <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
@@ -345,7 +398,7 @@
                     </article>
 
                     <!-- Radar Tool -->
-                    <article data-aos="fade-up" data-aos-delay="200" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 transition-all">
+                    <article data-aos="fade-up" data-aos-delay="200" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 project-card">
                         <div class="h-48 overflow-hidden relative">
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Radar">
                             <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
@@ -358,7 +411,7 @@
                     </article>
 
                     <!-- Digital Fab -->
-                    <article data-aos="fade-up" data-aos-delay="300" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 transition-all">
+                    <article data-aos="fade-up" data-aos-delay="300" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 project-card">
                         <div class="h-48 overflow-hidden relative">
                             <img src="assets/img/portfolio/IMG_0153.jpg" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=500'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Fab">
                             <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
@@ -390,49 +443,12 @@
                         </p>
                     </div>
                 </div>
-                <div data-aos="fade-left" class="bg-slate-800/30 p-8 rounded-3xl border border-white/5">
-                    <h3 class="text-xl font-bold text-white mb-6 flex items-center"><i data-lucide="wrench" class="mr-2 text-blue-500"></i> Technical Toolbox</h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-slate-300">Embedded (C/C++, Arduino, Pi)</span>
-                                <span class="text-blue-400">95%</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="h-full bg-blue-500 w-[95%]"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-slate-300">Python & Data Science</span>
-                                <span class="text-blue-400">90%</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="h-full bg-blue-500 w-[90%]"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-slate-300">Robotics & ArduPilot</span>
-                                <span class="text-blue-400">85%</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="h-full bg-blue-500 w-[85%]"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-slate-300">CAD & Fabrication</span>
-                                <span class="text-blue-400">75%</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="h-full bg-blue-500 w-[75%]"></div>
-                            </div>
-                        </div>
+                <!-- Profile Image -->
+                <div data-aos="fade-left" class="flex justify-center md:justify-end">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 group">
+                         <!-- Decorative Blur Blob -->
+                        <div class="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+                        <img src="assets/img/B5ECFFD3-0AC8-4120-8097-F213C9BF6C5E_1_105_c.jpeg" alt="Mustafa Omran" class="relative w-full h-full object-cover rounded-2xl border-2 border-white/10 shadow-2xl transform transition duration-500 hover:scale-105">
                     </div>
                 </div>
             </div>
@@ -445,7 +461,7 @@
                 <p class="text-slate-500 mb-10">Currently open to internships and research opportunities in Autonomy & Robotics.</p>
                 
                 <div class="flex justify-center space-x-6 mb-16">
-                    <a href="mailto:momran2401@gmail.com" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
+                    <a href="mailto:momran@utexas.edu" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
                         <i data-lucide="mail" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/mustafaahmedomran" target="_blank" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
