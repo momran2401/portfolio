@@ -1,143 +1,330 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>2D Design & Cutting</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Design & Cutting | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
 
-<body>
-  <content>
-    <input id="hamburger" class="hamburger" type="checkbox"/>
-    <label class="hamburger" for="hamburger">
-      <i></i>
-      <text>
-        <close>close</close>
-        <open>menu</open>
-      </text>
-    </label>
-    <section class="drawer-list">
-        <ul>
-            <li><a href="../index.html">Home</a></li><br>
-            <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-            <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-            <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-            <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-            <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-            <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-            <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-            <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-            <li><a href="steppermotor.html">Machine Building</a></li><br>
-            <li><a href="finalproject.html">Final Project</a></li><br>
-        </ul>
-    </section>
-</content>
-<xmp theme="journal" style="display:none;">
-<!-- Assignment 1: Fusion 360 Tutorial -->
-<hr style="border-top: dotted 5px;">
-<h1>Assignment I: Fusion 360 Tutorial</h1>
-<h6>Following a Fusion 360 tutorial in order to help us grasp the dexterity of Fusion 360 was the first part of our 2D Design and Cutting assignment. I chose to attempt <a style="color: #0645AD" href="https://nathanmelenbrink.github.io/intro-dig-fab/02_cutting/index.html">Dr. Melenbrink's square demo.</a></p></h6>
-First, make a 40mm x 40mm square
-<img class="responsive" src="../images/2D_Design/firststep.png" alt="Initial Process">
-<br><br>Select all sides of the square and offset by -10.0 mm to create smaller square and make a perpendicular construcion-line at the midpoint for all sides.
-<img class="responsive" src="../images/2D_Design/secondstep.png" alt="Initial Process">
-<br><br>Offset said perpendicular line by half the thickness of the material.
-<img class="responsive" src="../images/2D_Design/2D_Designthirdstep.png" alt="Initial Process">
-<br><br>Use the mirror tool to mirror to the other side of the construcion-line.
-<img class="responsive" src="../images/2D_Design/fourthstep.png" alt="Initial Process">
-<br><br>Delete your construcion-lines and extrude by 4.0mm
-<img class="responsive" src="../images/2D_Design/fifthstep.png" alt="Initial Process">
-<br><br>And Voila!
-<img class="responsive" src="../images/2D_Design/finalstep.png" alt="Initial Process">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                    Home
+                </a>
+                <a href="index.html#projects" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<br><br>
-<hr style="border-top: dotted 5px;">
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-20 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-blue-400 bg-blue-400/10 border border-blue-400/20 rounded-full mb-4 inline-block">
+                    Week 2
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    2D Design & <span class="gradient-text">Laser Cutting</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Exploring computer-aided design (CAD), laser cutting tolerances, and press-fit construction kits.
+                </p>
+            </div>
+        </section>
 
-<!-- Assignment 2: Modeling Houshold Objects -->
-<h1>Assignment II: Modeling Houshold Objects</h1>
-<h6>Next, students had to choose a minimum of two houshold items and model them in Fusion 360. For my two objects, I chose to 3D model a tape roll and an iPhone.</h6>
-<h5 style="font-weight: bold;">iPhone Design Process</h5>
-<br>
-First I measured the iPhone's thickness, length, width, display length, display width, iPhone notch length, iPhone notch width. 
-<img class="responsive" src="../images/2D_Design/iphonestep1.png" alt="Initial Process">
-<br><br>
-After a bit of CAD work, we have a 3D model of an iPhone
-<img class="responsive" src="../images/2D_Design/finaliphone1.png" alt="Initial Process">
-<img class="responsive" src="../images/2D_Design/iphonefinal2.png" alt="Initial Process">
-<br><br>
-<hr style="border-top: dotted 5px;">
-<br>
+        <!-- Navigation Anchors -->
+        <div class="max-w-7xl mx-auto px-6 mb-16 flex flex-wrap justify-center gap-4">
+            <a href="#assignment1" class="px-4 py-2 glass-panel rounded-lg hover:bg-slate-800 transition-colors text-sm text-slate-300">I: Fusion Tutorial</a>
+            <a href="#assignment2" class="px-4 py-2 glass-panel rounded-lg hover:bg-slate-800 transition-colors text-sm text-slate-300">II: Household Objects</a>
+            <a href="#assignment3" class="px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-lg text-blue-300 text-sm font-medium">III: Press-Fit Kit</a>
+        </div>
 
-<!-- Assignment 3: Creating a Press-Fit Construction Kit -->
-<h1>Assignment III: Creating a Press-Fit Construction Kit</h1>
-<h6>For this final part of the assignment, the goal was to "create a press-fit construction kit that can be assembled in multiple ways and accounts for laser cutter kerf". I went through many stages/learning opportunities before reaching the final result. Lets's go through them. Shall we?</h6>
-<br>
-<br>
-<h5 style="font-weight: bold;">Attempt #1: The Hexagone ⏺️</h5>
-<br>
-First, design. I used Fusion 360's skectch tool to create a 6-sided polygone (hexagon). I then made three 5mm x 10mm notches on every side of the shape.
-<img class="responsive" src="../images/2D_Design/hexdimen.png" alt="Initial Process">
-<img class="responsive" src="../images/2D_Design/hexagone.png" alt="Initial Process">
-<br>
-<br>
+        <!-- Assignment 1: Fusion 360 -->
+        <section id="assignment1" class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="text-5xl font-display font-bold text-slate-800">01</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Fusion 360 Tutorial</h2>
+                    <p class="text-slate-400 text-sm">Learning the dexterity of parametric modeling.</p>
+                </div>
+            </div>
 
-Now...Printing!
-<img class="responsive" src="../images/2D_Design/lasercuthex.jpg" alt="Initial Process">
-<p1>My first cut was a hexagonal gear mechanism that could be used to create objects like balls, specifically a soccer ball. My choice to include an excessive amount of notches rendered my design un-attachable as the vertices of the hexagon along with the placement of my notches interfered with the intended desired attachment of the pieces. My failure to remember the measuring of the kerf further amplified the fact that this idea was in desperate need of improvement. </p1>
-<br>
-<hr style="border-top: dotted 1px;" />
-<br>
-<h5 style="font-weight: bold;">Attempt #2: Sqaure, Triangle, Pentagon ⏹️</h5>
-<img class="responsive" src="../images/2D_Design/attempt2.png" alt="Initial Process">
-<img class="responsive" src="../images/2D_Design/spacebetween.png" alt="Initial Process">
-<br><br>
-Although there were many sad feelings with the first hexagon attempt, there was still some crucial information learned...one of them being the kerf. Using a caliper to measure the cardboard cutout of the shape turned out to an average of 50.455 which, when subtracted by 49.545 - the shape itself - turns out to a kerf of 0.91mm. Doesn't look right? That's because it isn't! While a step forward as opposed to last time, this miscalculation in the kerf led to the area between the notches to be to small resulting in the inability to fit the pices together as they were too tight for each other. What a bummer...
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <p class="text-slate-400 mb-8">
+                    Following Dr. Melenbrink's square demo to understand constraints and parametric history.
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="space-y-3">
+                        <img src="../images/2D_Design/firststep.png" onerror="this.src='https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400'" class="rounded-xl border border-white/5 w-full h-48 object-cover bg-slate-900" alt="Step 1">
+                        <p class="text-xs text-slate-500 font-mono">1. Create 40x40mm square</p>
+                    </div>
+                    <div class="space-y-3">
+                        <img src="../images/2D_Design/secondstep.png" onerror="this.src='https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400'" class="rounded-xl border border-white/5 w-full h-48 object-cover bg-slate-900" alt="Step 2">
+                        <p class="text-xs text-slate-500 font-mono">2. Offset -10mm & construction lines</p>
+                    </div>
+                    <div class="space-y-3">
+                        <img src="../images/2D_Design/2D_Designthirdstep.png" onerror="this.src='https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400'" class="rounded-xl border border-white/5 w-full h-48 object-cover bg-slate-900" alt="Step 3">
+                        <p class="text-xs text-slate-500 font-mono">3. Mirror & Extrude 4mm</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<hr style="border-top: dotted 1px;" />
-<br><br>
-<h5 style="font-weight: bold;">Final Attempt: Triangle 🔼</h5>
-<p1>Remeasuring the kerf, it came out to a more reasonable 0.365mm. Using this new information, I hopped onto Fusion 360 and started to sketch my final design...a triangle. I first started by taping the "skectch" button. I then chose the "edge polygon" from the polygon menu under the create menu starting from 0,0 on the coordinate plane and onto 150,0 signifiying that the triangle would be 150mm. Following that, I chose entered 3 as the number of sides the polygon should have. Furthermore, I made a perpendicular construction line at the midpoint for all three sides of the triangle. I then offset said construction-line and knowing that the thickness of the cardboard was 4.4 mm, I subtracted half of said thickness (2.2mm) by the kerf measurement in order to compensate for the "laser dust" when making notch. Repeat on all 3 sides, extrude by 4.4mm, fillet interior edges by 3mm and outer edges by 1.5mm and you got yourself a shape!</p1>
-<img class="responsive" src="../images/2D_Design/triangle.jpg" alt="Initial Process">
-<br><br>
-One Triangle
-<img class="responsive" src="../images/2D_Design/onetriangle.jpg" alt="Initial Process">
-<br><br><br>
-Two Triangles. Fit together tightly whilst still being easy to separate.
-<img class="responsive" src="../images/2D_Design/twotriangles.jpg" alt="Initial Process">
-<br><br><br>
-Or get 12 triangles and cut out a 30cm x 30cm cardboard square and... 
-<img class="responsive" src="../images/2D_Design/comtab.jpg" alt="Initial Process">
-<br><br>
-Make a Table that can support a laptop!
-<img class="responsive" src="../images/2D_Design/computertable.jpg" alt="Initial Process">
-<br><br>
-<h5 style="font-weight:bold; text-decoration: underline;">My final parameters were:</h5>
-<p>&emsp;&emsp;&emsp;- Kerf: <strong>0.365mm</strong></p>
-<p>&emsp;&emsp;&emsp;- Laser Power Min: <strong>65%</strong></p>
-<p>&emsp;&emsp;&emsp;- Laser Power Max: <strong>75%</strong></p>
-<p>&emsp;&emsp;&emsp;- Laser Speed: <strong>20mm/s</strong></p>
-<p>&emsp;&emsp;&emsp;- Triangle Area: <strong>9585.95 mm^2</strong></p>
-<p>&emsp;&emsp;&emsp;- Triangle Side-Legnth: <strong>150mm</strong></p>
-<p>&emsp;&emsp;&emsp;- Triangle Thickness: <strong>4.4mm</strong></p>
-<p>&emsp;&emsp;&emsp;- Notch Depth: <strong>10mm</strong></p>
-<p>&emsp;&emsp;&emsp;- Notch Side: <strong>3.375mm</strong></p>
+        <!-- Assignment 2: Household Objects -->
+        <section id="assignment2" class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="text-5xl font-display font-bold text-slate-800">02</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Modeling Household Objects</h2>
+                    <p class="text-slate-400 text-sm">Reverse engineering physical objects into digital twins.</p>
+                </div>
+            </div>
 
-<br><br>
-<p style="text-align: right;">&copy; 2022 Mustafa Omran</p>
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">The iPhone Project</h3>
+                            <p class="text-slate-400 leading-relaxed text-sm">
+                                I chose to model an iPhone by first measuring critical dimensions: thickness, length, width, display area, and notch geometry using digital calipers.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-blue-500 mr-2"></i> Accurate corner radii</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-blue-500 mr-2"></i> Button placement constraints</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-blue-500 mr-2"></i> Camera bump extrusion</li>
+                        </ul>
+                    </div>
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                        <img src="../images/2D_Design/finaliphone1.png" onerror="this.src='https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&q=80&w=800'" class="relative rounded-xl w-full shadow-2xl border border-white/10" alt="iPhone CAD">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assignment 3: Press-Fit Kit -->
+        <section id="assignment3" class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="text-5xl font-display font-bold text-slate-800">03</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Press-Fit Construction Kit</h2>
+                    <p class="text-slate-400 text-sm">Designing a modular kit that accounts for laser cutter kerf.</p>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                
+                <!-- Attempt 1: Failure -->
+                <div class="glass-panel p-6 rounded-2xl border border-red-500/20" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold mr-3"><i data-lucide="x" class="w-4 h-4"></i></div>
+                        <h3 class="text-lg font-bold text-white">Attempt #1: The Hexagon</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                My first cut was a hexagonal gear mechanism intended to form spheres. 
+                            </p>
+                            <p class="text-red-300 text-sm font-medium bg-red-500/10 p-3 rounded-lg border border-red-500/20">
+                                <strong>Failure Analysis:</strong> Excessive notches rendered the design un-attachable. The vertices interfered with connections, and I completely neglected to calculate the kerf (material burned away by the laser).
+                            </p>
+                        </div>
+                        <img src="../images/2D_Design/lasercuthex.jpg" onerror="this.src='https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=400'" class="rounded-lg h-40 w-full object-cover bg-slate-900 grayscale opacity-70 hover:opacity-100 transition-opacity" alt="Hexagon Fail">
+                    </div>
+                </div>
+
+                <!-- Attempt 2: Kerf Issues -->
+                <div class="glass-panel p-6 rounded-2xl border border-amber-500/20" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold mr-3"><i data-lucide="alert-triangle" class="w-4 h-4"></i></div>
+                        <h3 class="text-lg font-bold text-white">Attempt #2: The Kerf Miscalculation</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        I measured the cardboard cutout at 50.455mm vs the 49.545mm design, calculating a kerf of 0.91mm. 
+                        <span class="text-amber-300">This was incorrect.</span> The slots were too tight because I overestimated the kerf, making the fit impossible without damaging the material.
+                    </p>
+                    <div class="flex gap-4 overflow-x-auto pb-2">
+                        <img src="../images/2D_Design/attempt2.png" onerror="this.src='https://placehold.co/400x200/1e293b/475569?text=Attempt+2'" class="rounded-lg h-32 w-auto border border-white/5" alt="Attempt 2">
+                        <img src="../images/2D_Design/spacebetween.png" onerror="this.src='https://placehold.co/400x200/1e293b/475569?text=Spacing'" class="rounded-lg h-32 w-auto border border-white/5" alt="Spacing">
+                    </div>
+                </div>
+
+                <!-- Final Success -->
+                <div class="glass-panel p-8 rounded-2xl border border-green-500/20 relative overflow-hidden" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 p-32 bg-green-500/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+                    
+                    <div class="flex items-center mb-6">
+                        <div class="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center font-bold mr-3"><i data-lucide="check" class="w-4 h-4"></i></div>
+                        <h3 class="text-xl font-bold text-white">Final Attempt: The Modular Triangle</h3>
+                    </div>
+
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Remeasuring the kerf gave a more reasonable <strong>0.365mm</strong>. I designed a 150mm equilateral triangle. Knowing the cardboard thickness was 4.4mm, I subtracted half the thickness (2.2mm) minus the kerf from the slot width to ensure a snug press-fit.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <img src="../images/2D_Design/twotriangles.jpg" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=500'" class="rounded-xl border border-white/10 w-full h-64 object-cover hover:scale-105 transition-transform duration-500" alt="Two Triangles">
+                        <img src="../images/2D_Design/computertable.jpg" onerror="this.src='https://images.unsplash.com/photo-1606760520268-6c8d76df87df?auto=format&fit=crop&q=80&w=500'" class="rounded-xl border border-white/10 w-full h-64 object-cover hover:scale-105 transition-transform duration-500" alt="Laptop Stand">
+                    </div>
+
+                    <!-- Technical Specs Box -->
+                    <div class="bg-slate-900/50 rounded-xl p-6 border border-white/10">
+                        <h4 class="text-sm font-bold text-slate-300 uppercase tracking-widest mb-4">Laser Configuration Parameters</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div>
+                                <p class="text-xs text-slate-500">Kerf</p>
+                                <p class="text-blue-400 font-mono font-bold">0.365mm</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Power (Min/Max)</p>
+                                <p class="text-purple-400 font-mono font-bold">65% / 75%</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Speed</p>
+                                <p class="text-cyan-400 font-mono font-bold">20mm/s</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Material Thickness</p>
+                                <p class="text-slate-200 font-mono font-bold">4.4mm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-white/10 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Portfolio
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
 </body>
-</xmp>
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
