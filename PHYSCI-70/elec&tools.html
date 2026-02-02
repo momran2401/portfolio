@@ -1,95 +1,330 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>Electronics & Tools</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics & Tools | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            rose: '#f43f5e',
+                            amber: '#f59e0b'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-rose-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
 
-<body>
-  <content>
-    <input id="hamburger" class="hamburger" type="checkbox"/>
-    <label class="hamburger" for="hamburger">
-      <i></i>
-      <text>
-        <close>close</close>
-        <open>menu</open>
-      </text>
-    </label>
-    <section class="drawer-list">
-        <ul>
-            <li><a href="../index.html">Home</a></li><br>
-            <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-            <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-            <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-            <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-            <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-            <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-            <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-            <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-            <li><a href="steppermotor.html">Machine Building</a></li><br>
-            <li><a href="finalproject.html">Final Project</a></li><br>
-        </ul>
-    </section>
-</content>
-<xmp theme="journal" style="display:none;">
-<!-- Assignment 1: Fusion 360 Tutorial -->
-<hr style="border-top: dotted 5px;">
-<h1>Assignment I: Kinetic Sculpture</h1>
-<h6>For this assignment, students had to create a kinetic sturcture using a motor</h6>
-<br>
-<p>I knew I wanted to make a car so I sketched the different parts to get a rough idea of what I was looking for.</p>
-<p style="text-align:center;"><img src="../images/Electronics&Tools/elecsketch.JPG" width="700" alt="Skect of Car"></p><br><br>
-I then hopped onto Fusion 360 and made 2 rectangles and 4 wheels. Furthermore, I punctured holes the size of the baton stick (4mm) around 2/3 of the way down from the top of the rectangles. I then linked up all the pieces together and got the basic shape of the car. I used a pulley-type mechanism to make the wheels spin (showcased later on)<br>
-<p style="text-align:center;"><img src="../images/Electronics&Tools/6lbrfx.gif" width="500" alt="Laser Cutter"></p>
-<br><br><p>&emsp;&emsp;&emsp;- Rectangle Dimensions (w x l): <strong>25cm x 15cm</strong></p>
-<p>&emsp;&emsp;&emsp;- Wheel Dimensions (d): <strong>17cm</strong></p>
-<p>&emsp;&emsp;&emsp;- Inner Wheel Dimensions (d): <strong>4mm x </strong></p><br><br>
-<br><p>Final Result?</p>
-<video controls width="400" height"500">
- <source src="../images/Electronics&Tools/car_spinning.mp4" type="video/mp4">
-</video> 
-<br><br><p>...Or so I though.</p>
-<img src="../images/Electronics&Tools/elecflaw.jpg" width="500" alt="Flaw">
-<br><p>If we zoom in the video, it is seen that after spinning the motor for a certain amount of time, the rubber bands begin to fall off thus rendering the back wheel unusable</p>
-<br><p>To combat this issue, I measured the motor with a caliper which turned out to have a 6mm diameter. I then went to Fusion 360 and made a 13mm diameter circle, extruded it by 4mm, finished the sketch, and used the "hole" feature to make a 6mm perforation in order to slide perfectly on the motor. Using the laser cutter to cut wood required a power of 100% with a speed of 12.5mm/s. Problem Solved!</p>
-<img src="../images/Electronics&Tools/IMG_3410.jpg" width="700" alt="Motor Attachment">
-<video controls width="400" height"500">
-  <source src="../images/Electronics&Tools/cardemofinal.mp4" type="video/mp4">
- </video> 
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                    Home
+                </a>
+                <a href="index.html#projects" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<!-- video of final project -->
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-20 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-rose-400 bg-rose-400/10 border border-rose-400/20 rounded-full mb-4 inline-block">
+                    Week 3
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    Electronics & <span class="gradient-text">Tools</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Building a kinetic sculpture: A journey from sketches to a motorized vehicle.
+                </p>
+            </div>
+        </section>
 
-<hr style="border-top: dotted 3px;"><br><br><h3>Things I would Change</h3>
-<p>&emsp;&emsp;&emsp;- <strong>Design</strong>. I find the design a bit to unpleasing as it looks like a car children make in kindergarden.</p>
-<p>&emsp;&emsp;&emsp;- <strong>Power</strong>. During my testing on different surfaces, I found that the vehicle sometimes did not move due to a lack of power. To fix this, I would switch the current motor for a bigger one or add another motor for a total of two.</p>
-<p>&emsp;&emsp;&emsp;- <strong>Grip</strong>. Adding on to the "power" point, adding more grip to the wheels would greatly increase the vehicle's ability to maneuver different surfaces</p>
-<p>&emsp;&emsp;&emsp;- <strong>Materials</strong>. For this project, I used cardboard which while great for quick prototypes, is not great for final projects because of it's inferior durability</p>
+        <!-- Project Overview -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <div class="flex items-center mb-6">
+                    <div class="p-3 bg-blue-500/10 rounded-xl text-blue-400 mr-4">
+                        <i data-lucide="pencil-ruler" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white font-display">Concept & Design</h2>
+                        <p class="text-sm text-slate-400">Assignment: Create a kinetic structure using a motor.</p>
+                    </div>
+                </div>
 
-<br><br>
-<hr style="border-top: dotted 5px;">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-4">
+                        <p class="text-slate-400 leading-relaxed">
+                            I decided to build a simple motorized car. I started with a hand sketch to visualize the chassis, wheel placement, and drive mechanism.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed">
+                            Using <strong>Fusion 360</strong>, I modeled the chassis (25cm x 15cm) and 17cm wheels, designing a pulley-type mechanism to transfer power from the motor to the wheels.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl overflow-hidden p-2 transform rotate-2 hover:rotate-0 transition-transform duration-500 shadow-xl">
+                        <img src="../images/Electronics&Tools/elecsketch.JPG" onerror="this.src='https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&q=80&w=600'" class="w-full h-auto rounded-lg" alt="Initial Sketch">
+                        <p class="text-xs text-center text-slate-500 mt-2 font-mono">Initial Concept Sketch</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<h3>Project Video</h3>
-<video controls width="960" height"540">
-  <source src="../images/Electronics&Tools/cardemo1.mp4" type="video/mp4">
- </video> 
+        <!-- Fabrication & Failure Analysis -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <h2 class="text-3xl font-bold text-white font-display mb-10 pl-2 border-l-4 border-rose-500">Fabrication & Iteration</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Step 1: Laser Cutting -->
+                <div class="glass-panel p-6 rounded-2xl" data-aos="fade-right">
+                    <div class="mb-4">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Phase 1</span>
+                        <h3 class="text-xl font-bold text-white mt-1">Laser Cutting</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">
+                        I cut the chassis and wheels from cardboard using the laser cutter. The design featured 4mm axle holes positioned strategically for balance.
+                    </p>
+                    <div class="rounded-lg overflow-hidden border border-white/10">
+                        <img src="../images/Electronics&Tools/6lbrfx.gif" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=Laser+Cutting+GIF'" class="w-full h-48 object-cover" alt="Laser Cutting">
+                    </div>
+                </div>
 
-<p style="text-align: right;">&copy; 2022 Mustafa Omran</p>
-</xmp>
+                <!-- Step 2: The Failure -->
+                <div class="glass-panel p-6 rounded-2xl border border-rose-500/20" data-aos="fade-left">
+                    <div class="mb-4">
+                        <span class="text-xs font-bold text-rose-400 uppercase tracking-widest">Phase 2</span>
+                        <h3 class="text-xl font-bold text-white mt-1">The Flaw</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">
+                        The initial pulley system failed. The rubber bands would slip off the motor shaft after a few rotations, rendering the drive system useless.
+                    </p>
+                    <div class="rounded-lg overflow-hidden border border-white/10 relative">
+                        <img src="../images/Electronics&Tools/elecflaw.jpg" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=Flaw+Detection'" class="w-full h-48 object-cover opacity-80" alt="Mechanical Failure">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i data-lucide="alert-triangle" class="w-12 h-12 text-rose-500 drop-shadow-lg"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: The Fix -->
+                <div class="md:col-span-2 glass-panel p-8 rounded-2xl border border-green-500/20" data-aos="fade-up">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="flex-1">
+                            <div class="flex items-center mb-4">
+                                <div class="p-2 bg-green-500/10 rounded-lg text-green-400 mr-3">
+                                    <i data-lucide="wrench" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">The Engineering Fix</h3>
+                            </div>
+                            <p class="text-slate-400 leading-relaxed mb-4">
+                                To combat the slippage, I measured the motor shaft (6mm) with calipers. I designed a custom adapter in Fusion 360: a 13mm wooden disc with a precise 6mm friction-fit hole.
+                            </p>
+                            <p class="text-slate-400 leading-relaxed">
+                                I cut this piece using the laser cutter at <strong>100% Power / 12.5mm/s Speed</strong> to ensure a clean edge. This adapter kept the belt securely in place.
+                            </p>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <div class="rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                                <img src="../images/Electronics&Tools/IMG_3410.jpg" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=The+Fix'" class="w-full h-64 object-cover" alt="Motor Attachment">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Final Results -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <h2 class="text-3xl font-bold text-white font-display mb-10 text-center">Final Demonstration</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black">
+                    <video controls class="w-full h-full object-cover">
+                        <source src="../images/Electronics&Tools/cardemofinal.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black">
+                    <video controls class="w-full h-full object-cover">
+                        <source src="../images/Electronics&Tools/cardemo1.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reflections Grid -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <h2 class="text-2xl font-bold text-white mb-8 border-b border-white/10 pb-4">Retrospective: What I'd Change</h2>
+                
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <!-- Item 1 -->
+                    <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5 hover:border-blue-500/30 transition-colors">
+                        <div class="flex items-center space-x-2 mb-2 text-blue-400 font-bold">
+                            <i data-lucide="palette" class="w-4 h-4"></i> <span>Aesthetics</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">
+                            The design is purely functional but lacks polish. It currently resembles a kindergarten project; future iterations would focus on a sleeker, enclosed chassis.
+                        </p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5 hover:border-amber-500/30 transition-colors">
+                        <div class="flex items-center space-x-2 mb-2 text-amber-400 font-bold">
+                            <i data-lucide="zap" class="w-4 h-4"></i> <span>Power Train</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">
+                            The single motor struggled on rough surfaces. Upgrading to a higher-torque motor or a dual-motor setup would improve reliability.
+                        </p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5 hover:border-rose-500/30 transition-colors">
+                        <div class="flex items-center space-x-2 mb-2 text-rose-400 font-bold">
+                            <i data-lucide="disc" class="w-4 h-4"></i> <span>Traction</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">
+                            The cardboard wheels had poor grip. Adding rubber tires or coating the wheels in silicone would drastically improve handling.
+                        </p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5 hover:border-purple-500/30 transition-colors">
+                        <div class="flex items-center space-x-2 mb-2 text-purple-400 font-bold">
+                            <i data-lucide="hammer" class="w-4 h-4"></i> <span>Materials</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">
+                            Cardboard is great for prototyping but lacks durability. Moving to acrylic or plywood for the final chassis would increase structural integrity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-white/10 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Portfolio
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
 </body>
-
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
