@@ -1,90 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
-      <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>Final Project Process</em></span></h2>
-      <br>
-      <br>
-      <br>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-      <link href="../style.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-      <link href="css/style.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Process | Hand Gesture Car</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Timeline Line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 20px; /* Mobile alignment */
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(59, 130, 246, 0.2);
+            z-index: 0;
+        }
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
-
-<body>
-    <div align="center">
-        <br><br>
-        <button><a href="elecOutput.html">Go Back</a></button>
-        <br><br>
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
     </div>
-    <xmp theme="journal" style="display:none;">
-<h5>I first started by with the steering column. I wanted to use a servo motor connected to some wheels that would turn the whole vehicle. A bar coming from the servo motor would be connected perpendicularly with another piece via heat shrinks.</h5>
-<img src="../images/FinalProject/IMG_0552.JPG" width="400" alt="Sketch of Steering">
-<h5>Which turned out to be this. As you can see, it is crooked and not well aligned. Adding on to the fact that the turning radius was awful because servos generate rotational and not linear motion, this was a complete fail. I went on to switch to a syncro-steering system which means that the independent wheels spin differently</h5>
-<img src="../images/FinalProject/IMG_0483.HEIC.jpg" width="400" alt="Steering Column">
-<img src="../images/FinalProject/IMG_0484.HEIC.jpg" width="400" alt="Steering Column">
-<br>
-<h5>Next was the Ultrasonic Sensors. Since they have a detection range of 15°, I angled them so one was pointed forward and one on each side pointed 15° away from the front sensor.</h5>
-<img src="../images/FinalProject/IMG_0392.jpg" width="400" alt="">
-<img src="../images/FinalProject/IMG_0447.HEIC.jpg" width="400" alt="Final Circuit">
-<img src="../images/FinalProject/IMG_0448.HEIC.jpg" width="400" alt="Sensor Circuit">
-<br>
-<h5>I had an issue with the wheels. As they were made of low quality rubber, they didn't have excellent grip. I proceeded to add hot glue and rubber bands around the wheels which massively improved the grip but it still wasn't excellent</h5>
-<img src="../images/FinalProject/IMG_0488.HEIC.jpg" width="400" alt="Grip on wheels">
-<br>
-<h5>Now for the body of the car. I initially wanted to 3D print and while I did so, I was informed by Prof. Melenbrink that the print had an approximate 5% success rate and that I should consider doing a backup. I have to express my gratitude for this as the print did indeed end up failing and that piece of advice saved my life! </h5>
-<img src="../images/FinalProject/IMG_0497.HEIC.jpg" width="400" alt="3D print">
-<br>
-<h5>For the backup, I laser cut various pieces and assembled them togther. I made some space for the breadboard containing the ultrasound sensors and a cutout so I can press fit the motors.</h5>
-<img src="../images/FinalProject/IMG_0498.HEIC.jpg" width="400" alt="Top view Laser Cut">
-<img src="../images/FinalProject/IMG_0500.HEIC.jpg" width="400" alt="Motor Cutout">
-<br>
-<h5>After press-fitting the motors and adding some hot glue for extra durablity and 'securness', I attached the motors to a L9110 motor control board which would then go on to be attached to the reciever ESP32</h5>
-<img src="../images/FinalProject/IMG_0501.HEIC.jpg" width="400" alt="Motor Setup">
-<video controls width="500" height"500" muted>
-    <source src="../images/FinalProject/IMG_0505.mp4" type="video/mp4">
-</video> 
-<br>
-<br>
-<h5>After some testing, I upgraded the gears for the front wheels so they would spin more freely without the motor</h5>
-<img src="../images/FinalProject/IMG_0507.HEIC.jpg" width="400" alt="Upgraded Gear">
-<video controls width="350" height"500" autoplay muted loop>
-    <source src="../images/FinalProject/IMG_0508.mp4" type="video/mp4">
-</video> 
-<br>
-<br>
-<h5>Now, for the magical part of this project, an accelerometer controlled car. </h5>
-<video controls width="400" height"500" muted autoplay loop>
-    <source src="../images/FinalProject/IMG_0511.mp4" type="video/mp4">
-</video>
-<video controls width="400" height"500" muted autoplay>
-    <source src="../images/FinalProject/COM8 2022-07-31 03-14-58.mp4" type="video/mp4">
-</video>
-<br>
-<br>
-<h5>I checked out multiples multiple ways an ESP32 can communicate to another ESP32. WIth up to 8 miles of range, I learned that LoRa was the furthest range but I needed something less overkill. Introducing ESP-NOW. A protocol developped by espressif that enables either one-way or two-way communication between ESP32s via radio communication. Since I only need to send accelerometer readings, one-way communication made the most sense.</h5>
-<video controls width="400" height"500" muted autoplay loop>
-    <source src="../images/FinalProject/IMG_0514.mp4" type="video/mp4">
-</video> 
-<br>
-<h5>These are SOME of the sketches I used for the autopilot system</h5>
-<img src="../images/FinalProject/IMG_0549.jpg" width="400" alt="Autopilot Sketches">
-<br>
-<h5>And...DONE!</h5>
-<img src="../images/FinalProject/IMG_0190.PNG" width="400" alt="Final Result">
-</xmp>
-</body>
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="finalproject.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Back to Project
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-16 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded-full mb-4 inline-block">
+                    Development Log
+                </span>
+                <h1 class="font-display text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    The Build <span class="gradient-text">Process</span>
+                </h1>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    A step-by-step look at the iterations, failures, and solutions encountered during 7 weeks of digital fabrication.
+                </p>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="max-w-6xl mx-auto px-6 relative timeline-container">
+
+            <!-- Step 1: Steering (Fail) -->
+            <div class="relative md:grid md:grid-cols-2 md:gap-10 items-start mb-16">
+                <!-- Content Right -->
+                <div class="md:col-start-2 pl-12 md:pl-0" data-aos="fade-left">
+                    <div class="glass-panel p-6 rounded-2xl border border-red-500/20">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold mr-3">1</span>
+                            <h3 class="text-xl font-bold text-white">The Steering Failure</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            I initially attempted a steering column using a servo motor connected to wheels to turn the whole vehicle. A bar from the servo connected perpendicularly via heat shrinks.
+                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            <strong>Result:</strong> Complete failure. The alignment was crooked, and because servos generate rotational (not linear) motion, the turning radius was awful. I pivoted to a syncro-steering (tank drive) system instead.
+                        </p>
+                        <div class="grid grid-cols-2 gap-2 mt-4">
+                            <img src="../images/FinalProject/IMG_0552.JPG" class="rounded-lg object-cover h-32 w-full bg-slate-800" alt="Sketch">
+                            <img src="../images/FinalProject/IMG_0483.HEIC.jpg" class="rounded-lg object-cover h-32 w-full bg-slate-800" alt="Fail">
+                        </div>
+                    </div>
+                </div>
+                <!-- Timeline Dot -->
+                <div class="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-red-500 border-4 border-slate-900 transform -translate-x-1/2 mt-6 z-10"></div>
+            </div>
+
+            <!-- Step 2: Sensors -->
+            <div class="relative md:grid md:grid-cols-2 md:gap-10 items-start mb-16">
+                <!-- Content Left -->
+                <div class="md:col-start-1 md:text-right pr-0 md:pr-0 pl-12 md:pl-0" data-aos="fade-right">
+                    <div class="glass-panel p-6 rounded-2xl border border-blue-500/20">
+                        <div class="flex items-center mb-4 md:flex-row-reverse">
+                            <span class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold ml-3 mr-0">2</span>
+                            <h3 class="text-xl font-bold text-white mr-3">Ultrasonic Array</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Since HC-SR04 sensors have a narrow detection range (~15°), I angled them: one pointed forward, and side sensors angled 15° outward to cover blind spots.
+                        </p>
+                        <div class="grid grid-cols-3 gap-2 mt-4">
+                            <img src="../images/FinalProject/IMG_0392.jpg" class="rounded-lg object-cover h-24 w-full bg-slate-800" alt="Angle">
+                            <img src="../images/FinalProject/IMG_0447.HEIC.jpg" class="rounded-lg object-cover h-24 w-full bg-slate-800" alt="Circuit">
+                            <img src="../images/FinalProject/IMG_0448.HEIC.jpg" class="rounded-lg object-cover h-24 w-full bg-slate-800" alt="Breadboard">
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900 transform -translate-x-1/2 mt-6 z-10"></div>
+            </div>
+
+            <!-- Step 3: Traction -->
+            <div class="relative md:grid md:grid-cols-2 md:gap-10 items-start mb-16">
+                <!-- Content Right -->
+                <div class="md:col-start-2 pl-12 md:pl-0" data-aos="fade-left">
+                    <div class="glass-panel p-6 rounded-2xl border border-amber-500/20">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold mr-3">3</span>
+                            <h3 class="text-xl font-bold text-white">The Traction Hack</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            The stock wheels were made of low-quality hard rubber and had zero grip. I improvised by adding hot glue beads and rubber bands around the tires. It wasn't pretty, but it massively improved traction.
+                        </p>
+                        <img src="../images/FinalProject/IMG_0488.HEIC.jpg" class="rounded-lg object-cover w-full h-48 bg-slate-800" alt="Wheel Hack">
+                    </div>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-900 transform -translate-x-1/2 mt-6 z-10"></div>
+            </div>
+
+            <!-- Step 4: Chassis -->
+            <div class="relative md:grid md:grid-cols-2 md:gap-10 items-start mb-16">
+                <!-- Content Left -->
+                <div class="md:col-start-1 md:text-right pr-0 md:pr-0 pl-12 md:pl-0" data-aos="fade-right">
+                    <div class="glass-panel p-6 rounded-2xl border border-purple-500/20">
+                        <div class="flex items-center mb-4 md:flex-row-reverse">
+                            <span class="w-8 h-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold ml-3 mr-0">4</span>
+                            <h3 class="text-xl font-bold text-white mr-3">Chassis Fabrication</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            I initially tried 3D printing the chassis. However, I was warned about a high failure rate for large flat prints. The advice saved me—the print failed spectacularly.
+                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            <strong>Pivot:</strong> I switched to laser cutting. I designed a plate with custom cutouts to press-fit the DC motors and hold the sensor breadboard securely.
+                        </p>
+                        <div class="grid grid-cols-2 gap-2 mt-4">
+                            <img src="../images/FinalProject/IMG_0497.HEIC.jpg" class="rounded-lg object-cover h-32 w-full bg-slate-800 opacity-50 grayscale hover:grayscale-0 transition-all" alt="Failed Print">
+                            <img src="../images/FinalProject/IMG_0498.HEIC.jpg" class="rounded-lg object-cover h-32 w-full bg-slate-800" alt="Laser Cut">
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900 transform -translate-x-1/2 mt-6 z-10"></div>
+            </div>
+
+            <!-- Step 5: Assembly -->
+            <div class="relative md:grid md:grid-cols-2 md:gap-10 items-start mb-16">
+                <!-- Content Right -->
+                <div class="md:col-start-2 pl-12 md:pl-0" data-aos="fade-left">
+                    <div class="glass-panel p-6 rounded-2xl border border-green-500/20">
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center font-bold mr-3">5</span>
+                            <h3 class="text-xl font-bold text-white">Assembly & Logic</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            After press-fitting the motors (reinforced with hot glue), I wired them to an L9110 motor driver and the ESP32. I also upgraded the front idler gears so they would spin freely.
+                        </p>
+                        <div class="space-y-4">
+                            <img src="../images/FinalProject/IMG_0501.HEIC.jpg" class="rounded-lg object-cover w-full h-40 bg-slate-800" alt="Assembly">
+                            <video controls class="w-full rounded-lg border border-white/10 bg-black">
+                                <source src="../images/FinalProject/IMG_0505.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-green-500 border-4 border-slate-900 transform -translate-x-1/2 mt-6 z-10"></div>
+            </div>
+
+            <!-- Step 6: Gesture Control -->
+            <div class="relative md:grid md:grid-cols-2 md:gap-10 items-start mb-16">
+                <!-- Content Left -->
+                <div class="md:col-start-1 md:text-right pr-0 md:pr-0 pl-12 md:pl-0" data-aos="fade-right">
+                    <div class="glass-panel p-6 rounded-2xl border border-cyan-500/20">
+                        <div class="flex items-center mb-4 md:flex-row-reverse">
+                            <span class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold ml-3 mr-0">6</span>
+                            <h3 class="text-xl font-bold text-white mr-3">Gesture Control Magic</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            The "magical" part: using an accelerometer (MPU6050) to drive the car. I implemented ESP-NOW for low-latency communication between the hand controller and the car.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <video controls class="w-full rounded-lg border border-white/10 bg-black">
+                                <source src="../images/FinalProject/IMG_0511.mp4" type="video/mp4">
+                            </video>
+                            <video controls class="w-full rounded-lg border border-white/10 bg-black">
+                                <source src="../images/FinalProject/COM8 2022-07-31 03-14-58.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900 transform -translate-x-1/2 mt-6 z-10"></div>
+            </div>
+
+            <!-- Step 7: Final -->
+            <div class="relative md:grid md:grid-cols-2 md:gap-10 items-start mb-16">
+                <!-- Content Right -->
+                <div class="md:col-start-2 pl-12 md:pl-0" data-aos="fade-left">
+                    <div class="glass-panel p-6 rounded-2xl border border-white/20">
+                         <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center font-bold mr-3">7</span>
+                            <h3 class="text-xl font-bold text-white">Final Result</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            The finished prototype. A fully functional, gesture-controlled vehicle with autonomous obstacle avoidance capabilities.
+                        </p>
+                        <img src="../images/FinalProject/IMG_0190.PNG" class="rounded-lg object-cover w-full h-auto border border-white/10 bg-slate-800" alt="Final Result">
+                    </div>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-white border-4 border-slate-900 transform -translate-x-1/2 mt-6 z-10"></div>
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <a href="finalproject.html" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Project Page
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
+</body>
 </html>
