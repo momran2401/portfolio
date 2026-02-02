@@ -1,109 +1,305 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script> 
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>Electronic Input Devices</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNC Milling & Casting | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
-<body>
-  <content>
-    <input id="hamburger" class="hamburger" type="checkbox"/>
-    <label class="hamburger" for="hamburger">
-      <i></i>
-      <text>
-        <close>close</close>
-        <open>menu</open>
-      </text>
-    </label>
-    <section class="drawer-list">
-        <ul>
-            <li><a href="../index.html">Home</a></li><br>
-            <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-            <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-            <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-            <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-            <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-            <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-            <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-            <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-            <li><a href="steppermotor.html">Machine Building</a></li><br>
-            <li><a href="finalproject.html">Final Project</a></li><br>
-        </ul>
-    </section>
-</content>
-<xmp theme="journal" style="display:none;">
-<h5>This week's assignment's goal was to get students confortable with CNC. CNC or Computer numerical controlis a method for automating control of machine tools. We first started by exploring the different types of CNC machines and learned numerous concepts ranging from "speeds and feeds" which refers to the machines cutting speed and feed rate and the difference between a CNC router and a CNC mill. CNC is a useful skill to learn as it is used nearly everywhere and is guaranteed to show up again in your career.</h5>
-<br><hr style="border-top: dotted 5px;">
-<h3><b>CNC Milling</b></h3>
-<h5>As a refresher, these are the shapes I chose to do last time. As you can clearly see, there are two types of shapes; one written in <a href="https://belmontschools13.autodesk360.com/g/shares/SH9285eQTcf875d3c5390f33729bd219389a" style="color: #0645AD" target="_blank">cursive</a>, and one written in <a href="https://belmontschools13.autodesk360.com/g/shares/SH9285eQTcf875d3c539b06b498408a00510" style="color: #0645AD" target="_blank">script</a>. This was an issue I had to tackle because while the cursive looks ten times better, it was too complex (i.e. too many lines) which would render the final design to be pixelated and rough which explains my decision to go with the scirpt sketch.</h5><br>
-<img src="../images/CNC/Screenshot (21).png" width="550" alt="">
-<img src="../images/CNC/Screenshot (23).png" width="550" alt=""><br><br>
-<h5>I first headed to <a href="mods.cda.mit.edu" style="color: #0645AD" target="_blank">moda.cba.mit.edu</a> to find myself to an empty screen. I followed the Right click -> Programs -> Open Server Program -> Machines -> Roland mill -> SRM-20 -> mill 3D stl example to find my self to this interface.</h5>
-<img src="../images/cnc/IMG_0076.jpg" width="1000" alt="">
-<h5>After following the <a style="color: #0645AD" target="_blank"href="https://nathanmelenbrink.github.io/intro-dig-fab/07_cnc/index.html">instructions</a> on how to use the was machine, I ended up with this</h5>
-<br><h5>While there was a flaw, the design turned out to be decent.</h5>
-<img src="../images/cnc/IMG_0127.jpg" width="500" alt="">
-<img src="../images/cnc/IMG_0128.jpg" width="500" alt="">
-<h5>Not perfect though. I wanted to create someting more refined. I used this opportunity to try the ShopBot so I would have experiance with both types CNCs. I hopped onto CAD and created the another nameplate but with a different font and litteral refined edges. I then saved previously mentioned design as a DXF file.</h5>
-<h5>I then calibrated the machine and tried an aircut to make sure that everything was going according to plan.</h5>
-<!-- <video controls width="350" muted>
-  <source src="../images/CNC/IMG_0118.mp4" type="video/mp4">
-</video> -->
-<br><br><h5>With everyting gone smoothly, I calibrated the machine's x and y values and used the paper test to calibrate its z value. The paper test consists of putting a paper right under the mill and lowering the mill until there is a slight amount of force holding the paper down.</h5>
-<video controls width="350" autoplay muted loop>
-  <source src="../images/CNC/CNC_Movie3.mp4" type="video/mp4">
-</video>
-<br><br><h5>After a long proccess and with wonderful help from Kassia, we are able to finally get this nice carved nameplate.</h5>
-<img src="../images/cnc/IMG_0134.jpg" width="350" alt="">
-<img src="../images/cnc/IMG_0135.jpg" width="350" alt="">
-<img src="../images/cnc/IMG_0137.jpg" width="350" alt="">
-<br><hr><br>
-<h3><b>Molding & Casting</b></h3>
-<br><h5>On our quest to find something interesting and unique to mold and cast, we found a rubber chicken in the lab. What was it doing there? I have as much information as you do. After careful consideration (a.k.a 5 seconds of thinking) we decided to go with the project.</h5><br>
-<h5>There was, however, a small mistake that needed to be tackled. The chicken was hollow on the inside. This meant that we needed to fill it up in some way in order to be able to get it out when we eventually molded it.</h5>
-<h5>To do that, I first tried filling it up with hot-glue but it was quickly realized to be a not so efficient way of solving our problem. Instead of hot-glue, I made a small mixture of silicon and poured it inside the chicken and let it dry overnight.</h5>
-<img src="../images/CNC/IMG_1445.jpg" width="500" alt="Interior Molding Process">
-<img src="../images/CNC/IMG_0072.jpg" width="500" alt="Final Result after Interior Molding">
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-emerald-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
 
-<br><br><h5>After it was all done, it was time to create the big mixture. Mixing solution "Part A" and "Part B" at a 1:1 ratio generated a substance that could be easily poured in a beaker where the chicken was already attached with a series of ropes to help solve the issue of material buoency.</h5>
-<video controls width="400" autoplay muted loop>
-  <!-- Mixing -->
-  <source src="../images/CNC/IMG_1526.mp4" type="video/mp4">
-</video><br>
-<video controls width="400" autoplay muted loop>
-  <!-- Pouring -->
-  <source src="../images/CNC/IMG_1527.mp4" type="video/mp4">
-</video><br><br><br>
-<h5>A day later, the substance was hard and dried up. After an intense fight with trying to get the stuck silicon mold out of the beaker, we learned a valuable lesson. Always use Quick-Release in your mixture!</h5>
-<video controls width="400" autoplay muted loop>
-  <!-- Hardening -->
-  <source src="../images/CNC/IMG_0079.mp4" type="video/mp4">
-</video>
-<br><h5>I then followed by heating some bismouth alloy metal and slowly pouring it in. It is very important to go slowly and ensure to take the bismouth off the hot-plate as soon as it has melted. I learned this the hard way after the bismouth melted through my mold and leaked. I had to recup all the leaking bismouth and start over with a lot of reinforcment tape.</h5>
-<br><br><h5>Anyway, here's a <u>beautiful</u> collage of the final result.</h5>
-<img src="../images/cnc/BeFunky-collage.jpg" width="1000" alt="Metal Chicken">
-<br><br><br>
-<cite><a style="color: #0645AD" href="https://randomnerdtutorials.com" target="_blank">Part of the first code section was inspired by Random Nerd Tutorials</a></cite><br>
-<p style="text-align: right;">&copy; 2022 Mustafa Omran</p>
-</xmp>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                    Home
+                </a>
+                <a href="index.html#projects" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-20 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-full mb-4 inline-block">
+                    Week 8
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    CNC Milling & <span class="gradient-text">Molding</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Automating control of machine tools: From "speeds and feeds" to casting metal artifacts.
+                </p>
+            </div>
+        </section>
+
+        <!-- CNC Milling Section -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="text-5xl font-display font-bold text-slate-800">01</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">CNC Milling</h2>
+                    <p class="text-slate-400 text-sm">Subtractive manufacturing using Roland and ShopBot mills.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                
+                <!-- Design Phase -->
+                <div class="mb-12">
+                    <h3 class="text-lg font-bold text-white mb-4 border-l-4 border-blue-500 pl-3">Design Iteration</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        I explored two design approaches for a nameplate: cursive and script. While cursive was aesthetically pleasing, the complexity of the paths would have resulted in a rough, pixelated finish. I opted for the script design for cleaner toolpaths.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-slate-900 rounded-xl p-4 border border-white/5">
+                            <img src="../images/CNC/Screenshot (21).png" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=Cursive+Design'" class="w-full rounded-lg opacity-80" alt="Cursive Design">
+                            <p class="text-xs text-center mt-2 text-slate-500">Complex Cursive (Discarded)</p>
+                        </div>
+                        <div class="bg-slate-900 rounded-xl p-4 border border-white/5">
+                            <img src="../images/CNC/Screenshot (23).png" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=Script+Design'" class="w-full rounded-lg" alt="Script Design">
+                            <p class="text-xs text-center mt-2 text-blue-400">Script Design (Selected)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Milling Process -->
+                <div class="mb-12">
+                    <h3 class="text-lg font-bold text-white mb-4 border-l-4 border-purple-500 pl-3">Roland Mill & ShopBot</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        I utilized <a href="http://mods.cba.mit.edu" class="text-blue-400 hover:text-blue-300">MIT Mods</a> to generate the G-code for the Roland SRM-20. Later, I scaled up to the ShopBot to create a refined nameplate.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                         <img src="../images/cnc/IMG_0076.jpg" onerror="this.src='https://images.unsplash.com/photo-1565439396264-e4904c643907?auto=format&fit=crop&q=80&w=600'" class="rounded-xl border border-white/10 w-full h-56 object-cover" alt="MIT Mods Interface">
+                         <div class="grid grid-cols-2 gap-2">
+                             <img src="../images/cnc/IMG_0127.jpg" onerror="this.src='https://placehold.co/300x300/1e293b/ffffff?text=Result+1'" class="rounded-lg border border-white/10 w-full h-full object-cover">
+                             <img src="../images/cnc/IMG_0128.jpg" onerror="this.src='https://placehold.co/300x300/1e293b/ffffff?text=Result+2'" class="rounded-lg border border-white/10 w-full h-full object-cover">
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Calibration Video -->
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-4 border-l-4 border-cyan-500 pl-3">Calibration: The Paper Test</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Calibrating the Z-axis is critical. I used the "paper test"—lowering the mill until it traps a piece of paper with slight friction—to ensure perfect zeroing without damaging the bed.
+                    </p>
+                    <div class="rounded-xl overflow-hidden border border-white/10 bg-black shadow-2xl">
+                        <video controls autoplay loop muted class="w-full h-64 md:h-96 object-cover">
+                            <source src="../images/CNC/CNC_Movie3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                    <!-- Final CNC Results -->
+                    <div class="grid grid-cols-3 gap-4 mt-8">
+                         <img src="../images/cnc/IMG_0134.jpg" class="rounded-lg border border-white/10 hover:scale-105 transition-transform duration-500" alt="Final 1">
+                         <img src="../images/cnc/IMG_0135.jpg" class="rounded-lg border border-white/10 hover:scale-105 transition-transform duration-500" alt="Final 2">
+                         <img src="../images/cnc/IMG_0137.jpg" class="rounded-lg border border-white/10 hover:scale-105 transition-transform duration-500" alt="Final 3">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Molding & Casting Section -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="text-5xl font-display font-bold text-slate-800">02</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Molding & Casting</h2>
+                    <p class="text-slate-400 text-sm">From silicone molds to bismuth alloy artifacts.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl relative overflow-hidden" data-aos="fade-up">
+                <!-- Decorative Blur -->
+                <div class="absolute top-0 right-0 p-40 bg-emerald-500/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+
+                <div class="grid md:grid-cols-2 gap-10">
+                    
+                    <!-- The Object -->
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                            <i data-lucide="box" class="w-5 h-5 text-emerald-400 mr-2"></i> The Subject
+                        </h3>
+                        <p class="text-slate-400 leading-relaxed text-sm mb-4">
+                            We discovered a rubber chicken in the lab. The challenge? It was hollow. To mold it successfully, I first had to fill the internal void with a preliminary silicone pour to prevent it from collapsing during the main mold making.
+                        </p>
+                        <div class="grid grid-cols-2 gap-2">
+                             <img src="../images/CNC/IMG_1445.jpg" class="rounded-lg border border-white/10 w-full h-32 object-cover" alt="Interior Fill">
+                             <img src="../images/CNC/IMG_0072.jpg" class="rounded-lg border border-white/10 w-full h-32 object-cover" alt="Filled Chicken">
+                        </div>
+                    </div>
+
+                    <!-- The Process -->
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                            <i data-lucide="flask-conical" class="w-5 h-5 text-purple-400 mr-2"></i> The Process
+                        </h3>
+                        <p class="text-slate-400 leading-relaxed text-sm mb-4">
+                            Mixing Solution A and B at a 1:1 ratio. We suspended the chicken in a beaker using ropes to counteract buoyancy before pouring the main silicone body.
+                        </p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <video controls autoplay loop muted class="rounded-lg border border-white/10 w-full h-32 object-cover">
+                                <source src="../images/CNC/IMG_1526.mp4" type="video/mp4">
+                            </video>
+                            <video controls autoplay loop muted class="rounded-lg border border-white/10 w-full h-32 object-cover">
+                                <source src="../images/CNC/IMG_1527.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Casting Result -->
+                <div class="mt-10 pt-10 border-t border-white/5">
+                    <h3 class="text-lg font-bold text-white mb-4">The Metal Casting</h3>
+                    <div class="bg-slate-900/50 rounded-xl p-6 border border-white/5 flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                <strong class="text-red-400">Lesson Learned:</strong> Use mold release! Getting the silicone out of the beaker was a struggle.
+                            </p>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                For the cast, we used Bismuth alloy. I poured it too hot initially, which melted through the mold and caused a leak. After reinforcement and temperature control, we achieved the final metal artifact.
+                            </p>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <img src="../images/cnc/BeFunky-collage.jpg" onerror="this.src='https://images.unsplash.com/photo-1517420879524-86d64ac2f339?auto=format&fit=crop&q=80&w=800'" class="rounded-xl border border-white/10 w-full shadow-2xl hover:scale-105 transition-transform duration-500" alt="Final Metal Chicken">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-white/10 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Portfolio
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
 </body>
-
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
