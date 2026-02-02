@@ -1,162 +1,382 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script> 
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>Machine Building and End Factors</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Building | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/arduino.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            orange: '#f97316'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #fb923c, #f472b6, #fb7185);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Code Block Styling */
+        pre { margin: 0; border-radius: 0.75rem; }
+        code.hljs { padding: 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; border-radius: 0.75rem; }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-orange-500 selection:text-white">
 
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-orange-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-rose-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
 
-<body>
-    <content>
-        <input id="hamburger" class="hamburger" type="checkbox"/>
-        <label class="hamburger" for="hamburger">
-          <i></i>
-          <text>
-            <close>close</close>
-            <open>menu</open>
-          </text>
-        </label>
-        <section class="drawer-list">
-            <ul>
-                <li><a href="../index.html">Home</a></li><br>
-                <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-                <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-                <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-                <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-                <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-                <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-                <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-                <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-                <li><a href="steppermotor.html">Machine Building</a></li><br>
-                <li><a href="finalproject.html">Final Project</a></li><br>
-            </ul>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-orange-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                    Home
+                </a>
+                <a href="index.html#projects" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-20 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-orange-400 bg-orange-400/10 border border-orange-400/20 rounded-full mb-4 inline-block">
+                    Week 10
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    Machine Building & <span class="gradient-text">End Effectors</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Converting rotational motion to linear actuation: Building a wireless smart lock with stepper motors.
+                </p>
+            </div>
         </section>
-    </content>
-<xmp theme="journal" style="display:none;">
-<h5>Stepper Motors...The motor you see almost everywhere. From 3D printers to even vending machines, they're everywhere! And not for bad reason. They have excellent position accuracy, high holding torque and are available in multiple sizes. For this week's assignment, students had to make a machine that utilizes a stepper motor.</h5>
-<br><hr style="border-top: dotted 5px;"><br>
-<h5>I have seen stepper motors multiple times in my life but didn't actually know what they were used for. To start, I experimented with a low voltage <a href="https://www.pololu.com/product/2134" style="color: #0645AD" target="_blank">DRV8834</a> board. following this circuit</h5>
-<img src="../images/MachineBuilding/0J4344.600.png" width="500" alt="">
-<h3>Code</h3>
-<pre><code class="arduino">
+
+        <!-- Intro to Steppers -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl border-l-4 border-orange-500" data-aos="fade-up">
+                <div class="flex items-center mb-4">
+                    <div class="p-2 bg-orange-500/10 rounded-lg text-orange-400 mr-3">
+                        <i data-lucide="settings" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">Why Stepper Motors?</h2>
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Unlike standard DC motors, stepper motors move in precise, discrete steps. This allows for high holding torque and excellent positional accuracy without external feedback sensors—perfect for 3D printers, CNCs, and precision actuators.
+                </p>
+            </div>
+        </section>
+
+        <!-- Experiment 1: Basic Control -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="text-5xl font-display font-bold text-slate-800">01</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Basic Control & Acceleration</h2>
+                    <p class="text-slate-400 text-sm">Testing the DRV8834 Driver</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Circuit & Visuals -->
+                <div class="space-y-6" data-aos="fade-right">
+                    <div class="glass-panel p-4 rounded-xl">
+                        <img src="../images/MachineBuilding/0J4344.600.png" onerror="this.src='https://placehold.co/400x300/1e293b/475569?text=Circuit+Diagram'" class="w-full h-auto rounded-lg bg-white/5 p-4" alt="Driver Circuit">
+                        <p class="text-xs text-center mt-2 text-slate-500">DRV8834 Wiring Diagram</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <video controls muted class="rounded-xl border border-white/10 w-full h-32 object-cover bg-black">
+                            <source src="../images/MachineBuilding/IMG_0184.MOV.mp4" type="video/mp4">
+                        </video>
+                        <video controls muted class="rounded-xl border border-white/10 w-full h-32 object-cover bg-black">
+                            <source src="../images/MachineBuilding/IMG_0185.MOV.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Code Block -->
+                <div class="overflow-hidden rounded-xl shadow-2xl border border-white/10 h-fit" data-aos="fade-left">
+                    <div class="bg-slate-800 px-4 py-2 border-b border-white/5 text-xs text-slate-400 font-mono">AccelStepper.ino</div>
+                    <pre><code class="language-cpp">
+#include &lt;AccelStepper.h&gt;
+
 const int stepPin = 13;
 const int dirPin = 12;
 
-void setup() {
-    pinMode(stepPin, OUTPUT);
-    pinMode(dirPin, OUTPUT);
-    digitalWrite(dirPin, LOW);
-}
+// Init AccelStepper for 2-wire board
+AccelStepper stepper(1, stepPin, dirPin); 
 
 void loop() {
-    digitalWrite(stepPin, LOW);
-    delay(50);
-    digitalWrite(stepPin, HIGH);
-    delay(50);
-}
-</code></pre>
-<h6>*Code provided by <a style="color: #0645AD" target="_blank" href="https://www.seas.harvard.edu/node/2034">Nathan Melenbrink</a></h6>
-<h4>My circuit looked like this</h4>
-<img src="../images/MachineBuilding/IMG_0186.jpg" width="400" alt="">
-<br><h5>And ran like this</h5>
-<video width="400" controls muted>
-    <source src="../images/MachineBuilding/IMG_0184.MOV.mp4" type="video/mp4">
-</video>
-<h5>I followed by uploading this code to make the stepper motor accelerate</h5>
-<pre><code class="arduino">
-include AccelStepper.h>
-
-const int stepPin = 13;  // blue
-const int dirPin = 12;   // orange
-
-// Define a stepper and the pins it will use
-AccelStepper stepper(1, stepPin, dirPin); // initialise accelstepper for a two wire board
-
-void setup()
-{
-}
-
-void loop()
-{
-    if (stepper.distanceToGo() == 0)
-    {
-    // Random change to speed, position and acceleration
-    // Make sure we dont get 0 speed or accelerations
-    delay(1000);
-    stepper.moveTo(rand() % 1000);
-    stepper.setMaxSpeed((rand() % 1000) + 1);
-    stepper.setAcceleration((rand() % 1000) + 1);
+    if (stepper.distanceToGo() == 0) {
+        // Randomize movement profile
+        delay(1000);
+        stepper.moveTo(rand() % 1000);
+        stepper.setMaxSpeed((rand() % 1000) + 1);
+        stepper.setAcceleration((rand() % 1000) + 1);
     }
     stepper.run();
 }
-</code></pre>
-<h6>*Code provided by <a style="color: #0645AD" target="_blank" href="https://www.seas.harvard.edu/node/2034">Nathan Melenbrink</a></h6>
-<br><h5>To make this</h5>
-<video width="400" controls muted>
-    <source src="../images/MachineBuilding/IMG_0185.MOV.mp4" type="video/mp4">
-</video>
-<br><br><hr style="border-top: dotted 5px;"><br>
-<h5>Tying onto last week's IoT unit theme of home security, I decided to make a linear actuator that would serve as a door lock deadbolt. I reaserched different ways of converting the stepper motor's rotational motion into linear motion and stumbled upon a numerous amount of mechanisms.</h5>
-<h6>- <a style="color: #0645AD" target="_blank" href="https://en.wikipedia.org/wiki/Slider-crank_linkage">Slider Crank mechanisms</a></h6><img src="../images/MachineBuilding/slidercrank.gif" width="100" alt="">
-<h6>- <a style="color: #0645AD" target="_blank" href="https://en.wikipedia.org/wiki/Scotch_yoke#:~:text=The%20Scotch%20Yoke%20(also%20known,pin%20on%20the%20rotating%20part.">Scotch Yoke Mechanism</a></h6><img src="../images/MachineBuilding/scotchyoke.gif" width="100" alt="">
-<h6>- <a style="color: #0645AD" target="_blank" href="https://mechanicalbasics.com/crank-and-slotted-lever-mechanism-its-working/#:~:text=Crank%20and%20Slotted%20Lever%20Mechanism%20is%20also%20called%20Crank%20and,which%20sourced%20by%20Electrical%20Motor.">Crank and Slotted Lever Mechanism</a></h6><img src="../images/MachineBuilding/crank&slotted.jpg" width="100" alt="">
-<h6>- <a style="color: #0645AD" target="_blank" href="https://en.wikipedia.org/wiki/Cam">Cam and Follower Mechanism</a></h6><img src="../images/MachineBuilding/cam&follower.gif" width="100" alt="">
-<h6>- <a style="color: #0645AD" target="_blank" href="https://en.wikipedia.org/wiki/Rack_and_pinion">Rack and Pinion</a></h6><img src="../images/MachineBuilding/rackpinion.gif" width="100" alt="">
-<br><br>
-<h5>Out of all those systems, I chose to do the Cam & Follower Mechanism because it satisfied all the points: simple, strong, effective, and precise. I then sketched a model of the <a href="https://a360.co/3Jx1ixW" target="_blank" style="color: #0645AD">rotating bit</a> that would be attached to my stepper motor and 3D printed it. </h5>
-<img src="../images/MachineBuilding/IMG_0334.MOV.gif" alt="">
-<br><br><h5>While that printed, I attached the previous circuit to a plate like this.</h5>
-<img src="../images/MachineBuilding/IMG_0331.jpg" width="300" alt="">
-<img src="../images/MachineBuilding/IMG_0333.jpg" width="300" alt="">
-<br><br><h5>After experimenting with the stepper motor, I came to the conclusion that a repeating loop of 800 times with a delay of 1 millisecond on the DRV8834 board with the stepper motor size I had would do about one full circle. </h5>
-<pre><code>
-// Full Rotation (360°)
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mechanism Research -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <h2 class="text-2xl font-bold text-white mb-8 pl-2 border-l-4 border-purple-500">Mechanism Research</h2>
+            <p class="text-slate-400 mb-8">
+                To build a door lock (deadbolt), I needed to convert the stepper's rotational motion into linear motion. I evaluated several mechanical linkages:
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4" data-aos="fade-up">
+                <!-- Mechanism Cards -->
+                <div class="bg-slate-900/50 p-3 rounded-xl border border-white/5 text-center group hover:border-orange-500/30 transition-colors">
+                    <img src="../images/MachineBuilding/slidercrank.gif" class="w-12 h-12 mx-auto mb-2 opacity-70 group-hover:opacity-100" alt="Slider Crank">
+                    <p class="text-xs font-bold text-slate-300">Slider Crank</p>
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded-xl border border-white/5 text-center group hover:border-orange-500/30 transition-colors">
+                    <img src="../images/MachineBuilding/scotchyoke.gif" class="w-12 h-12 mx-auto mb-2 opacity-70 group-hover:opacity-100" alt="Scotch Yoke">
+                    <p class="text-xs font-bold text-slate-300">Scotch Yoke</p>
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded-xl border border-white/5 text-center group hover:border-orange-500/30 transition-colors">
+                    <img src="../images/MachineBuilding/crank&slotted.jpg" class="w-12 h-12 mx-auto mb-2 rounded opacity-70 group-hover:opacity-100" alt="Crank & Slotted">
+                    <p class="text-xs font-bold text-slate-300">Slotted Lever</p>
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded-xl border border-orange-500/50 shadow-lg shadow-orange-500/10 text-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-orange-500/10"></div>
+                    <img src="../images/MachineBuilding/cam&follower.gif" class="w-12 h-12 mx-auto mb-2" alt="Cam & Follower">
+                    <p class="text-xs font-bold text-orange-400">Cam & Follower</p>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-orange-500 rounded-full"></span>
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded-xl border border-white/5 text-center group hover:border-orange-500/30 transition-colors">
+                    <img src="../images/MachineBuilding/rackpinion.gif" class="w-12 h-12 mx-auto mb-2 opacity-70 group-hover:opacity-100" alt="Rack & Pinion">
+                    <p class="text-xs font-bold text-slate-300">Rack & Pinion</p>
+                </div>
+            </div>
+            
+            <p class="text-sm text-center text-slate-500 mt-4 italic">
+                Chosen Mechanism: <strong>Cam & Follower</strong> for its simplicity, strength, and precise locking action.
+            </p>
+        </section>
+
+        <!-- Final Project: The Wireless Lock -->
+        <section class="max-w-6xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-10">
+                <span class="text-5xl font-display font-bold text-slate-800">02</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Project: IoT Smart Lock</h2>
+                    <p class="text-slate-400 text-sm">Wireless Deadbolt Actuator</p>
+                </div>
+            </div>
+
+            <!-- Fabrication Grid -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="glass-panel p-6 rounded-2xl" data-aos="fade-right">
+                    <h3 class="text-lg font-bold text-white mb-4">Fabrication</h3>
+                    <p class="text-slate-400 text-sm mb-4">
+                        I 3D printed a custom cam follower and mounted the stepper assembly onto a base plate.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="../images/MachineBuilding/IMG_0334.MOV.gif" class="rounded-lg border border-white/10 w-full h-32 object-cover" alt="3D Print">
+                        <img src="../images/MachineBuilding/IMG_0331.jpg" class="rounded-lg border border-white/10 w-full h-32 object-cover" alt="Mounting">
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl" data-aos="fade-left">
+                    <h3 class="text-lg font-bold text-white mb-4">Calibration & Logic</h3>
+                    <p class="text-slate-400 text-sm mb-2">
+                        <strong>Steps Per Revolution:</strong> Through experimentation, I found that 180 steps yielded the optimal linear throw for the deadbolt.
+                    </p>
+                    <p class="text-slate-400 text-sm mb-4">
+                        <strong>Homing:</strong> On startup, the motor moves 220 steps to ensure the lock defaults to an open/safe state in case of power loss.
+                    </p>
+                    <pre><code class="language-cpp text-xs p-2 rounded bg-slate-900 border border-white/5">
+// Full Rotation (360 degrees) loop
 for (int i = 0; i < 800; i++) {
     digitalWrite(stepPin, LOW);
     delay(1);
-    digitalWrite(stepPin, HIGH);
+    digitalWrite(stepPin, HIGH); 
     delay(1);
 }
-</code></pre>
-<br><h5>30 minutes later, the print was done. For the calibrating part of this assignment, it would be logical to make the motor do 90° of back and forth (200 steps). Sadly, I mounted the stepper motor ever so slightly to the side of the metal pipe. I found that I had to do 180 steps in order to maximize how far the linear motion was going to be. For homing, I assumed the motor would be in one of two positions: closed or open. And since it is a door LOCK, the door will almost always be in the closed position. For that reason, I made the motor make 220 steps when starting up so that if the power went out, the door wouldn't be closed. Here was the result</h5>
-<video width="400" controls>
-    <source src="../images/MachineBuilding/wifi_lock_home - Made with Clipchamp.mp4" type="video/mp4">
-</video><br>
-<video width="400" controls>
-    <source src="../images/MachineBuilding/IMG_0366.MOV.mp4" type="video/mp4">
-</video>
-<br><br><h5>Up until now, I made it so the lock/unlock position were predetermined by the code I uploaded. To solve that issue, I created a web interface that would allow me to wirelessly control the door lock. </h5>
-<video width="400" controls>
-    <source src="../images/MachineBuilding/wifi_lock - Made with Clipchamp.mp4" type="video/mp4">
-</video>
-<br><br><h3>Code</h3>
-<h5>Unfourtunately, since the code syntax didn't work well with HTML, I made a <a style="color: #0645AD" target="_blank" href="https://docs.google.com/document/d/14Dz_Db4-M7PIAxZmh2nuXHF9C7lODtRcJks37oAEfys/edit?usp=sharing">Google Docs</a> with the code</h5>
-<h5>I also implemented it with last week's text message system so I can now both view my security cam footage and lock/unlock the door</h5>
-<video width="400" controls>
-    <source src="../images/MachineBuilding/textmessage.mp4" type="video/mp4">
-</video>
-</div>
-<br><br><br>
-<p style="text-align: right">&copy; 2022 Mustafa Omran</p>
-</xmp>
+                    </code></pre>
+                </div>
+            </div>
+
+            <!-- Video Showcase -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="group relative rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black">
+                    <video controls class="w-full h-56 object-cover">
+                        <source src="../images/MachineBuilding/wifi_lock_home - Made with Clipchamp.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                        <p class="text-white text-sm font-bold">Homing Sequence</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black">
+                    <video controls class="w-full h-56 object-cover">
+                        <source src="../images/MachineBuilding/IMG_0366.MOV.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                        <p class="text-white text-sm font-bold">Lock Actuation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IoT Integration -->
+            <div class="bg-slate-900/50 p-8 rounded-3xl border border-white/5" data-aos="fade-up">
+                <div class="flex items-center mb-6">
+                    <div class="p-3 bg-emerald-500/10 rounded-xl text-emerald-400 mr-4">
+                        <i data-lucide="wifi" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Full IoT Integration</h2>
+                </div>
+                
+                <p class="text-slate-400 mb-8 leading-relaxed">
+                    Connecting back to the previous IoT unit, I integrated the lock with a web interface and the SMS alert system. This allows me to view the security camera feed and remotely lock/unlock the door via text message links.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <video controls class="rounded-xl border border-white/10 w-full shadow-lg bg-black">
+                        <source src="../images/MachineBuilding/wifi_lock - Made with Clipchamp.mp4" type="video/mp4">
+                    </video>
+                    <video controls class="rounded-xl border border-white/10 w-full shadow-lg bg-black">
+                         <source src="../images/MachineBuilding/textmessage.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <a href="https://docs.google.com/document/d/14Dz_Db4-M7PIAxZmh2nuXHF9C7lODtRcJks37oAEfys/edit?usp=sharing" target="_blank" class="inline-flex items-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-all font-medium border border-white/10 group">
+                        <i data-lucide="file-code" class="w-5 h-5 mr-2 text-blue-400"></i>
+                        View Full Source Code (Google Doc)
+                        <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-white/10 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Portfolio
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
 </body>
-
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
