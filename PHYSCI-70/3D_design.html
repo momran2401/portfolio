@@ -1,95 +1,293 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>3D Printing & Design</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <style>
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Design & Printing | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
 
-<body>
-  <content>
-    <input id="hamburger" class="hamburger" type="checkbox"/>
-    <label class="hamburger" for="hamburger">
-      <i></i>
-      <text>
-        <close>close</close>
-        <open>menu</open>
-      </text>
-    </label>
-    <section class="drawer-list">
-        <ul>
-            <li><a href="../index.html">Home</a></li><br>
-            <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-            <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-            <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-            <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-            <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-            <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-            <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-            <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-            <li><a href="steppermotor.html">Machine Building</a></li><br>
-            <li><a href="finalproject.html">Final Project</a></li><br>
-        </ul>
-    </section>
-</content>
-<xmp theme="journal" style="display:none;">
-  <h3><b>3D Printing</b></h3>
-  <h5>For this week's assignement, students had to either create or find a 3D Design and print it using our class' collection of 3D printers. My initial idea was to 3D print a phone stand. However, after modeling in Fusion 360 and exporting my design to PrusaSlicer as a STL file and attempting to make some changes in order to satisfy the time limit, I was able to get it down from 11 hours to 4 hours. Which while impressive, is still too long for this assignment!</h5>
-  <br><h5>Following all this hassle, I decided to look up something similar to my original idea whilst also being less arduous. After an online research session, I found a design that interested me. It was a little laptop holder meant to raise the computer in order to tackle thermal throttling problems. This object was the jackpot as it was both useful for anyone's day to day life and yet remained so simple.</h5>
-  <br><br><h5>First, I downloaded the 3D Model and uploaded the STL file to the PrusaSlicer Software.</h5>
-  <img src="../images/3D_Printing/Screenshot (84).png" alt="Initial Process">
-  <br><br><h5>Realizing that there were too many supports on my structure, I decided to flip/rotate the design 90° in order to attempt solving this waste of material issue. Reducing the print time 20 minutes.</h5>
-  <img src="../images/3D_Printing/Screenshot (85).png" alt="Flip to Vertical">
-  <br><br><h5>After that, I came to the conclusion that the bottom supports were unecessary to the structure and could therefore be removed which further reduced the time from 2h58 to 2h52 (5 minutes). Doesn't seem like a lot but every minute counts!</h5>
-  <img src="../images/3D_Printing/Screenshot (86).png" alt="Remove Supports">
-  <br><br>The next obvious choice was to reduce the model size. I wanted the design to have a sweet spot between still being usable, and reducing time by using less material. I also ended up reducing the filament size by half from 20% to 10% since my stucture didn't need as much compressive strength as 20% filament offers. These approaches ended up shedding 2h36min!
-  <img src="../images/3D_Printing/Screenshot (87).png" alt="Scale Factor of 0.5x">
-  <img src="../images/3D_Printing/Screenshot (88).png" alt="Reduce Filament to 10%">
-  <br><br><h3>3D Printing Results</h3>
-  <video controls autoplay loop width="500">
-    <source src="../images/3D_Printing/IMG_0049.MP4" type="video/mp4">
-   </video><br><br>
-   <img src="../images/3D_Printing/IMG_0056.JPEG" width="500" alt="Final Design Image">
-   <img src="../images/3D_Printing/IMG_0052.JPEG" width="500" alt="Final Design Image">
-   <img src="../images/3D_Printing/IMG_0053.JPEG" width="500" alt="Final Design Image">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                    Home
+                </a>
+                <a href="index.html#projects" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
 
-  <br><br><br><h3><b>Photogrammetry</b></h3>
-  <h5>For the Photogrammetry assignment, I used the LiDAR (Light Detection and Ranging) sensor on my iPhone to perform a 3D scan of my classmates Julie and Alan using the PolyCam app. LiDAR works by sending bursts of light and measuring how long it takes back for it to come back to create a 3D model of its environment. While its range is a bit limited, it is far more accurate than its Radar counterpart. One issue I had to tackle was the fact that since LiDAR works with light, any reflective or transparent surfaces like shiny metal, mirrors, or glass would be invisible in the scan as the light scattered in different ways than the receptor expected.</h5>
-  <iframe src="https://poly.cam/capture/E53DE9A9-0F4F-4510-B90C-7391899B2C12" title="polycam capture viewer" style="height:60vmin;width:100%;max-height:720px;max-width:1280px;min-height:280px;min-width:280px" frameborder="0"></iframe>
-  <iframe src="https://poly.cam/capture/79041E24-D9DC-4B0F-A5B3-179958FC77E8" title="polycam capture viewer" style="height:60vmin;width:100%;max-height:720px;max-width:1280px;min-height:280px;min-width:280px" frameborder="0"></iframe>
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-20 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-purple-400 bg-purple-400/10 border border-purple-400/20 rounded-full mb-4 inline-block">
+                    Week 5
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    3D Design & <span class="gradient-text">Additive Mfg.</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Iterative design for FDM printing, slicing optimization, and LiDAR photogrammetry.
+                </p>
+            </div>
+        </section>
 
-  <br><br><br><br>
-  <h3><b>Download Links</b></h3>
-  <h5>&emsp;&emsp;3D Printed Object</h5>
-  <a download href="../images/3D_Printing/AirFlow_Computer.3mf">&emsp;&emsp;&emsp;&emsp;&emsp;- Computer AirFlow Stand</a><br>
+        <!-- The Problem / Solution Pivot -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <div class="flex items-start mb-6">
+                    <div class="p-3 bg-blue-500/10 rounded-xl text-blue-400 mr-4">
+                        <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-2 font-display">The Pivot</h2>
+                        <p class="text-slate-400 leading-relaxed">
+                            My initial idea was a phone stand. However, after modeling in Fusion 360, the print time was estimated at 11 hours. Even after optimization, I could only get it down to 4 hours—too long for the assignment constraints.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed mt-4">
+                            <strong>Solution:</strong> I pivoted to a laptop cooling riser. It solves a real-world problem (thermal throttling) with a simpler geometry, allowing for faster fabrication while retaining utility.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<br><br><br>
-<p style="text-align: left;">Huge Thanks to <a style="color: #0645AD" href="https://www.myminifactory.com/users/Coco%20Paq" target="_blank">Corentin Paquet</a> for the 3D Design!</p>
-<p style="text-align: right;">&copy; 2022 Mustafa Omran</p>
-</xmp>
+        <!-- Slicing Optimization Process -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <h2 class="text-3xl font-bold text-white font-display mb-10 pl-2 border-l-4 border-purple-500">Slicing & Optimization</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Step 1 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="bg-slate-900 rounded-xl overflow-hidden border border-white/5 mb-4 relative">
+                        <img src="../images/3D_Printing/Screenshot (84).png" onerror="this.src='https://images.unsplash.com/photo-1631553126875-0d29db8090eb?auto=format&fit=crop&q=80&w=600'" class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="Initial Import">
+                        <div class="absolute bottom-2 right-2 px-2 py-1 bg-black/60 rounded text-xs text-white">Step 1</div>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">Initial Import</h3>
+                    <p class="text-sm text-slate-400">Importing the STL into PrusaSlicer. Initial estimates were high due to poor orientation.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-slate-900 rounded-xl overflow-hidden border border-white/5 mb-4 relative">
+                        <img src="../images/3D_Printing/Screenshot (85).png" onerror="this.src='https://images.unsplash.com/photo-1631553126875-0d29db8090eb?auto=format&fit=crop&q=80&w=600'" class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="Orientation">
+                        <div class="absolute bottom-2 right-2 px-2 py-1 bg-black/60 rounded text-xs text-white">Step 2</div>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">Orientation Optimization</h3>
+                    <p class="text-sm text-slate-400">Rotated the part 90°. This reduced support material need significantly, shaving off 20 minutes.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-slate-900 rounded-xl overflow-hidden border border-white/5 mb-4 relative">
+                        <img src="../images/3D_Printing/Screenshot (86).png" onerror="this.src='https://images.unsplash.com/photo-1631553126875-0d29db8090eb?auto=format&fit=crop&q=80&w=600'" class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="Supports">
+                        <div class="absolute bottom-2 right-2 px-2 py-1 bg-black/60 rounded text-xs text-white">Step 3</div>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">Removing Supports</h3>
+                    <p class="text-sm text-slate-400">Identified that bottom supports were structural overkill. Removal saved another 5 minutes.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-slate-900 rounded-xl overflow-hidden border border-white/5 mb-4 relative">
+                        <img src="../images/3D_Printing/Screenshot (87).png" onerror="this.src='https://images.unsplash.com/photo-1631553126875-0d29db8090eb?auto=format&fit=crop&q=80&w=600'" class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="Scaling">
+                        <div class="absolute bottom-2 right-2 px-2 py-1 bg-black/60 rounded text-xs text-white">Step 4</div>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">Scale & Infill</h3>
+                    <p class="text-sm text-slate-400">Scaled down to 0.5x and reduced infill to 10% (sufficient for compressive load). Total time saved: 2h 36m.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Results -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <h2 class="text-3xl font-bold text-white font-display mb-10 pl-2 border-l-4 border-cyan-500">Fabrication Results</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Video -->
+                <div class="md:col-span-2 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                    <video controls autoplay loop muted class="w-full">
+                        <source src="../images/3D_Printing/IMG_0049.MP4" type="video/mp4">
+                    </video>
+                </div>
+                
+                <!-- Images -->
+                <img src="../images/3D_Printing/IMG_0056.JPEG" onerror="this.src='https://images.unsplash.com/photo-1615826932727-4f958742845c?auto=format&fit=crop&q=80&w=600'" class="rounded-xl border border-white/10 w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                <img src="../images/3D_Printing/IMG_0052.JPEG" onerror="this.src='https://images.unsplash.com/photo-1615826932727-4f958742845c?auto=format&fit=crop&q=80&w=600'" class="rounded-xl border border-white/10 w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+            
+            <!-- Download Box -->
+            <div class="mt-8 flex justify-center">
+                <a href="../images/3D_Printing/AirFlow_Computer.3mf" download class="flex items-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors border border-white/10 group">
+                    <i data-lucide="download" class="w-5 h-5 mr-3 text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                    <div>
+                        <span class="block font-bold text-sm">Download STL/3MF</span>
+                        <span class="text-xs text-slate-500">AirFlow Computer Stand</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Photogrammetry -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <div class="flex items-center mb-6">
+                    <div class="p-3 bg-purple-500/10 rounded-xl text-purple-400 mr-4">
+                        <i data-lucide="scan-face" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white font-display">Photogrammetry & LiDAR</h2>
+                        <p class="text-sm text-slate-400">Scanning real-world geometry using PolyCam.</p>
+                    </div>
+                </div>
+
+                <p class="text-slate-400 mb-8 leading-relaxed">
+                    I used the LiDAR sensor on an iPhone to perform 3D scans of my classmates. LiDAR measures light return time to map the environment. Note: Transparent or reflective surfaces (glass/mirrors) often fail as light scatters unpredictably.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="rounded-xl overflow-hidden border border-white/10 bg-black/50 aspect-square">
+                        <iframe src="https://poly.cam/capture/E53DE9A9-0F4F-4510-B90C-7391899B2C12" title="Polycam Scan 1" class="w-full h-full" frameborder="0"></iframe>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10 bg-black/50 aspect-square">
+                        <iframe src="https://poly.cam/capture/79041E24-D9DC-4B0F-A5B3-179958FC77E8" title="Polycam Scan 2" class="w-full h-full" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <div class="mb-8">
+                    <p class="text-sm text-slate-500">Design credits: <a href="https://www.myminifactory.com/users/Coco%20Paq" target="_blank" class="text-blue-400 hover:text-blue-300">Corentin Paquet</a></p>
+                </div>
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-white/10 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Portfolio
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
 </body>
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
