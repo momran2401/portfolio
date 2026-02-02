@@ -1,254 +1,361 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script> 
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>Internet of Things (IoT)</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet of Things (IoT) | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/arduino.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            rose: '#f43f5e'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Code Block Styling */
+        pre { margin: 0; border-radius: 0.75rem; }
+        code.hljs { padding: 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; border-radius: 0.75rem; }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
 
-<body>
-  <content>
-    <input id="hamburger" class="hamburger" type="checkbox"/>
-    <label class="hamburger" for="hamburger">
-      <i></i>
-      <text>
-        <close>close</close>
-        <open>menu</open>
-      </text>
-    </label>
-    <section class="drawer-list">
-        <ul>
-            <li><a href="../index.html">Home</a></li><br>
-            <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-            <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-            <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-            <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-            <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-            <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-            <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-            <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-            <li><a href="steppermotor.html">Machine Building</a></li><br>
-            <li><a href="finalproject.html">Final Project</a></li><br>
-        </ul>
-    </section>
-</content>
-<xmp theme="journal" style="display:none;">
-<h5>I always heard the term "IoT" before but I never quite fully understood what it really meant. According to Google, "The Internet of Things (IoT) describes the network of physical objects". But what does that really mean? This meant that this week's assignment on internet of things was really the first time I got to learn about this topic. </h5>
-<hr><br>
-<h5>First, lets explain what IoT is. Say you have a security camera. You want to have the piece of mind knowing that the area you placed said camera is monitorable from anywhere, anytime. But how does it do that? At the end of the day, a camera is just a bunch of pixels that capture light housed in a plastic box. How could you, the user, access said piece of electronic mixture? There comes IoT! By connecting a security camera to a connection, we can access this connection from anywhere! IoT boils down to stuff connected to each other.</h5>
-<br><h5>Speaking of which, for this week's assignment, I wanted to make a security camera that would monitor my room when I'm not home because...siblings. </h5>
-<br><hr><br><h5>I first started by <a  target="_blank" href="https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/#:~:text=The%20ESP32%2DCAM%20is%20a,files%20to%20serve%20to%20clients." style="color: #0645AD">this tutorial</a> which went on to explain how the ESP32-CAM even works and how to wire it up. On my quest, I learned that since the ESP32<u>-CAM</u> doesn't have any type of input to be connected and controlled by a computer. To solve that issue, the tutorial recommended that I use something called a FTDI board. This board woud go on to serve as a kind of USB to ESP32-CAM adapter that would allow me to do things like upload some code. After uploading the code I was able to make this!</h5> <h6>*The arduino serves no purpose. My brilliant mind glued it to the only breadboard I had for another assignment 🤦</h5>
-<br><img src="../images/IoT/IMG_0342.jpg" width="400" alt="ESP32-CAM working">
-<img src="../images/IoT/IMG_0149.jpg" width="400" alt="Camera Setup">
-<img src="../images/IoT/IMG_0144.jpg" width="400" alt="Camera Setup">
-<h5>I set it up to monitor my house's front entrance</h5>
-<video width="600" controls>  
-  <source src="../images/IoT/esp-cam1.mp4" type="video/mp4">
-</video>
-<br><br><h3>Circuit & Pinout</h3>
-<img src="../images/IoT/ESP32-CAM-pinout-1.png" width="400" alt="">
-<img src="../images/iot/ESP32-CAM-FTDI-programmer-5V-supply.png" width="400" alt="">
-<br><hr style="border-top: dotted 5px;"><br><h5>Done? That's not how it works over here. As an upgrade to the previous system, I initially wanted to set up a web server that would allow me to access video footage from anywhere in the world. However, after looking trying multiple times and following different tutorials, I wasn't able to make it work. I experimented with pyro/motion sensors in order to make it so if motion was detected, a video would be recorded but the pyro sensors either had VERY limited range or they were buggy. Which added on top of the face that I wouldn't be able to test them because of the constant, unavoidable movement that was happening in my areas of work.</h5>
-<br><h5>Since my final project idea is a self-driving car, it was crucial for me to be comfortable with ultrasonic sensors. I attached an HC-SR04 to a breadboard that was connected to a regular ESP32.</h5>
-<br><h3>Circuit</h3>
-<!-- Image of Circuit -->
-<br>
-<h5>Which turned out to this: </h5>
-<img src="../images/IoT/IMG_0359.jpg" width="400" alt="Ultrasonic Sensor Setup">
-<img src="../images/IoT/IMG_0360.jpg" width="400" alt="Ultrasonic Sensor Setup Back">
-<br><br><h5>I went on to attaching the setup a wall right in front of my door in order to make the ultrasonic sensor pointed at said door. I then measured the distance between the sensor and the <u>closed</u> door. This meant that if the door was opened, the distance the HC-SR04 would pick up, would be less than it was before. Here's an example with a shorter distance using my hand. Every time my hand reaches gets closer than the "authorized" distance, it triggers the LED to turn on</h5>
-<video width="400" controls>
-  <source src="../images/IoT/IMG_0351.MOV.mp4" type="video/mp4">
-</video>
-<br><br><h5>While I'm really happy with this, I really wanted to be able to access it from anywhere. While that wasn't possible, I found another solution inspired by <a href="https://tomkinsc.github.io/harvard-ps70/" style="color: #0645AD" target="_blank">Chris Tomkins-Tinch's smart freezer example</a>. Since the ESP32 can connect to Wi-Fi, it is amazingly able to send emails. I followed <a href="https://randomnerdtutorials.com/esp32-send-email-smtp-server-arduino-ide/#:~:text=To%20send%20emails%20with%20the%20ESP32%2C%20we'll%20use%20the,email%20with%20and%20without%20attachments." style="color: #0645AD" target="_blank">this tutorial</a> on how to send an email using an SMTP server. After a great success, I used advantage of something U.S and Canadian carriers do called <a href="https://en.wikipedia.org/wiki/SMS_gateway#Email_clients">E-mail to SMS Gateways</a> these gateways allow for someone to send an email to any carrier which would then go on to be forwarded to a number using SMS. For example, if I sent an email to <b>XXXXXX2722@vtext.com</b> (number blurred out for obvious privacy reasons) I would recieve whatever was sent in that email as a text message</h5>
-<video width="500" controls>
-  <source src="../images/IoT/Untitled.mp4" type="video/mp4">
-</video>
-<br><br>
-<h3>Code</h3>
-<pre><code>
-const int trigPin = 5;
-#include ESP_Mail_Client.h>
-#include WiFi.h>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                    Home
+                </a>
+                <a href="index.html#projects" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
 
-const int echoPin = 18;
-const int LED = 14;
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-20 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-full mb-4 inline-block">
+                    Week 9
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    Internet of <span class="gradient-text">Things (IoT)</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Connecting physical objects to the digital world: ESP32-CAM streaming, sensor triggers, and SMS gateways.
+                </p>
+            </div>
+        </section>
 
-//define sound speed in cm/uS
+        <!-- Concept -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl border-l-4 border-blue-500" data-aos="fade-up">
+                <h2 class="text-xl font-bold text-white mb-4">The Objective</h2>
+                <p class="text-slate-400 leading-relaxed">
+                    IoT is simply "stuff connected to other stuff." For this assignment, I wanted to build a bedroom security system to monitor my room while I'm away (a necessary countermeasure against siblings).
+                </p>
+            </div>
+        </section>
 
+        <!-- Phase 1: The Camera -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <div class="p-3 bg-cyan-500/10 rounded-xl text-cyan-400">
+                    <i data-lucide="camera" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-white font-display">Part I: ESP32-CAM</h2>
+                    <p class="text-slate-400 text-sm">Video Streaming Server</p>
+                </div>
+            </div>
 
-#define SOUND_SPEED 0.034
-#define WIFI_SSID "xxxxxx"
-#define WIFI_PASSWORD "xxxxxx"
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <p class="text-slate-400 leading-relaxed mb-4">
+                            The ESP32-CAM is a powerful module, but it lacks a USB port. To program it, I had to use an <strong>FTDI programmer</strong> (USB-to-TTL serial converter).
+                        </p>
+                        <p class="text-slate-400 leading-relaxed mb-4">
+                            After following the <a href="https://randomnerdtutorials.com" target="_blank" class="text-blue-400 hover:text-blue-300">Random Nerd Tutorials</a> guide, I successfully flashed the board to act as a local web server, streaming video over my home WiFi.
+                        </p>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <video controls class="w-full h-full object-cover">
+                            <source src="../images/IoT/esp-cam1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Gallery -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <img src="../images/IoT/IMG_0342.jpg" class="rounded-lg border border-white/10 h-32 w-full object-cover" alt="Setup 1">
+                    <img src="../images/IoT/IMG_0149.jpg" class="rounded-lg border border-white/10 h-32 w-full object-cover" alt="Setup 2">
+                    <img src="../images/IoT/ESP32-CAM-pinout-1.png" class="rounded-lg border border-white/10 h-32 w-full object-contain bg-white/5" alt="Pinout">
+                    <img src="../images/iot/ESP32-CAM-FTDI-programmer-5V-supply.png" class="rounded-lg border border-white/10 h-32 w-full object-contain bg-white/5" alt="FTDI">
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 2: The Trigger -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <div class="p-3 bg-purple-500/10 rounded-xl text-purple-400">
+                    <i data-lucide="scan-line" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-white font-display">Part II: The Trigger</h2>
+                    <p class="text-slate-400 text-sm">Ultrasonic Door Sensor</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    I attempted to use Pyro (Motion) sensors, but they were buggy. I pivoted to an <strong>HC-SR04 Ultrasonic Sensor</strong> mounted facing the door.
+                </p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 mb-6">
+                    <p class="text-xs font-mono text-emerald-400">
+                        Logic: IF (Distance < Closed_Door_Distance) THEN (Door is Open -> Trigger Alarm)
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="grid grid-cols-2 gap-4">
+                         <img src="../images/IoT/IMG_0359.jpg" class="rounded-lg border border-white/10 w-full object-cover" alt="Sensor Front">
+                         <img src="../images/IoT/IMG_0360.jpg" class="rounded-lg border border-white/10 w-full object-cover" alt="Sensor Back">
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <video controls class="w-full">
+                            <source src="../images/IoT/IMG_0351.MOV.mp4" type="video/mp4">
+                        </video>
+                        <p class="text-xs text-center p-2 text-slate-500 bg-black">Simulating door opening with hand</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 3: The Cloud -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <div class="p-3 bg-emerald-500/10 rounded-xl text-emerald-400">
+                    <i data-lucide="cloud-lightning" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-white font-display">Part III: The Cloud Alert</h2>
+                    <p class="text-slate-400 text-sm">SMTP to SMS Gateway</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl mb-12" data-aos="fade-up">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-4">Email-to-SMS Gateway</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Since setting up a secure global web server was complex, I found a workaround. ESP32 sends an email via SMTP to a carrier gateway (e.g., <code>number@vtext.com</code> for Verizon), which automatically forwards the email as a text message to my phone.
+                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            This creates a real-time alert system without needing a dedicated mobile app or complex port forwarding.
+                        </p>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                        <video controls class="w-full h-48 object-cover bg-black">
+                             <source src="../images/IoT/Untitled.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Block -->
+            <div class="overflow-hidden rounded-xl shadow-2xl border border-white/10 mb-12" data-aos="fade-up">
+                <div class="bg-slate-800 px-4 py-2 border-b border-white/5 text-xs text-slate-400 font-mono">ESP32 SMTP Logic</div>
+                <pre><code class="language-cpp">
+#include &lt;ESP_Mail_Client.h&gt;
+#include &lt;WiFi.h&gt;
 
 #define SMTP_HOST "smtp.gmail.com"
 #define SMTP_PORT 465
+#define RECIPIENT_EMAIL "xxxxxxxxxx@vtext.com" // SMS Gateway
 
-/* The sign in credentials */
-#define AUTHOR_EMAIL "xxxxxxx@gmail.com"
-#define AUTHOR_PASSWORD "jxriysyclydbuuiy"
-
-/* Recipient's email*/
-#define RECIPIENT_EMAIL "xxxxxxxxxx@vtext.com"
-
-String CAM_URL = "http://xxx.xxx.x.xxx";
-String LOCK_URL = "http://xxx.xxx.x.xxx";
-
-/* The SMTP Session object used for Email sending */
 SMTPSession smtp;
 
-/* Callback function to get the Email sending status */
-void smtpCallback(SMTP_Status status);
-
-
-long duration;
-float distanceCm;
-float distanceM;
-
-void setup() {
-  Serial.begin(115200); // Starts the serial communication
-  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
-  pinMode(echoPin, INPUT); // Sets the echoPin as an Input
-  pinMode(LED, OUTPUT);
-    Serial.print("Connecting to AP");
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  while (WiFi.status() != WL_CONNECTED){
-    Serial.print(".");
-    delay(200);
-  }
-  Serial.println("");
-  Serial.println("WiFi connected.");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
-  Serial.println();
-}
-
 void loop() {
-  digitalWrite(LED, LOW);
-  // Clears the trigPin
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
+  // Ultrasonic Logic
+  digitalWrite(trigPin, LOW); delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH); delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
   
-  // Reads the echoPin, returns the sound wave travel time in microseconds
   duration = pulseIn(echoPin, HIGH);
-  
-  // Calculate the distance
-  distanceCm = duration * SOUND_SPEED/2;
-  distanceM = distanceCm/100;
+  distanceCm = duration * 0.034 / 2;
 
+  // If door opens (distance drops)
   if (distanceCm < 10) {
     digitalWrite(LED, HIGH);
-      /* Set the callback function to get the sending results */
-  smtp.callback(smtpCallback);
-
-  /* Declare the session config data */
-  ESP_Mail_Session session;
-
-  /* Set the session config */
-  session.server.host_name = SMTP_HOST;
-  session.server.port = SMTP_PORT;
-  session.login.email = AUTHOR_EMAIL;
-  session.login.password = AUTHOR_PASSWORD;
-  session.login.user_domain = "";
-
-  /* Declare the message class */
-  SMTP_Message message;
-
-  /* Set the message headers */
-  message.sender.name = "ESP";
-  message.sender.email = AUTHOR_EMAIL;
-  message.subject = "Bedroom Security";
-  message.addRecipient("Mustafa", RECIPIENT_EMAIL);
-
-  //Send raw text message
-  String textMsg = "Alert! Ultrasonic Sensor triggered. Tap "+CAM_URL+" to view event or tap "+LOCK_URL+" to Lock/Unlock door";
-  message.text.content = textMsg.c_str();
-  message.text.charSet = "us-ascii";
-  message.text.transfer_encoding = Content_Transfer_Encoding::enc_7bit;
-  
-  message.priority = esp_mail_smtp_priority::esp_mail_smtp_priority_low;
-  message.response.notify = esp_mail_smtp_notify_success | esp_mail_smtp_notify_failure | esp_mail_smtp_notify_delay;
-
-  /* Set the custom message header */
-  //message.addHeader("Message-ID: <abcde.fghij@gmail.com>");
-
-  /* Connect to server with the session config */
-  if (!smtp.connect(&session))
-    return;
-
-  /* Start sending Email and close the session */
-  if (!MailClient.sendMail(&smtp, &message))
-    Serial.println("Error sending Email, " + smtp.errorReason());  
     
-  
-  
-}
-Serial.print("Distance (m): ");
-    Serial.println(distanceM);
-    delay(500);
-}
+    // Configure Email Session
+    ESP_Mail_Session session;
+    session.server.host_name = SMTP_HOST;
+    session.server.port = SMTP_PORT;
+    session.login.email = AUTHOR_EMAIL;
+    session.login.password = AUTHOR_PASSWORD;
 
-void smtpCallback(SMTP_Status status){
-  /* Print the current status */
-  Serial.println(status.info());
+    // Construct Message
+    SMTP_Message message;
+    message.sender.name = "Bedroom Security";
+    message.subject = "Intruder Alert!";
+    message.addRecipient("Mustafa", RECIPIENT_EMAIL);
 
-  /* Print the sending result */
-  if (status.success()){
-    Serial.println("----------------");
-    ESP_MAIL_PRINTF("Message sent success: %d\n", status.completedCount());
-    ESP_MAIL_PRINTF("Message sent failled: %d\n", status.failedCount());
-    Serial.println("----------------\n");
-    struct tm dt;
+    String textMsg = "Alert! Sensor triggered. View Cam: " + CAM_URL;
+    message.text.content = textMsg.c_str();
 
-    for (size_t i = 0; i < smtp.sendingResult.size(); i++){
-      /* Get the result item */
-      SMTP_Result result = smtp.sendingResult.getItem(i);
-      time_t ts = (time_t)result.timestamp;
-      localtime_r(&ts, &dt);
-
-      ESP_MAIL_PRINTF("Message No: %d\n", i + 1);
-      ESP_MAIL_PRINTF("Status: %s\n", result.completed ? "success" : "failed");
-      ESP_MAIL_PRINTF("Date/Time: %d/%d/%d %d:%d:%d\n", dt.tm_year + 1900, dt.tm_mon + 1, dt.tm_mday, dt.tm_hour, dt.tm_min, dt.tm_sec);
-      ESP_MAIL_PRINTF("Recipient: %s\n", result.recipients);
-      ESP_MAIL_PRINTF("Subject: %s\n", result.subject);
-    }
-    Serial.println("----------------\n");
+    // Send
+    if (!smtp.connect(&session)) return;
+    MailClient.sendMail(&smtp, &message);
   }
 }
-  
-  // Prints the distance in the Serial Monitor
-</code></pre>
-<h5>After updating the code, I made it so that if door was detected to be opened, It would send me a text message. If I was home, it will also allow me to open the ESP32-CAM footage to allow me to view the live event.</h5>
-<br><h4>Here's my Final Result</h4>
-<h6>*I sincerly apologize for getting a bit too carried away</h6>
-<video width="600" controls>
-  <source src="../images/IoT/EvilMustafa.mp4" type="video/mp4">
-</video>
-<br><br><br>
-<p style="text-align: right;">&copy; 2022 Mustafa Omran</p>
-</xmp>
+                </code></pre>
+            </div>
+
+            <!-- Final Video -->
+            <div class="text-center" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-white mb-6">Final System Test</h3>
+                <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl max-w-3xl mx-auto bg-black">
+                    <video controls class="w-full">
+                        <source src="../images/IoT/EvilMustafa.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <p class="text-xs text-slate-500 mt-4 italic">*Dramatic reenactment of security breach.</p>
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <div class="mb-8">
+                    <p class="text-sm text-slate-500">Inspiration: <a href="https://tomkinsc.github.io/harvard-ps70/" target="_blank" class="text-blue-400 hover:text-blue-300">Chris Tomkins-Tinch</a></p>
+                </div>
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-white/10 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Portfolio
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
 </body>
-
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
