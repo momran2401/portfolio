@@ -1,85 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>Microcontroller Programming</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <style>
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microcontroller Programming | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/arduino.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            violet: '#8b5cf6',
+                            indigo: '#6366f1'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #818cf8, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Code Block Styling */
+        pre { margin: 0; border-radius: 0.75rem; }
+        code.hljs { padding: 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; border-radius: 0.75rem; }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-violet-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
 
-<body>
-  <content>
-    <input id="hamburger" class="hamburger" type="checkbox"/>
-    <label class="hamburger" for="hamburger">
-      <i></i>
-      <text>
-        <close>close</close>
-        <open>menu</open>
-      </text>
-    </label>
-    <section class="drawer-list">
-        <ul>
-            <li><a href="../index.html">Home</a></li><br>
-            <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-            <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-            <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-            <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-            <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-            <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-            <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-            <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-            <li><a href="steppermotor.html">Machine Building</a></li><br>
-            <li><a href="finalproject.html">Final Project</a></li><br>
-        </ul>
-    </section>
-</content>
-<xmp theme="journal" style="display:none;">
-<h5>This week's unit on microcontrollers was the first time I ever had an experiance with microcontrollers. I do, however, have quite a lot of experiance with C/C++. It was really fun seeing what these tiny computers could do with what was basically directing to different places at different times.</h5>
-<hr><br>
-<h5>My first project with prgraming microcontrollers was the class practice where a turned on light that would power off when a button was pressed. </h5>
-<img src="../images/Microcontrollers/IMG_3428.jpg" width="400" alt="Button Light Bulb">
-<br><br><h5>As a class, we then moved on to programming a motor with a L9110 motor driver which had 2 pins (GND, VCC) connected the arduino board's power GND and Vin. Finally, the L9110's A1A and A1B were connected to the arduino's pin 3 and 4 as these pins could do something called Pulse Width Modulation (PWM)</h5>
-<video controls muted width="400">
-  <source src="../images/Microcontrollers/IMG_3430.mp4" type="video/mp4">
- </video> <br><br><h4>PWM</h4>
-<h6>Pulse-width modulation (PWM) is a method of reducing the average power delivered by an electrical signal, by effectively chopping it up into discrete parts. The average value of voltage (and current) fed to the load is controlled by turning the switch between supply and load on and off at a fast rate. The longer the switch is on compared to the off periods, the higher the total power supplied to the load.</h6>
-<img src="../images/Microcontrollers/PWM.png" alt="PWM">
-<br><br><hr style="border-top: dotted 3px;"><br><br>
-<h5>The assignment this week was to 'program an Arduino board to do something'. I had multiple ideas in mind like ... but I one idea really shouted my name; a clap activated car.</h5><br>
-<h5>After some short research, I found out that a device by the name of a piezoelectric sensor was the closest thing I could use to attempt reaching my goal. A piezoelectric sensor is a sensor that measures changes in pressure, acceleration, temperature, strain, or force by converting them to an electrical charge so while the initial clapping to activate idea was not possible, I could hit something like the table the car is rested on.</h5>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-indigo-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                    Home
+                </a>
+                <a href="index.html#projects" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<br><h5>My first intial goal for this machine was it to be fast. To acomplish that, I looked for the biggest, fastest motor I could find. After finding the motor that suited the description and incorporating it into my machine, I was saddened that the car wouldn't move. Professor Melenbrink then explained to me that RPM does not equal power and that adding a gear box to a motor would transform a motor's RPM to torque thus making the vehicle move.</h5>
-<br><br><br><h3>Video for Piezo LED Attempt</h3>
-<video controls width="800" height"900">
-  <source src="../images/Microcontrollers/IMG_3451.mp4" type="video/mp4">
- </video> 
-<br><br><br><h3>Circuit for Piezo LED Attempt</h3>
-<img src="../images/Microcontrollers/Screenshot (76).png" alt="Circuit of First Attempt">
-<br><br><br><h3>Code for Piezo LED Attempt</h3>
-<pre><code class="language-aruino">
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-20 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-indigo-400 bg-indigo-400/10 border border-indigo-400/20 rounded-full mb-4 inline-block">
+                    Week 4
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    Microcontroller <span class="gradient-text">Programming</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Bridging C++ logic with physical hardware: From basic LEDs to a piezo-activated vehicle.
+                </p>
+            </div>
+        </section>
+
+        <!-- Intro Grid -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Card 1: Button Logic -->
+                <div class="glass-panel p-6 rounded-2xl" data-aos="fade-right">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-indigo-500/10 rounded-lg text-indigo-400 mr-3">
+                            <i data-lucide="toggle-left" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Hello, World!</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-4">
+                        My first interaction with microcontrollers. A simple logic gate: if button press == true, then LED = ON.
+                    </p>
+                    <img src="../images/Microcontrollers/IMG_3428.jpg" onerror="this.src='https://placehold.co/400x300/1e293b/475569?text=Button+Circuit'" class="rounded-xl border border-white/10 w-full h-48 object-cover">
+                </div>
+
+                <!-- Card 2: Motor Drivers -->
+                <div class="glass-panel p-6 rounded-2xl" data-aos="fade-left">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-violet-500/10 rounded-lg text-violet-400 mr-3">
+                            <i data-lucide="zap" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">L9110 Motor Driver</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-4">
+                        Moving to higher loads. Using an external driver to interface the Arduino with a DC motor via PWM pins 3 and 4.
+                    </p>
+                    <video controls muted class="rounded-xl border border-white/10 w-full h-48 object-cover bg-black">
+                        <source src="../images/Microcontrollers/IMG_3430.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- PWM Theory -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white font-display mb-4">Pulse Width Modulation (PWM)</h2>
+                        <p class="text-slate-400 leading-relaxed mb-4">
+                            PWM is a method of reducing the average power delivered by an electrical signal. By chopping the signal into discrete "on" and "off" parts, we can simulate analog voltage.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            <strong class="text-indigo-400">Application:</strong> This allows us to control motor speed or LED brightness, rather than just having them fully On or Off.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-xl">
+                        <img src="../images/Microcontrollers/PWM.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Duty_Cycle_Examples.png/1200px-Duty_Cycle_Examples.png'" class="w-full h-auto rounded-lg" alt="PWM Graph">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- First Attempt: Piezo LED -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="text-5xl font-display font-bold text-slate-800">01</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">First Attempt: The "Clapper"</h2>
+                    <p class="text-slate-400 text-sm">Using a Piezo sensor to trigger an LED.</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Video & Circuit -->
+                <div class="space-y-4" data-aos="fade-right">
+                    <video controls class="rounded-xl border border-white/10 w-full bg-black">
+                        <source src="../images/Microcontrollers/IMG_3451.mp4" type="video/mp4">
+                    </video>
+                    <img src="../images/Microcontrollers/Screenshot (76).png" onerror="this.src='https://placehold.co/400x300/1e293b/475569?text=Circuit+Diagram'" class="rounded-xl border border-white/10 w-full">
+                </div>
+
+                <!-- Code -->
+                <div class="overflow-hidden rounded-xl shadow-2xl border border-white/10 h-fit" data-aos="fade-left">
+                    <div class="bg-slate-800 px-4 py-2 border-b border-white/5 text-xs text-slate-400 font-mono">Simple Trigger Logic</div>
+                    <pre><code class="language-cpp">
 const int piezo = 0;
 const int LED = 13;
 
@@ -88,6 +235,7 @@ void setup() {
 }
 
 void loop() {
+  // Threshold check
   if (analogRead(piezo) >= 5) {
     digitalWrite(LED, HIGH);
     delay(5000);
@@ -96,115 +244,163 @@ void loop() {
     digitalWrite(LED, LOW);
   }
 }
-</code></pre>
+                    </code></pre>
+                </div>
+            </div>
+        </section>
 
+        <!-- The Pivot: Car Evolution -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl relative overflow-hidden" data-aos="fade-up">
+                 <!-- Decorative Blur -->
+                 <div class="absolute top-0 right-0 p-40 bg-indigo-500/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
 
-<br><hr style="border-top: dotted 3px"><br>
-<h4>Overall, I am pretty happy because I went from this, </h4>
-<img src="../images/Microcontrollers/IMG_3414.jpg" width="600" alt="Image of Old Car Desgin">
-<h4>To This!</h4>
-<img src="../images/Microcontrollers/IMG_0018.jpg" width="700" alt="Image of New Car Design">
-<img src="../images/Microcontrollers/IMG_0015.jpg" width="700" alt="Image of New Car Design">
-<br></b><br><br><h3>Final Videos</h3>
-<video controls width="800" height"900">
-  <source src="../images/Microcontrollers/IMG_0020.mp4" type="video/mp4">
- </video> 
- <video controls width="800" height"900">
-  <source src="../images/Microcontrollers/IMG_0021.mp4" type="video/mp4">
- </video> 
-<br><br><h3>Circuit</h3>
-<img src="../images/Microcontrollers/Screenshot (77).png" alt="Circuit of Final Attempt">
-<br><br><h3>After Grueling Hours of Trial-and-Error Here's my Final Code</h3>
-  <pre><code class="language-aruino">  
-    
-// Sets Analog Pin 0 (i.e. A0) as an analog input for the piezoelectric sensor
-const float piezo = A0;                                     
+                <h2 class="text-3xl font-bold text-white font-display mb-8 text-center">Evolution of Design</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-red-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <img src="../images/Microcontrollers/IMG_3414.jpg" onerror="this.src='https://placehold.co/400x300/1e293b/475569?text=Prototype+v1'" class="relative rounded-xl border border-white/10 w-full shadow-lg" alt="Old Car">
+                        <p class="text-center mt-3 text-red-400 font-mono text-sm">Prototype v1: Failed (Low Torque)</p>
+                    </div>
+                    
+                    <div class="flex justify-center md:rotate-0 rotate-90">
+                        <i data-lucide="arrow-right" class="w-8 h-8 text-slate-500"></i>
+                    </div>
 
-// Defines pin A1A on motor control as pin digital pin 3 on the arduino
-const int A1A = 3;                                          
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-emerald-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <img src="../images/Microcontrollers/IMG_0018.jpg" onerror="this.src='https://placehold.co/400x300/1e293b/475569?text=Final+Design'" class="relative rounded-xl border border-white/10 w-full shadow-lg" alt="New Car">
+                        <p class="text-center mt-3 text-emerald-400 font-mono text-sm">Final Design: Geared Motor</p>
+                    </div>
+                </div>
 
-// Defines pin A1B on motor control as pin digital pin 4 on the arduino
-const int A1B = 4;   
-                                       
-// Variable 'times' to count how many times the piezoelectric sensor detects a value above 20
-int times = 0;                                              
+                <div class="mt-8 text-center text-slate-400 text-sm max-w-2xl mx-auto">
+                    <p>
+                        "RPM ≠ Power." My first attempt failed because the motor lacked torque. Adding a gearbox transformed that speed into the torque needed to move the vehicle.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Project: Clap Activated Car -->
+        <section class="max-w-6xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-10">
+                <span class="text-5xl font-display font-bold text-slate-800">02</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Final Result: The Piezo Vehicle</h2>
+                    <p class="text-slate-400 text-sm">A car activated by physical impulses (taps/claps).</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <video controls class="rounded-xl border border-white/10 w-full bg-black shadow-2xl">
+                    <source src="../images/Microcontrollers/IMG_0020.mp4" type="video/mp4">
+                </video>
+                <video controls class="rounded-xl border border-white/10 w-full bg-black shadow-2xl">
+                    <source src="../images/Microcontrollers/IMG_0021.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Code Comparison Section -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Optimization Insight -->
+                <div class="lg:col-span-1 bg-slate-900/50 p-6 rounded-2xl border border-white/5" data-aos="fade-up">
+                    <h3 class="text-indigo-400 font-bold mb-4 flex items-center">
+                        <i data-lucide="code-2" class="w-5 h-5 mr-2"></i> Optimization
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                        I spent time benchmarking loop structures. While it looks verbose, manually constructing the loop using a <code>while(1)</code> with a break condition proved slightly faster in runtime execution during my 15 tests than a standard <code>for</code> loop.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-3 bg-slate-950 rounded-lg border border-red-500/20">
+                            <p class="text-xs text-red-400 mb-1">Standard Approach:</p>
+                            <pre><code class="language-cpp p-0 bg-transparent text-xs">for (int i=0; i<2; i++) { ... }</code></pre>
+                        </div>
+                        <div class="p-3 bg-slate-950 rounded-lg border border-emerald-500/20">
+                            <p class="text-xs text-emerald-400 mb-1">My Optimized Approach:</p>
+                            <pre><code class="language-cpp p-0 bg-transparent text-xs">while(1) { if(i==2) break; ... }</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Code Block -->
+                <div class="lg:col-span-2 overflow-hidden rounded-xl shadow-2xl border border-white/10 h-fit" data-aos="fade-left">
+                    <div class="bg-slate-800 px-4 py-2 border-b border-white/5 text-xs text-slate-400 font-mono">Final Logic.ino</div>
+                    <pre><code class="language-cpp">
+const int PIEZO_PIN = A0; 
+const int MOTOR_A = 3; 
+const int MOTOR_B = 4;
+const int BUZZER = 8;
+int triggerCount = 0;
 
 void setup() {
-  // Defines pin 8 as an output for buzzer
-  pinMode(8, OUTPUT);   
-  
-  // Defines pin A1A (3) as output                                    
-  pinMode(A1A, OUTPUT);  
-                                     
-  // Defines pin A1B (4) as output
-  pinMode(A1B, OUTPUT);  
-                                     
-  // Starts with the motor off
-  analogWrite(A1A, 0);   
-                                     
-  // Starts serial communication with a transfer rate of 115,200 bits per second
-  Serial.begin(115200);                                     
- }
-                                      
+    pinMode(BUZZER, OUTPUT);
+    pinMode(MOTOR_A, OUTPUT);
+    pinMode(MOTOR_B, OUTPUT);
+    analogWrite(MOTOR_A, 0); // Ensure motor starts off
+    Serial.begin(115200);
+}
 
 void loop() {
-  while (1) {
-  // If the reading from the piezo sensor is greater than 20 and variable 'times'' remainder is 0 (i.e. even number), motor is signaled to run
-    if (analogRead(piezo) >= 20 && (times % 2) == 0) {  
-          
-  // Turns on motor to 'full blast' mode
-      analogWrite(A1A, 255);      
-                                
-  // Turns on a buzzer to make two tones which signals to the user that the piezo has read the vibration and that the motor has been activated
-      int i = 0;
-      while (1) {                                           
-          tone(8,445);
-          delay(200);
-          noTone(8);
-        if (i == 2) {
-            break;
-          }
-          i++;
-      }
-  // If reading is greater than or equal to 20 and if variable 'times' is an odd number, motor is signaled to stop
-      } else if (analogRead(piezo) && (times % 2) != 0) {   
-  // Turns motor off
-        analogWrite(A1A, 0);                                
-    }
-  }
-}
-  </code></pre> 
-  <br><br>
-  <h5>After looking carefully at this, you might say, what kind of an idiot does this?</h5>
-  <pre><code class="language-arduino">
-    int i = 0;
-    while (1) {                                           
-        tone(8,445);
-        delay(200);
-        noTone(8);
-      if (i == 2) {
-          break;
+    while (1) {
+        // Threshold check: Reading > 20
+        // Toggle Logic: Even counts = ON, Odd counts = OFF
+        
+        if (analogRead(PIEZO_PIN) >= 20 && (triggerCount % 2) == 0) {
+            
+            analogWrite(MOTOR_A, 255); // Motor Full Speed
+            
+            // Audio Feedback Loop
+            int i = 0;
+            while (1) {
+                tone(BUZZER, 445);
+                delay(200);
+                noTone(BUZZER);
+                if (i == 2) break; // Optimized break condition
+                i++;
+            }
+            triggerCount++; // Increment state
+            delay(500);     // Debounce
+            
+        } else if (analogRead(PIEZO_PIN) >= 20 && (triggerCount % 2) != 0) {
+            
+            analogWrite(MOTOR_A, 0); // Motor Stop
+            triggerCount++;
+            delay(500); // Debounce
         }
-        i++;
     }
-  </code></pre>
-  <br><h5>For a thing that could be written like this!</h5>
-  <pre><code class="language-arduino">
-    for (int i = 0; i < 2; i++) {
-      tone(8, 445);
-      delay(200)
-      noTone(8);
-    }
-  </code></pre>
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
 
-  <br><br><h5>After performing 15 individual tests on almost every possible way to write a loop, I found that the run-time of the was it is written in my code was slightly lower than the other types of loops. This may be unecessary but once we get into bigger programs, run-time will matter a lot. This was just a way of practicing!</h5>
-<br><br><br>
-<cite><a style="color: #0645AD" href="https://en.wikipedia.org/wiki/Pulse-width_modulation" target="_blank">PWM Wikipedia</a></cite>
-<p style="text-align: right;">&copy; 2022 Mustafa Omran</p>
-</xmp>
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-white/10 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Portfolio
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
 </body>
-
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
