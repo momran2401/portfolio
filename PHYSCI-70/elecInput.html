@@ -1,222 +1,409 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script> 
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>Electronic Input Devices</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/style.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Devices | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<body>
-  <content>
-    <input id="hamburger" class="hamburger" type="checkbox"/>
-    <label class="hamburger" for="hamburger">
-      <i></i>
-      <text>
-        <close>close</close>
-        <open>menu</open>
-      </text>
-    </label>
-    <section class="drawer-list">
-        <ul>
-            <li><a href="../index.html">Home</a></li><br>
-            <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-            <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-            <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-            <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-            <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-            <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-            <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-            <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-            <li><a href="steppermotor.html">Machine Building</a></li><br>
-            <li><a href="finalproject.html">Final Project</a></li><br>
-        </ul>
-    </section>
-</content>
-<xmp theme="journal" style="display:none;">
-<h5>For this week's topic on electronic input devices, the class experimented with various sensors like heat sensors, accelerometers, gyroscopes, hall effect magnetic sensors and much more. We then attempted to recreate one of said sensors with a capacitor approach using two contuctive sheets.</h5><br>
-<br><hr style="border-top: dotted 5px;"><br>
-<h5>As mentioned in my final project page, I did not have an idea as to what I wanted to do. However, during this assignment, after seeing some new sensors and learning about what they could do, I got the idea of making a hand-movement accelerometer controlled overengineered car since I build a car for the microcontroller programming week of this class.</h5>
-<br><h3>MPU 6050 (Accelerometer/Gyroscope)</h3><br><h4><b>&emsp;&emsp;Accelerometer</b></h4><h5>&emsp;&emsp;&emsp;&emsp;An accelerometer is a device that measures gravitational acceleration. An accelerometer works by sensing static forces like gravity or &emsp;&emsp;&emsp;&emsp;dynamic forces like vibrations and seeing how they change. For my final project, I will need an accelerometer to add extra controls to &emsp;&emsp;&emsp;&emsp;the car. For example, I could make it where if a user pulls their hand backwards at a certain speed, the car would break</h5><br><br><h4><b>&emsp;&emsp;Gyrosope</b></h4><h5>&emsp;&emsp;&emsp;&emsp;A device that uses the physics principles of angular momentum to output the orientation of an object. Gyroscopes measures &emsp;&emsp;&emsp;&emsp;rotational velocity (rad/s) which is the change of the angular position over time along the X, Y, and Z-axis (roll, pitch, and yaw). This &emsp;&emsp;&emsp;&emsp;sensor would be very useful for my final project because it would allow me to sense the direction of the user's hand and control the &emsp;&emsp;&emsp;&emsp;car accordingly.</h5><img src="../images/ElectronicInput/roll-pitch-yaw.png" width="400" alt="roll-pitch-yaw">
-<br><br><br><h5>To make the sensor have a purpose for this assignment, I carefully studied the serial plot of the values the MPU was inputing to the Arduino in order to create a program that advances the motor when leaning sensor forward and stopping it when leaning sensor backwards.</h5>
-<br><br><h3>Graph for Sensor Activated Motor</h3>
-<h5>The blue line indicates the tilt upwards or downwards. When the sensor is tilted up, the line goes up and when the sensor is tilted down, the line goes downwards</h5>
-<img src="../images/ElectronicInput/Screenshot (14).png" width="600" alt="Graph">
-<br><br><h3>Code for Sensor Activated Motor</h3>
-<pre><code class="language-aruino">
-  #include Adafruit_MPU6050.h
-  #include Adafruit_Sensor.h
-  #include Wire.h
-  
-  Adafruit_MPU6050 mpu;
-  
-  const int 3 = A1A;
-  const int 4 = A1B;
-  
-  void setup(void) {
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/arduino.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            rose: '#f43f5e',
+                            amber: '#f59e0b'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Code Block Styling */
+        pre { margin: 0; border-radius: 0.75rem; }
+        code.hljs { padding: 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; border-radius: 0.75rem; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
+
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <div class="flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                    Home
+                </a>
+                <a href="index.html#projects" class="flex items-center hover:text-white transition-colors py-2">
+                    <i data-lucide="grid" class="w-4 h-4 mr-2"></i>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-20">
+        
+        <!-- Header -->
+        <section class="max-w-4xl mx-auto px-6 mb-20 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-full mb-4 inline-block">
+                    Week 6
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    Electronic <span class="gradient-text">Input Devices</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Experimenting with sensors: Accelerometers, Gyroscopes, Microphones, and Capacitive Touch.
+                </p>
+            </div>
+        </section>
+
+        <!-- Intro -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="glass-panel p-8 rounded-3xl border-l-4 border-blue-500" data-aos="fade-up">
+                <h2 class="text-xl font-bold text-white mb-4">Objective</h2>
+                <p class="text-slate-400 leading-relaxed">
+                    This week focused on interfacing various sensors (heat, magnetic Hall effect, motion) with microcontrollers. Inspired by my final project ideas, I decided to prototype a <strong>hand-gesture controlled car</strong> using an MPU6050 to detect tilt and orientation.
+                </p>
+            </div>
+        </section>
+
+        <!-- MPU 6050 Section -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <div class="p-3 bg-cyan-500/10 rounded-xl text-cyan-400">
+                    <i data-lucide="move-3d" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-white font-display">MPU 6050 IMU</h2>
+                    <p class="text-slate-400 text-sm">Inertial Measurement Unit (Accelerometer + Gyroscope)</p>
+                </div>
+            </div>
+
+            <!-- Theory Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-slate-900/50 p-6 rounded-2xl border border-white/5" data-aos="fade-up" data-aos-delay="0">
+                    <h3 class="text-lg font-bold text-white mb-2 text-cyan-300">Accelerometer</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Measures gravitational and dynamic acceleration. For the car project, detecting sudden stops or "pull-back" gestures relies on sensing linear force changes.
+                    </p>
+                </div>
+                <div class="bg-slate-900/50 p-6 rounded-2xl border border-white/5" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-lg font-bold text-white mb-2 text-purple-300">Gyroscope</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Measures rotational velocity (rad/s) along the Roll, Pitch, and Yaw axes. This is crucial for detecting hand tilt to steer the car left or right.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Graph & Implementation -->
+            <div class="glass-panel p-8 rounded-3xl mb-12" data-aos="fade-up">
+                <h3 class="text-xl font-bold text-white mb-6">Data Analysis & Logic</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-slate-400 text-sm mb-4">
+                            I analyzed the serial plotter output to determine threshold values. The graph shows the sensor's pitch (blue line).
+                        </p>
+                        <ul class="space-y-2 text-sm text-slate-500 mb-4">
+                            <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span> <strong>Tilt Up:</strong> Line spikes positive → Motor Forward</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span> <strong>Tilt Down:</strong> Line dips negative → Motor Stop/Reverse</li>
+                        </ul>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <img src="../images/ElectronicInput/Screenshot (14).png" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=Serial+Plotter'" class="w-full object-cover" alt="Serial Graph">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code & Circuit Grid -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                <!-- Code -->
+                <div class="overflow-hidden rounded-xl shadow-2xl border border-white/10" data-aos="fade-right">
+                    <div class="bg-slate-800 px-4 py-2 border-b border-white/5 text-xs text-slate-400 font-mono">Arduino Logic</div>
+                    <pre><code class="language-cpp">
+#include &lt;Adafruit_MPU6050.h&gt;
+#include &lt;Adafruit_Sensor.h&gt;
+#include &lt;Wire.h&gt;
+
+Adafruit_MPU6050 mpu;
+const int MOTOR_A = 3;
+const int MOTOR_B = 4;
+
+void setup(void) {
     Serial.begin(115200);
-    pinMode(A1A, OUTPUT);
-    pinMode(A1B, OUTPUT);
-    digitalWrite(A1A, LOW);
-    digitalWrite(A1B, LOW);
-    while (!Serial) {
-      delay(10); // will pause Zero, Leonardo, etc until serial console opens
-    }
-  
+    pinMode(MOTOR_A, OUTPUT);
+    pinMode(MOTOR_B, OUTPUT);
+    
     if (!mpu.begin()) {
-      Serial.println("Failed to find MPU6050 chip");
-      while (1) {
-        delay(10);
-      }
+        Serial.println("Failed to find MPU6050");
+        while (1) delay(10);
     }
-  
+
     mpu.setAccelerometerRange(MPU6050_RANGE_16_G);
     mpu.setGyroRange(MPU6050_RANGE_250_DEG);
     mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
-    Serial.println("");
-    delay(100);
-  }
-  
-  void loop() {
-    /* Get new sensor events with the readings */
+}
+
+void loop() {
     sensors_event_t a, g, temp;
     mpu.getEvent(&a, &g, &temp);
-  
+
+    // Tilt Logic
     if (g.gyro.x <= -8) {
-      digitalWrite(A1A, HIGH);
+        digitalWrite(MOTOR_A, HIGH); // Move
     } else if (g.gyro.x >= 8) {
-      digitalWrite(A1A, LOW);
-      digitalWrite(A1B, LOW);
+        digitalWrite(MOTOR_A, LOW);  // Stop
+        digitalWrite(MOTOR_B, LOW);
     }
-  
-    /* Print out the values */
-    Serial.print(a.acceleration.x);
-    Serial.print(",");
-    Serial.print(a.acceleration.y);
-    Serial.print(",");
-    Serial.print(a.acceleration.z);
-    Serial.print(", ");
-    Serial.print(g.gyro.x);
-    Serial.print(",");
-    Serial.print(g.gyro.y);
-    Serial.print(",");
-    Serial.print(g.gyro.z);
-    Serial.println("");
-  
     delay(10);
-  }
-</code></pre>
-<h3>Circuit of Sensor Activated Motor</h3>
-<img src="../images/ElectronicInput/IMG_0059.JPEG" width="400" alt="">
-<img src="../images/ElectronicInput/IMG_0062.JPEG" width="400" alt="">
+}
+                    </code></pre>
+                </div>
 
-<h3>Video of Sensor Activated Motor</h3>
-<video controls width="650">
-  <source src="../images/ElectronicInput/IMG_0074.mp4" type="video/mp4">
-</video> 
+                <!-- Circuit Images -->
+                <div class="space-y-4" data-aos="fade-left">
+                    <div class="glass-panel p-2 rounded-xl">
+                        <img src="../images/ElectronicInput/IMG_0059.JPEG" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=Circuit+Wiring'" class="w-full h-48 object-cover rounded-lg" alt="Circuit Wiring">
+                    </div>
+                    <div class="glass-panel p-2 rounded-xl">
+                        <img src="../images/ElectronicInput/IMG_0062.JPEG" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=Breadboard+Closeup'" class="w-full h-48 object-cover rounded-lg" alt="Breadboard">
+                    </div>
+                </div>
+            </div>
 
+            <!-- Video -->
+            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black max-w-3xl mx-auto" data-aos="fade-up">
+                <video controls class="w-full">
+                    <source src="../images/ElectronicInput/IMG_0074.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
 
-<br><br><hr style="border-top: dotted 5px;"><br><br>
-<h3><b>Other Input Devices</b></h3>
-<h5>To further increase my knowledge and to help with the acquiring of new ideas, I decided to complete 2 other projects on input devices. My first was the car I built for the week on Microcontroller Programming. I used a piezo sensor in order to activate the car. I did however quickly realize that this method was not quite efficient as I had to physically tap the vehicle. Which is when I discovered microphones. Microphones are a more accurate was of dealing with input activated circuits that piezoelectric sensors and have the extra perk of being hands-free which could reduce wear and tear on the project since knocking on said project won't be necessary.</h5>
-<br><br><h3>Circuit</h3>
-<img src="../images/ElectronicInput/IMG_0063.JPEG" width="400" alt="">
-<br><br><h5>Without LED</h5>
-<img src="../images/ElectronicInput/IMG_0027.JPEG" width="400" alt="">
-<img src="../images/ElectronicInput/IMG_0028.JPEG" width="400" alt="">
-<br><br><h5>With LED</h5>
-<video controls width="600">
- <source src="../images/ElectronicInput/IMG_0064.mp4" type="video/mp4">
-</video> 
+        <!-- Divider -->
+        <hr class="border-white/10 my-20 max-w-5xl mx-auto">
 
-<pre><code class="language-aruino">
-  const int sampleWindow = 50; // Sample window width in mS (50 mS = 20Hz)
-  unsigned int sample;
-  const int LED = 8;
- 
-  void setup() 
-  {
-     Serial.begin(9600);
-     pinMode(LED, OUTPUT);
+        <!-- Microphone Section -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <div class="p-3 bg-purple-500/10 rounded-xl text-purple-400">
+                    <i data-lucide="mic" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-white font-display">Audio Input</h2>
+                    <p class="text-slate-400 text-sm">Clap/Sound Activated Switch</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl mb-8" data-aos="fade-up">
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    I initially used a piezo sensor (vibration) to activate my car, but it required physical tapping. I switched to a microphone for a "hands-free" approach. The code samples the audio window (50ms) to detect peak-to-peak amplitude changes.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Images -->
+                    <div class="space-y-4">
+                        <img src="../images/ElectronicInput/IMG_0063.JPEG" onerror="this.src='https://placehold.co/600x400/1e293b/475569?text=Mic+Circuit'" class="w-full h-48 object-cover rounded-xl border border-white/10" alt="Microphone Circuit">
+                        <video controls class="w-full rounded-xl border border-white/10 bg-black">
+                            <source src="../images/ElectronicInput/IMG_0064.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <!-- Code -->
+                    <div class="overflow-hidden rounded-xl shadow-xl border border-white/10 h-fit">
+                        <div class="bg-slate-800 px-4 py-2 border-b border-white/5 text-xs text-slate-400 font-mono">Audio Sampling Logic</div>
+                        <pre><code class="language-cpp">
+const int sampleWindow = 50; 
+unsigned int sample;
+const int LED = 8;
+
+void loop() {
+   unsigned long startMillis= millis(); 
+   unsigned int peakToPeak = 0;
+   unsigned int signalMax = 0;
+   unsigned int signalMin = 1024;
+
+   while (millis() - startMillis < sampleWindow) {
+      sample = analogRead(0);
+      if (sample < 1024) {
+         if (sample > signalMax) signalMax = sample;
+         else if (sample < signalMin) signalMin = sample;
+      }
+   }
+   peakToPeak = signalMax - signalMin;
+   
+   if (peakToPeak >= 8) {
+     digitalWrite(LED, HIGH);
+     delay(2000);
      digitalWrite(LED, LOW);
-  }
- 
- 
-  void loop() 
-  {
-     unsigned long startMillis= millis();  // Start of sample window
-     unsigned int peakToPeak = 0;   // peak-to-peak level
- 
-     unsigned int signalMax = 0;
-     unsigned int signalMin = 1024;
- 
-     // collect data for 50 mS
-     while (millis() - startMillis < sampleWindow)
-     {
-        sample = analogRead(0);   //reading DC pin from pin A0
-        if (sample < 1024)  // toss out spurious readings
-        {
-           if (sample > signalMax)
-           {
-              signalMax = sample;  // save just the max levels
-           }
-           else if (sample < signalMin)
-           {
-              signalMin = sample;  // save just the min levels
-           }
-        }
-     }
-     peakToPeak = signalMax - signalMin;  // max - min = peak-peak amplitude
-     Serial.println(peakToPeak);
-     
-     if (peakToPeak >= 8) {
-       digitalWrite(LED, HIGH);
-       delay(2000);
-       digitalWrite(LED, LOW);
-     }
- 
- 
-  }
-  
-</code></pre>
+   }
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<br><br><hr style="border-top: dotted 5px;"><br><br>
+        <!-- Divider -->
+        <hr class="border-white/10 my-20 max-w-5xl mx-auto">
 
-<h3><b>Capacitor Approach</b></h3>
-<h5>I attempted to recreate an MPU with a capacitor based approach. I used the bottle tilt sensor example as it was the closest to my digital sensor. I then added a buzzer to create an alarm system to warn user if the bottle was spilling (certain tilt angle). Overall, I heard from some classmates that the capacitive was a better solution for the project they were doing. In my case, the capacitor technique actually worsened my project because it wasn't as acurate as an actual MPU. My bottle tilt sensor was only able to detect movement in one way and did not have the ability to mimc an accelerometer.</h5><br><br>
+        <!-- Capacitive Sensor -->
+        <section class="max-w-5xl mx-auto px-6 mb-24">
+            <div class="flex items-center space-x-4 mb-8">
+                <div class="p-3 bg-amber-500/10 rounded-xl text-amber-400">
+                    <i data-lucide="zap" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-white font-display">Capacitive Tilt Sensor</h2>
+                    <p class="text-slate-400 text-sm">Experimental bottle tilt alarm</p>
+                </div>
+            </div>
 
-<h3>Video of Bottle Tilt Sensor</h3>
-<video controls width="600">
-  <source src="../images/ElectronicInput/IMG_0077.mp4" type="video/mp4">
-</video> 
-<video controls width="600">
-  <source src="../images/ElectronicInput/IMG_0005.mp4" type="video/mp4">
-</video> 
+            <div class="glass-panel p-8 rounded-3xl" data-aos="fade-up">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <p class="text-slate-400 leading-relaxed mb-6">
+                            I attempted to recreate an accelerometer's function using a capacitive approach (two conductive sheets). I built a "bottle tilt sensor" with a buzzer alarm to warn of spills.
+                        </p>
+                        <div class="bg-amber-500/10 border border-amber-500/20 p-4 rounded-xl mb-6">
+                            <p class="text-amber-200 text-sm">
+                                <strong>Outcome:</strong> Less accurate than the MPU6050. It worked as a binary tilt switch rather than a granular accelerometer.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="../images/ElectronicInput/IMG_0078.JPEG" onerror="this.src='https://placehold.co/300x300/1e293b/475569?text=Top+View'" class="w-full h-32 object-cover rounded-lg border border-white/10" alt="Top View">
+                            <img src="../images/ElectronicInput/IMG_0079.JPEG" onerror="this.src='https://placehold.co/300x300/1e293b/475569?text=Side+View'" class="w-full h-32 object-cover rounded-lg border border-white/10" alt="Side View">
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <video controls class="w-full rounded-xl border border-white/10 bg-black">
+                            <source src="../images/ElectronicInput/IMG_0077.mp4" type="video/mp4">
+                        </video>
+                        <video controls class="w-full rounded-xl border border-white/10 bg-black">
+                            <source src="../images/ElectronicInput/IMG_0005.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<br><br><h3>Circuit of Capacitor-Based Approach</h3>
-<img src="../images/ElectronicInput/IMG_0078.JPEG" width="400" alt="Capacitor Circuit Top View">
-<img src="../images/ElectronicInput/IMG_0079.JPEG" width="500" alt="Capacitor Circuit Side View">
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10 mt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <div class="mb-8">
+                    <p class="text-sm text-slate-500">Code adapted from <a href="https://randomnerdtutorials.com" target="_blank" class="text-blue-400 hover:text-blue-300">Random Nerd Tutorials</a></p>
+                </div>
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-white/10 text-white rounded-lg transition-all font-medium">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Return to Portfolio
+                </a>
+                <div class="text-slate-600 text-sm mt-8">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
 
-<br><br><br>
-<cite><a style="color: #0645AD" href="https://randomnerdtutorials.com" target="_blank">Part of the first code section was inspired by Random Nerd Tutorials</a></cite><br>
-<p style="text-align: right;">&copy; 2022 Mustafa Omran</p>
-</xmp>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+        lucide.createIcons();
+    </script>
 </body>
-
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
