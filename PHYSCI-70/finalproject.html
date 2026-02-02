@@ -1,406 +1,529 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script> 
-  <h2 style="border-color: white; width: fit-content; margin: auto;">Mustafa Omran: <span class="bolded"><em>Obstacle Avoiding Hand Gesture Controlled Car</em></span></h2>
-  <br>
-  <br>
-  <br>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <link href="css/style.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture Car | Mustafa Omran</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Highlight.js for Code Syntax Highlighting (Atom One Dark Theme) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/arduino.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Code Block Styling */
+        pre {
+            margin: 0;
+            border-radius: 0.75rem;
+        }
+        code.hljs {
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            border-radius: 0.75rem;
+        }
+        
+        /* Invert signature for dark mode */
+        .signature-invert {
+            filter: invert(1) brightness(2);
+            mix-blend-mode: screen;
+        }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
+    <!-- Background Ambient Effects -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
 
-<body>
-  <content>
-    <input id="hamburger" class="hamburger" type="checkbox"/>
-    <label class="hamburger" for="hamburger">
-      <i></i>
-      <text>
-        <close>close</close>
-        <open>menu</open>
-      </text>
-    </label>
-    <section class="drawer-list">
-        <ul>
-            <li><a href="../index.html">Home</a></li><br>
-            <li><a href="2D_design.html">2D Design & Cutting</a></li><br>
-            <li><a href="elec&tools.html">Electronics & Tools</a></li><br>
-            <li><a href="microcontroller.html">Microcontroller Programming</a></li><br>
-            <li><a href="3D_design.html">3D Design & Printing</a></li><br>
-            <li><a href="elecInput.html">Electronic Input Devices</a></li><br>
-            <li><a href="elecOutput.html">Electronic Output Devices</a></li><br>
-            <li><a href="cnc.html">CNC Milling, Molding, & Casting</a></li><br>
-            <li><a href="iot.html">Internet of Things (IoT)</a></li><br>
-            <li><a href="steppermotor.html">Machine Building</a></li><br>
-            <li><a href="finalproject.html">Final Project</a></li><br>
-        </ul>
-    </section>
-</content>
-<xmp theme="journal" style="display:none;">
-  <h6>Kindly click <a href="proccess.html" target="_blank" style="color: #0645AD">here </a>for full process</h6>
-  <br>
-  <h5>Ladies and Gentlemen, I present to you what 7 weeks of digital fabrication has taught me</h5>
-  <br><h3><b>Video</b></h3>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/fnnH6hY3uAQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  <br><br><h3><b>How</b></h3>
-  <h6>When the sensor detect a distance that is less than the allotted threashold, it signals the obstacle avoidance software to find a heuristic based approach for which path the car should take to avoid the obstacle.</h6>
-  <br><h3><b>Why</b></h3>
-  <h6>1.25 Million deaths occur worldwide every year due to road related accidents. According to the National Highway Traffic Safety Administration, there are 17,000 car accidents in the U.S alone every day. Some new cars contain some systems like Forward Collision Warning or Automatic Emergency Braking. However, since it is not a federal requirement for cars to ship with previously said systems, without mentioning some of the older cars on the road, a lot of newly manufactured cars don't. It was quickly obvious to me that my project would involve finding a solution to such an underrated yet very important issue. When looking around the lab for possible final project ideas, I stumbled upon ultrasound sensors. HC-SR04 sensors use ultrasound to measure distance. Great thing about these? They're around 75¢ each! The whole completed project's obstacle avoidance system (with a better board) would cost about $50. The message is clear; If a 16-year-old can do it, a $2.7 Trillion industry with a limitless amount of brilliant engineers can do it on a bigger scale and at least help reduce the 1.25 Million tragic deaths that happen every year.</h6>
-  <br><h3><b>Circuits</b></h3>
-  <h5>Sender Board</h5>
-  <img src="../images/FinalProject/FinalProjectRemote1024_1.jpg" width="400" alt="">
-  <br><h5>Reciever Board</h5>
-  <img src="../images/FinalProject/FinalProject.jpg" width="400" alt="">
-  <br><h3><b>Code</b></h3>
-  <h5>Sender Board</h5>
-  <pre><code class="arduino">
-      // Obstacle avoidance system is taken out 
-      #include <esp_now.h>
-      #include <WiFi.h>
-      #include <Adafruit_MPU6050.h>
-      #include <Adafruit_Sensor.h>
-      #include <Adafruit_SSD1306.h>
-      #include <Wire.h>
-      
-      Adafruit_MPU6050 mpu;
-      Adafruit_SSD1306 display = Adafruit_SSD1306(128, 64, &Wire);
-      
-      // REPLACE WITH YOUR RECEIVER MAC Address
-      uint8_t broadcastAddress[] = {0x0C, 0xB8, 0x15, 0xB9, 0x86, 0xB8};
-      
-      // Structure example to send data
-      // Must match the receiver structure
-      typedef struct struct_message {
-        float x;
-        float y;
-      } struct_message;
-      
-      // Create a struct_message called myData
-      struct_message myData;
-      
-      esp_now_peer_info_t peerInfo;
-      
-      // callback when data is sent
-      void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
-        Serial.print("\r\nLast Packet Send Status:\t");
-        Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
-      }
-       
-      void setup() {
-        // Init Serial Monitor
-        Serial.begin(115200);
-      
-        Serial.println("MPU6050 OLED demo");
-      
-        if (!mpu.begin()) {
-          Serial.println("Sensor init failed");
-          while (1)
-            yield();
-        }
-       
-        // Set device as a Wi-Fi Station
-        WiFi.mode(WIFI_STA);
-      
-        // Init ESP-NOW
-        if (esp_now_init() != ESP_OK) {
-          Serial.println("Error initializing ESP-NOW");
-          return;
-        }
-      
-        // Once ESPNow is successfully Init, we will register for Send CB to
-        // get the status of Trasnmitted packet
-        esp_now_register_send_cb(OnDataSent);
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+               <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                   Mustafa Omran
+               </span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="index.html" class="hover:text-white transition-colors py-2">Home</a>
+                <a href="index.html#projects" class="hover:text-white transition-colors py-2">Portfolio</a>
+                <a href="proccess.html" target="_blank" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all shadow-lg shadow-blue-600/25">
+                    View Full Process
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-white/10 p-4">
+            <div class="flex flex-col space-y-4">
+                <a href="index.html" class="text-slate-300 hover:text-white">Home</a>
+                <a href="index.html#projects" class="text-slate-300 hover:text-white">Portfolio</a>
+                <a href="proccess.html" class="text-blue-400 font-medium">Full Process</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-20">
         
-        // Register peer
-        memcpy(peerInfo.peer_addr, broadcastAddress, 6);
-        peerInfo.channel = 0;  
-        peerInfo.encrypt = false;
+        <!-- Header Section -->
+        <section class="max-w-7xl mx-auto px-6 mb-16 text-center">
+            <div data-aos="fade-down">
+                <span class="px-3 py-1 text-xs font-bold text-blue-400 bg-blue-400/10 border border-blue-400/20 rounded-full mb-4 inline-block">
+                    Final Project
+                </span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
+                    Obstacle Avoiding <br>
+                    <span class="gradient-text">Gesture Controlled Car</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    A dual-system robotics project integrating ultrasound sensing for obstacle avoidance and IMU-based hand gesture control via ESP-NOW.
+                </p>
+            </div>
+        </section>
+
+        <!-- Video Showcase -->
+        <section class="max-w-5xl mx-auto px-6 mb-20" data-aos="fade-up">
+            <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+                <div class="absolute inset-0 bg-blue-600/5 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/fnnH6hY3uAQ" title="Project Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Project Details Grid -->
+        <section class="max-w-7xl mx-auto px-6 mb-20">
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- How It Works -->
+                <div class="glass-panel p-8 rounded-3xl" data-aos="fade-right">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-3 bg-blue-500/10 rounded-xl text-blue-400">
+                            <i data-lucide="cpu" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white font-display">How It Works</h2>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed">
+                        When the ultrasonic sensors detect a distance less than the allotted threshold, it triggers the obstacle avoidance software. The system then calculates a heuristic-based path to maneuver the car safely around the object. 
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-mono text-slate-300">ESP32</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-mono text-slate-300">HC-SR04</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-mono text-slate-300">MPU6050</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-mono text-slate-300">ESP-NOW</span>
+                    </div>
+                </div>
+
+                <!-- Motivation -->
+                <div class="glass-panel p-8 rounded-3xl" data-aos="fade-left">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-3 bg-purple-500/10 rounded-xl text-purple-400">
+                            <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white font-display">The Motivation</h2>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        With 1.25 million road-related deaths annually worldwide, safety systems like Automatic Emergency Braking are critical. However, many older or budget vehicles lack these features.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed text-sm mt-4">
+                        I wanted to prove that effective safety tech doesn't need to be expensive. By utilizing HC-SR04 sensors (~75¢ each), this entire obstacle avoidance system was built for under $50. If a student can build this, the automotive industry can implement it globally.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Circuit Diagrams -->
+        <section class="max-w-7xl mx-auto px-6 mb-20">
+            <h2 class="text-3xl font-bold text-white font-display mb-10 text-center">Circuit Design</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Sender Board -->
+                <div class="group relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl blur opacity-20 group-hover:opacity-50 transition duration-500"></div>
+                    <div class="glass-panel p-2 rounded-2xl relative">
+                        <img src="../images/FinalProject/FinalProjectRemote1024_1.jpg" onerror="this.src='https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=1000'" alt="Sender Board Circuit" class="w-full h-64 object-cover rounded-xl">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold text-white">Sender Board (Remote)</h3>
+                            <p class="text-sm text-slate-400">ESP32 + MPU6050 Accelerometer + OLED</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receiver Board -->
+                <div class="group relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 group-hover:opacity-50 transition duration-500"></div>
+                    <div class="glass-panel p-2 rounded-2xl relative">
+                        <img src="../images/FinalProject/FinalProject.jpg" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000'" alt="Receiver Board Circuit" class="w-full h-64 object-cover rounded-xl">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold text-white">Receiver Board (Car)</h3>
+                            <p class="text-sm text-slate-400">ESP32 + 4x HC-SR04 Sensors + Motor Drivers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Section -->
+        <section class="max-w-5xl mx-auto px-6 mb-20">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-bold text-white font-display">Source Code</h2>
+                <div class="flex space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                </div>
+            </div>
+
+            <!-- Tab Buttons (Mock functionality for visual) -->
+            <div class="flex space-x-4 mb-4 border-b border-white/10">
+                <button class="px-4 py-2 text-blue-400 border-b-2 border-blue-400 font-medium text-sm">Sender.ino</button>
+                <button class="px-4 py-2 text-slate-400 hover:text-white transition-colors font-medium text-sm">Receiver.ino</button>
+            </div>
+
+            <!-- Sender Code -->
+            <div class="mb-12" data-aos="fade-up">
+                <div class="bg-[#282c34] rounded-xl overflow-hidden shadow-2xl border border-white/5">
+                    <div class="p-2 bg-slate-900/50 text-xs text-slate-500 border-b border-white/5 font-mono text-center">Sender Board Logic</div>
+                    <pre><code class="language-cpp">
+// Obstacle avoidance system is taken out 
+#include &lt;esp_now.h&gt;
+#include &lt;WiFi.h&gt;
+#include &lt;Adafruit_MPU6050.h&gt;
+#include &lt;Adafruit_Sensor.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+#include &lt;Wire.h&gt;
+
+Adafruit_MPU6050 mpu;
+Adafruit_SSD1306 display = Adafruit_SSD1306(128, 64, &Wire);
+
+// REPLACE WITH YOUR RECEIVER MAC Address
+uint8_t broadcastAddress[] = {0x0C, 0xB8, 0x15, 0xB9, 0x86, 0xB8};
+
+// Structure example to send data
+typedef struct struct_message {
+    float x;
+    float y;
+} struct_message;
+
+struct_message myData;
+esp_now_peer_info_t peerInfo;
+
+void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
+    Serial.print("\r\nLast Packet Send Status:\t");
+    Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
+}
+    
+void setup() {
+    Serial.begin(115200);
+    Serial.println("MPU6050 OLED demo");
+
+    if (!mpu.begin()) {
+        Serial.println("Sensor init failed");
+        while (1) yield();
+    }
+    
+    WiFi.mode(WIFI_STA);
+
+    if (esp_now_init() != ESP_OK) {
+        Serial.println("Error initializing ESP-NOW");
+        return;
+    }
+
+    esp_now_register_send_cb(OnDataSent);
+    
+    memcpy(peerInfo.peer_addr, broadcastAddress, 6);
+    peerInfo.channel = 0;  
+    peerInfo.encrypt = false;
+    
+    if (esp_now_add_peer(&peerInfo) != ESP_OK){
+        Serial.println("Failed to add peer");
+        return;
+    }
+
+    if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
+        Serial.println(F("SSD1306 allocation failed"));
+        for (;;);
+    }
+    display.display();
+    delay(500); 
+    display.setTextSize(2);
+    display.setTextColor(WHITE);
+    display.setRotation(0);
+
+    mpu.setAccelerometerRange(MPU6050_RANGE_16_G);
+    mpu.setGyroRange(MPU6050_RANGE_250_DEG);
+    mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
+}
+    
+void loop() {
+    sensors_event_t a, g, temp;
+    mpu.getEvent(&a, &g, &temp);
+    
+    myData.x = a.acceleration.x;
+    myData.y = a.acceleration.y;
+
+    display.clearDisplay();
+    display.setCursor(0, 0);
+
+    if (a.acceleration.x >= 4) {
+        display.println("Back");
+    } else if (a.acceleration.x <= -4) {
+        display.println("Forward");
+    } else if (a.acceleration.y <= -4) {
+        display.println("Left");
+    } else if (a.acceleration.y >= 4) {
+        display.println("Right");
+    } else {
+        display.println("Stopped");
+    }
+
+    display.display();
+    delay(100);
+    
+    esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
         
-        // Add peer        
-        if (esp_now_add_peer(&peerInfo) != ESP_OK){
-          Serial.println("Failed to add peer");
-          return;
-        }
-      
-        if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
-          Serial.println(F("SSD1306 allocation failed"));
-          for (;;)
-            ; // Don't proceed, loop forever
-        }
-        display.display();
-        delay(500); // Pause for 2 seconds
-        display.setTextSize(2);
-        display.setTextColor(WHITE);
-        display.setRotation(0);
-      
-        mpu.setAccelerometerRange(MPU6050_RANGE_16_G);
-        mpu.setGyroRange(MPU6050_RANGE_250_DEG);
-        mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
-        Serial.println("");
-        delay(100);
-      }
-       
-      void loop() {
-        // Set values to send
-        sensors_event_t a, g, temp;
-        mpu.getEvent(&a, &g, &temp);
-        
-        myData.x = a.acceleration.x;
-        myData.y = a.acceleration.y;
-      
-        display.clearDisplay();
-        display.setCursor(0, 0);
-      
-        if (a.acceleration.x >= 4) {
-          display.println("Back");
-        } else if (a.acceleration.x <= -4) {
-          display.println("Forward");
-        } else if (a.acceleration.y <= -4) {
-          display.println("Left");
-        } else if (a.acceleration.y >= 4) {
-          display.println("Right");
-        } else {
-          display.println("Stopped");
-        }
-      
-        display.display();
-        delay(100);
-        
-        // Send message via ESP-NOW
-        esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
-         
-        if (result == ESP_OK) {
-          Serial.println("Sent with success");
-        }
-        else {
-          Serial.println("Error sending the data");
-        }
-        delay(100);
-      }
-  </code></pre>
-  <br>
-  <h5>Reciever Board</h5>
-  <pre><code class="arduino">
-      #include <esp_now.h>
-      #include <WiFi.h>
-      
-      // Defines pin numbers for all different sensors and motors
-      const int backTrig = 13;
-      const int frontTrig = 14;
-      const int leftTrig = 25;
-      const int rightTrig = 32;
-      
-      const int backEcho = 12;
-      const int frontEcho = 27;
-      const int leftEcho = 33;
-      const int rightEcho = 35;
-      
-      const int A1A = 5;
-      const int A1B = 17;
-      
-      const int B1A = 18;
-      const int B1B = 19;
-      
-      // Structure example to receive data
-      // Must match the sender structure
-      typedef struct struct_message {
-          float x;
-          float y;
-      } struct_message;
-      
-      // Create a struct_message called myData
-      struct_message myData;
-      
-      // callback function that will be executed when data is received
-      void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
-        memcpy(&myData, incomingData, sizeof(myData));
-        Serial.print("Bytes received: ");
-        Serial.println(len);
-        Serial.print("Float: ");
-        Serial.println(myData.x);
-      }
-       
-      void setup() {
-        // Initialize Serial Monitor
-        Serial.begin(115200);
-        pinMode(A1A, OUTPUT);
-        pinMode(A1B, OUTPUT);
-        pinMode(B1A, OUTPUT);
-        pinMode(B1B, OUTPUT);
-      
-        digitalWrite(A1A, 0x0);
-        digitalWrite(A1B, 0x0);
-        digitalWrite(B1A, 0x0);
-        digitalWrite(B1B, 0x0);
-        
-        // Set device as a Wi-Fi Station
-        WiFi.mode(WIFI_STA);
-      
-        // Init ESP-NOW
-        if (esp_now_init() != ESP_OK) {
-          Serial.println("Error initializing ESP-NOW");
-          return;
-        }
-        
-        // Once ESPNow is successfully Init, we will register for recv CB to
-        // get recv packer info
-        esp_now_register_recv_cb(OnDataRecv);
-      }
-       
-      void loop() { // myData.x = accelerometer's x postition recieved from sender ESP32 || myData.y = accelerometer's y postition recieved from sender ESP32
-        bool was_back = false;
-      
-        if (myData.x >= 4) {
-          was_back = true;
-          while (myData.x >= 4) {
-            backwards();
-          }
-      
-        } else if (myData.x <= -4) {
-          was_back = false;
-          while (myData.x <= -4) {
-            forward();
-          }
-      
-        } else if (myData.y <= -4 && was_back == true) {
-          while (myData.y <= -4 && was_back) {
-            digitalWrite(A1A, 0x0);
-            digitalWrite(A1B, 0x1);
-            digitalWrite(B1A, 0x0);
-            digitalWrite(B1B, 0x0);
-          }
-          
-        } else if (myData.y <= -4 && was_back == false) {
-          while (myData.y <= -4 && !(was_back)) {
-              right();
-          }
-          
-        } else if (myData.y >= 4 && was_back == true) {
-            digitalWrite(A1A, 0x0);
-            digitalWrite(A1B, 0x0);
-            digitalWrite(B1A, 0x0);
-            digitalWrite(B1B, 0x1);
-          }
-      
-        } else if (myData.y >= 4 && was_back == false) {
-          while (myData.y >= 4 && !(was_back)) {
-            left();
-          }
-      
-        } else {
-          stopped();
-          
-        }
-      }
-      
-      float frontSensor() { // Gets readigs from front ultrasonic sensor to obtain a front distance
-        long duration2, distance2;
-        digitalWrite(frontTrig, 0x0);
-        delayMicroseconds(2);
-        digitalWrite(frontTrig, 0x1);
-        delayMicroseconds(10);
-        digitalWrite(frontTrig, 0x0);
-        duration2 = pulseIn(leftEcho, 0x1);
-        distance2= (duration2/2) / 29.1;
-        return distance2;
-      }
-      
-      float rightSideSensor() { // Gets readigs from right ultrasonic sensor to obtain a right distance
-        long duration1, distance1;
-        digitalWrite(rightTrig, 0x0);
-        delayMicroseconds(2);
-        digitalWrite(rightTrig, 0x1);
-        delayMicroseconds(10);
-        digitalWrite(rightTrig, 0x0);
-        duration1 = pulseIn(rightEcho, 0x1);
-        distance1 = (duration1/2) / 29.1;
-        return distance1;
-      }
-      
-      float leftSideSensor() { // Gets readigs from left ultrasonic sensor to obtain a left distance
-        long duration4, distance4;
-        digitalWrite(leftTrig, 0x0);
-        delayMicroseconds(2);
-        digitalWrite(leftTrig, 0x1);
-        delayMicroseconds(10);
-        digitalWrite(leftTrig, 0x0);
-        duration4 = pulseIn(leftEcho, 0x1);
-        distance4= (duration4/2) / 29.1;
-        return distance4;
-      }
-      
-      float backSensor() { // Gets readigs from back ultrasonic sensor to obtain a back distance
-        long duration3, distance3;
-        digitalWrite(backTrig, 0x0);
-        delayMicroseconds(2);
-        digitalWrite(backTrig, 0x1);
-        delayMicroseconds(10);
-        digitalWrite(backTrig, 0x0);
-        duration3 = pulseIn(backEcho, 0x1);
-        distance3= (duration3/2) / 29.1;
-        return distance3;
-      }
-      
-      void forward() { // Moves vehicle forward
-        digitalWrite(A1A, 0x1);
-        digitalWrite(A1B, 0x0);
-        digitalWrite(B1A, 0x1);
-        digitalWrite(B1B, 0x0);
-      }
-      
-      void backwards() { // Moves car backwards
-        digitalWrite(A1B, 0x1);
-        digitalWrite(A1A, 0x0);
-        digitalWrite(B1B, 0x1);
-        digitalWrite(B1A, 0x0);
-      }
-      
-      void stopped() { // Stops the vehicle
-        digitalWrite(A1A, 0x0);
-        digitalWrite(B1A, 0x0);
-        digitalWrite(B1B, 0x0);
-        digitalWrite(A1B, 0x0);
-      }
-      
-      void right() { // Turns LEFT motor to full speed whilst turing off the right motor in order to turn right (forward spin)
-        digitalWrite(A1A, 0x1);
-        digitalWrite(A1B, 0x0);
-        digitalWrite(B1A, 0x0);
-        digitalWrite(B1B, 0x0);
-      }
-      
-      void left() { // Turns RIGHT motor to full speed whilst turing off the left motor in order to turn left (forward spin)
-        digitalWrite(A1A, 0x0);
-        digitalWrite(A1B, 0x0);
-        digitalWrite(B1A, 0x1);
-        digitalWrite(B1B, 0x0);
-      }
-  </code></pre>
-  <br><br><h3><b>Resources</b></h3>
-  <p><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_now.html" target="_blank">- ESP-NOW - ESP32 - — ESP-IDF Programming Guide latest documentation</a></p>
-  <p><a href="https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/" target="_blank">- Getting Started with ESP-NOW (ESP32 with Arduino IDE) | Random Nerd Tutorials</a></p>
-  <p><a href="https://randomnerdtutorials.com/esp-now-two-way-communication-esp32/" target="_blank">- ESP-NOW Two-Way Communication Between ESP32 Boards | Random Nerd Tutorials</a></p>
-  <p><a href="https://esp32io.com/tutorials/communication-between-two-esp32" target="_blank">- Communication between two ESP32 </a></p>
-  <p><a href="https://randomnerdtutorials.com/esp32-mpu-6050-accelerometer-gyroscope-arduino/" target="_blank">- ESP32 MPU-6050 Accelerometer and Gyroscope (Arduino) | Random Nerd Tutorials</a></p>
-  <p><a href="https://create.arduino.cc/projecthub/imjeffparedes/add-wifi-to-arduino-uno-663b9e" target="_blank">- Add WiFi to Arduino UNO - Arduino Project Hub</a></p>
-  <p><a href="https://randomnerdtutorials.com/esp-now-two-way-communication-esp32/" target="_blank">- ESP-NOW Two-Way Communication Between ESP32 Boards | Random Nerd Tutorials</a></p>
-  <p><a href="https://randomnerdtutorials.com/esp32-hc-sr04-ultrasonic-arduino/#:~:text=The%20HC%2DSR04%20ultrasonic%20sensor%20uses%20sonar%20to%20determine%20the,ultrasonic%20transmitter%20and%20receiver%20modules" target="_blank">- ESP32 with HC-SR04 Ultrasonic Sensor with Arduino IDE | Random Nerd Tutorials.</a></p>
-  <br><h5><b>Files</b></h5>
-  <p><a href="https://a360.co/3QfRYAC" target="_blank">- Car Design</a></p>
-</xmp>
+    if (result == ESP_OK) {
+        Serial.println("Sent with success");
+    } else {
+        Serial.println("Error sending the data");
+    }
+    delay(100);
+}
+                    </code></pre>
+                </div>
+            </div>
+
+            <!-- Receiver Code -->
+            <div data-aos="fade-up">
+                 <div class="bg-[#282c34] rounded-xl overflow-hidden shadow-2xl border border-white/5">
+                    <div class="p-2 bg-slate-900/50 text-xs text-slate-500 border-b border-white/5 font-mono text-center">Receiver Board Logic</div>
+                    <pre><code class="language-cpp">
+#include &lt;esp_now.h&gt;
+#include &lt;WiFi.h&gt;
+
+const int backTrig = 13; const int frontTrig = 14;
+const int leftTrig = 25; const int rightTrig = 32;
+
+const int backEcho = 12; const int frontEcho = 27;
+const int leftEcho = 33; const int rightEcho = 35;
+
+const int A1A = 5;  const int A1B = 17;
+const int B1A = 18; const int B1B = 19;
+
+typedef struct struct_message {
+    float x;
+    float y;
+} struct_message;
+
+struct_message myData;
+
+void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
+    memcpy(&myData, incomingData, sizeof(myData));
+}
+    
+void setup() {
+    Serial.begin(115200);
+    pinMode(A1A, OUTPUT); pinMode(A1B, OUTPUT);
+    pinMode(B1A, OUTPUT); pinMode(B1B, OUTPUT);
+    
+    digitalWrite(A1A, 0); digitalWrite(A1B, 0);
+    digitalWrite(B1A, 0); digitalWrite(B1B, 0);
+    
+    WiFi.mode(WIFI_STA);
+
+    if (esp_now_init() != ESP_OK) {
+        return;
+    }
+    esp_now_register_recv_cb(OnDataRecv);
+}
+    
+void loop() { 
+    bool was_back = false;
+
+    if (myData.x >= 4) {
+        was_back = true;
+        while (myData.x >= 4) { backwards(); }
+    } else if (myData.x <= -4) {
+        was_back = false;
+        while (myData.x <= -4) { forward(); }
+    } else if (myData.y <= -4) {
+        while (myData.y <= -4) { right(); }
+    } else if (myData.y >= 4) {
+        while (myData.y >= 4) { left(); }
+    } else {
+        stopped();
+    }
+}
+
+// Logic helpers (abbreviated for display)
+void forward() { digitalWrite(A1A, 1); digitalWrite(A1B, 0); digitalWrite(B1A, 1); digitalWrite(B1B, 0); }
+void backwards() { digitalWrite(A1B, 1); digitalWrite(A1A, 0); digitalWrite(B1B, 1); digitalWrite(B1A, 0); }
+void stopped() { digitalWrite(A1A, 0); digitalWrite(B1A, 0); digitalWrite(B1B, 0); digitalWrite(A1B, 0); }
+void right() { digitalWrite(A1A, 1); digitalWrite(A1B, 0); digitalWrite(B1A, 0); digitalWrite(B1B, 0); }
+void left() { digitalWrite(A1A, 0); digitalWrite(A1B, 0); digitalWrite(B1A, 1); digitalWrite(B1B, 0); }
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="max-w-4xl mx-auto px-6 mb-24">
+            <h3 class="text-2xl font-bold text-white mb-8 border-b border-white/10 pb-4">Resources & References</h3>
+            
+            <div class="grid gap-4">
+                <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_now.html" target="_blank" class="flex items-center p-4 rounded-xl glass-panel hover:bg-slate-800 transition-colors group">
+                    <i data-lucide="book-open" class="w-5 h-5 text-blue-500 mr-4 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-slate-300 group-hover:text-white transition-colors">ESP-IDF Programming Guide (ESP-NOW)</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-slate-600 ml-auto group-hover:text-blue-400"></i>
+                </a>
+
+                <a href="https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/" target="_blank" class="flex items-center p-4 rounded-xl glass-panel hover:bg-slate-800 transition-colors group">
+                    <i data-lucide="code-2" class="w-5 h-5 text-purple-500 mr-4 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-slate-300 group-hover:text-white transition-colors">Random Nerd Tutorials: Getting Started with ESP-NOW</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-slate-600 ml-auto group-hover:text-blue-400"></i>
+                </a>
+
+                <a href="https://randomnerdtutorials.com/esp32-mpu-6050-accelerometer-gyroscope-arduino/" target="_blank" class="flex items-center p-4 rounded-xl glass-panel hover:bg-slate-800 transition-colors group">
+                    <i data-lucide="zap" class="w-5 h-5 text-amber-500 mr-4 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-slate-300 group-hover:text-white transition-colors">MPU-6050 Accelerometer & Gyroscope Guide</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-slate-600 ml-auto group-hover:text-blue-400"></i>
+                </a>
+
+                <a href="https://a360.co/3QfRYAC" target="_blank" class="flex items-center p-4 rounded-xl bg-blue-600/10 border border-blue-500/20 hover:bg-blue-600/20 transition-colors group mt-4">
+                    <i data-lucide="download" class="w-5 h-5 text-blue-400 mr-4 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-blue-100 font-medium">Download Car CAD Files (Fusion 360)</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-blue-400 ml-auto"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-20 border-t border-white/10">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-8 text-white">Let's Connect</h2>
+                <div class="flex justify-center space-x-6 mb-10">
+                    <a href="mailto:momran@utexas.edu" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
+                        <i data-lucide="mail" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mustafaahmedomran" target="_blank" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
+                    </a>
+                    <a href="https://github.com/momran2401" target="_blank" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
+                        <i data-lucide="github" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
+                    </a>
+                </div>
+                <div class="text-slate-600 text-sm">
+                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
 </body>
-<script src="https://nathanmelenbrink.github.io/lab/js/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
