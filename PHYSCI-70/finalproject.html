@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hand Gesture Car | Mustafa Omran</title>
+    <meta name="description" content="Capstone: a gesture-controlled ESP32 car. MPU6050 remote over ESP-NOW, four HC-SR04 ultrasonic sensors, Fusion 360 CAD.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -125,7 +126,7 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+            <a href="../index.html" class="flex items-center space-x-3 group cursor-pointer">
                <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
                    Mustafa Omran
                </span>
@@ -133,8 +134,8 @@
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8 font-medium text-sm text-slate-400">
-                <a href="index.html" class="hover:text-white transition-colors py-2">Home</a>
-                <a href="index.html#projects" class="hover:text-white transition-colors py-2">Portfolio</a>
+                <a href="../index.html" class="hover:text-white transition-colors py-2">Home</a>
+                <a href="../index.html#projects" class="hover:text-white transition-colors py-2">Portfolio</a>
                 <a href="proccess.html" target="_blank" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all shadow-lg shadow-blue-600/25">
                     View Full Process
                 </a>
@@ -149,8 +150,8 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-white/10 p-4">
             <div class="flex flex-col space-y-4">
-                <a href="index.html" class="text-slate-300 hover:text-white">Home</a>
-                <a href="index.html#projects" class="text-slate-300 hover:text-white">Portfolio</a>
+                <a href="../index.html" class="text-slate-300 hover:text-white">Home</a>
+                <a href="../index.html#projects" class="text-slate-300 hover:text-white">Portfolio</a>
                 <a href="proccess.html" class="text-blue-400 font-medium">Full Process</a>
             </div>
         </div>
@@ -165,11 +166,11 @@
                     Final Project
                 </span>
                 <h1 class="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-white">
-                    Obstacle Avoiding <br>
-                    <span class="gradient-text">Gesture Controlled Car</span>
+                    Gesture Controlled <br>
+                    <span class="gradient-text">ESP32 Car</span>
                 </h1>
                 <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                    A dual-system robotics project integrating ultrasound sensing for obstacle avoidance and IMU-based hand gesture control via ESP-NOW.
+                    Tilt your hand and the car drives. An ESP32 + MPU6050 remote sends your gestures to the car over ESP-NOW, and the car carries four HC-SR04 ultrasonic sensors.
                 </p>
             </div>
         </section>
@@ -195,7 +196,7 @@
                         <h2 class="text-2xl font-bold text-white font-display">How It Works</h2>
                     </div>
                     <p class="text-slate-400 leading-relaxed">
-                        When the ultrasonic sensors detect a distance less than the allotted threshold, it triggers the obstacle avoidance software. The system then calculates a heuristic-based path to maneuver the car safely around the object. 
+                        The remote reads your hand tilt from an MPU6050 and sends the x and y acceleration to the car over ESP-NOW. The car turns that into forward, back, left, right, or stop. I also mounted four HC-SR04 ultrasonic sensors (front, back, left, right) for obstacle avoidance, but I pulled the avoidance code out of the final version. So what's published here is the gesture control, with the sensing hardware on board.
                     </p>
                     <div class="mt-6 flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-mono text-slate-300">ESP32</span>
@@ -217,7 +218,7 @@
                         With 1.25 million road-related deaths annually worldwide, safety systems like Automatic Emergency Braking are critical. However, many older or budget vehicles lack these features.
                     </p>
                     <p class="text-slate-400 leading-relaxed text-sm mt-4">
-                        I wanted to prove that effective safety tech doesn't need to be expensive. By utilizing HC-SR04 sensors (~75¢ each), this entire obstacle avoidance system was built for under $50. If a student can build this, the automotive industry can implement it globally.
+                        I wanted to show that safety tech doesn't need to be expensive. The HC-SR04 sensors cost about 75¢ each, and the whole car came in under $50.
                     </p>
                 </div>
             </div>

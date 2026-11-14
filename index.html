@@ -1,668 +1,326 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustafa Omran | Portfolio</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        slate: {
-                            850: '#151f32',
-                            900: '#0f172a',
-                            950: '#020617',
-                        },
-                        accent: {
-                            blue: '#3b82f6',
-                            purple: '#8b5cf6',
-                            cyan: '#06b6d4',
-                            emerald: '#10b981',
-                            amber: '#f59e0b',
-                            rose: '#f43f5e'
-                        }
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-        
-        /* Glassmorphism utilities */
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(to right, #60a5fa, #a78bfa, #2dd4bf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .timeline-line::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            height: 100%;
-            width: 2px;
-            background: rgba(59, 130, 246, 0.2);
-            transform: translateX(-50%);
-        }
-        
-        /* Project Tilt Effect */
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .project-card:hover {
-            transform: scale(1.02) rotate(1deg);
-        }
-
-        /* Invert signature for dark mode */
-        .signature-invert {
-            filter: invert(1) brightness(2);
-            mix-blend-mode: screen;
-        }
-        
-        @media (max-width: 768px) {
-            .timeline-line::before {
-                left: 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mustafa Omran | Embedded Systems, RF, and Python Projects</title>
+  <meta name="description" content="Projects by Mustafa Omran, Electrical and Computer Engineering at The University of Texas at Austin: LINDA, NIST's live radio-spectrum monitor; a field LiDAR device and UAS hardware at an FAA test site; research, a hackathon, and Harvard digital fabrication builds.">
+  <link rel="canonical" href="https://www.mustafaomran.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mustafa Omran">
+  <meta property="og:title" content="Mustafa Omran | Embedded Systems, RF, and Python Projects">
+  <meta property="og:description" content="Every project: what I built, how I built it, and what came out of it. Software-defined radio at NIST, field hardware at an FAA UAS test site, and more.">
+  <meta property="og:url" content="https://www.mustafaomran.com/">
+  <meta property="og:image" content="https://www.mustafaomran.com/assets/img/mustafa.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f4efe6">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/paper.css">
+  <script src="assets/js/theme.js"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://www.mustafaomran.com/#me", "name": "Mustafa Omran", "url": "https://www.mustafaomran.com/", "email": "mailto:momran@utexas.edu", "jobTitle": "Electrical and Computer Engineering student", "affiliation": {"@type": "CollegeOrUniversity", "name": "The University of Texas at Austin"}, "knowsAbout": ["Embedded systems", "Software-defined radio", "Signal processing", "Python", "FastAPI", "Raspberry Pi", "ESP32", "ArduPilot", "Hardware testing and validation"], "sameAs": ["https://www.linkedin.com/in/mustafaahmedomran", "https://github.com/momran2401"]}, {"@type": "ItemList", "name": "Projects", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "SoftwareSourceCode", "name": "LINDA: Live IQ Navigation & Display Application", "description": "NIST's live radio-spectrum monitoring tool for 5G interference research. About 38k lines, about 200 automated tests, 8 SDR families, browser, terminal, kiosk and CLI interfaces.", "url": "https://www.mustafaomran.com/projects/linda.html", "codeRepository": "https://github.com/usnistgov/LINDA", "identifier": "https://doi.org/10.18434/mds2-4290", "publisher": {"@type": "Organization", "name": "National Institute of Standards and Technology"}, "programmingLanguage": ["Python", "JavaScript", "Bash"], "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 2, "item": {"@type": "CreativeWork", "name": "Field-ready LiDAR measurement device", "description": "A rugged LiDAR measuring tool that 20 engineers at the test site used in the field. Raspberry Pi and Arduino in a 3D-printed case, an IMU that guides your aim, and startup checks that catch a bad sensor or loose connection before you measure.", "url": "https://www.mustafaomran.com/projects/lidar.html", "keywords": "Raspberry Pi, Arduino, Python, C++, IMU, Calibration, 3D printing", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 3, "item": {"@type": "CreativeWork", "name": "Hexacopter rebuild and flight test", "description": "Took a decommissioned hexacopter and brought it back on ArduPilot, with redundant comms and sensing and a power setup built around safety. It flew about 11 minutes carrying a 7S camera and gimbal payload.", "url": "https://www.mustafaomran.com/projects/hexacopter.html", "keywords": "ArduPilot, UAS, Power management, Flight testing", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 4, "item": {"@type": "CreativeWork", "name": "Three-axis remote gimbal controller", "description": "A remote for a three-axis gimbal over a 900 MHz RFD900X telemetry link. The remote carries its own servo \"mirror gimbal\" that moves to whatever you command, so you see the orientation in real time.", "url": "https://www.mustafaomran.com/projects/gimbal.html", "keywords": "RFD900X, 900 MHz telemetry, Servos, Embedded", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 5, "item": {"@type": "CreativeWork", "name": "Radar field-of-view and positioning app", "description": "Radar setup at the test site was trial and error. I built a single-file web app that draws the coverage cone and recommends where to place and aim the radar. It runs on a phone, which is what you have in the field.", "url": "https://www.mustafaomran.com/projects/radar.html", "keywords": "JavaScript (ES6), Canvas API, HTML/CSS, Tailwind", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 6, "item": {"@type": "CreativeWork", "name": "Energy AI Hackathon, Quarterfinalist", "description": "48 hours to predict three years of oil production for 12 new wells from 71 wells of data. We built a Python ML workflow, ran 100 probabilistic realizations to put real uncertainty on it, and pitched it to an industry panel.", "url": "https://www.mustafaomran.com/projects/hackathon.html", "keywords": "Python, Machine learning, Uncertainty quantification", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 7, "item": {"@type": "CreativeWork", "name": "Conductive cement composites", "description": "Carbon makes cement conduct, which could let it store energy in smart infrastructure, but it can cost you strength. I built the test fixtures and wiring, ran the electrical, charge/discharge, and mechanical tests, and co-authored the 2025 paper.", "url": "https://www.mustafaomran.com/projects/cement.html", "keywords": "Test fixtures, Electrical characterization, Charge/discharge, Python, Publication", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 8, "item": {"@type": "CreativeWork", "name": "MIT Jameel Clinic, AI & Health", "description": "Studied machine learning models for tumor recognition in medical images. My team of five broke down how AlphaFold predicts protein structure and presented it to 50+ people.", "keywords": "Machine learning, Medical imaging, Presenting", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 9, "item": {"@type": "CreativeWork", "name": "Gesture-controlled ESP32 car", "description": "Tilt your hand and the car drives. An ESP32 + MPU6050 remote sends gestures to the car over ESP-NOW, and the car carries four HC-SR04 ultrasonic sensors.", "url": "https://www.mustafaomran.com/PHYSCI-70/finalproject.html", "keywords": "ESP32, ESP-NOW, MPU6050, C++, Fusion 360", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 10, "item": {"@type": "CreativeWork", "name": "IoT smart lock", "description": "A stepper motor and a 3D-printed cam throw a deadbolt. Lock and unlock from a link in a text message.", "url": "https://www.mustafaomran.com/PHYSCI-70/steppermotor.html", "keywords": "Stepper motor, DRV8834, AccelStepper, 3D printing, IoT", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 11, "item": {"@type": "CreativeWork", "name": "Bedroom security system", "description": "Live camera stream, an ultrasonic sensor watching the door, and a text alert the moment it opens.", "url": "https://www.mustafaomran.com/PHYSCI-70/iot.html", "keywords": "ESP32-CAM, HC-SR04, SMTP, Wi-Fi", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 12, "item": {"@type": "CreativeWork", "name": "Smart vehicle lighting", "description": "Voice-activated turn signals and brake lights on NeoPixels, with manual heap management to keep the Arduino from running out of SRAM.", "url": "https://www.mustafaomran.com/PHYSCI-70/elecOutput.html", "keywords": "Arduino, NeoPixel, C++, Memory management", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 13, "item": {"@type": "CreativeWork", "name": "Silicone mold and bismuth casting", "description": "Turned a rubber chicken into metal. The first pour was too hot and melted right through the mold.", "url": "https://www.mustafaomran.com/PHYSCI-70/cnc.html", "keywords": "Silicone molding, Casting, Process control", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 14, "item": {"@type": "CreativeWork", "name": "CNC nameplate", "description": "Started on a Roland SRM-20 with G-code from MIT Mods, then scaled up to the ShopBot.", "url": "https://www.mustafaomran.com/PHYSCI-70/cnc.html", "keywords": "CNC, G-code, Roland SRM-20, ShopBot", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 15, "item": {"@type": "CreativeWork", "name": "Laptop cooling riser", "description": "Cut 2 hours 36 minutes of print time by fixing orientation, supports, scale, and infill.", "url": "https://www.mustafaomran.com/PHYSCI-70/3D_design.html", "keywords": "Fusion 360, PrusaSlicer, 3D printing", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 16, "item": {"@type": "CreativeWork", "name": "Scanning classmates in 3D", "description": "Captured people in 3D with PolyCam and the iPhone's LiDAR sensor, and learned why glass and mirrors break it.", "url": "https://www.mustafaomran.com/PHYSCI-70/3D_design.html", "keywords": "3D scanning, LiDAR, PolyCam", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 17, "item": {"@type": "CreativeWork", "name": "Sensor experiments", "description": "First gesture-car prototype, a clap switch, and a capacitive tilt alarm for a water bottle.", "url": "https://www.mustafaomran.com/PHYSCI-70/elecInput.html", "keywords": "MPU6050, Microphone, Capacitive sensing, Arduino", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 18, "item": {"@type": "CreativeWork", "name": "Piezo vehicle", "description": "Tap it and it goes, tap it again and it stops. The first motor didn't have the torque, so it got a gearbox.", "url": "https://www.mustafaomran.com/PHYSCI-70/microcontroller.html", "keywords": "Arduino, PWM, Piezo, C++", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 19, "item": {"@type": "CreativeWork", "name": "Motorized car", "description": "The belt kept slipping off the motor, so I measured the shaft and designed a friction-fit adapter.", "url": "https://www.mustafaomran.com/PHYSCI-70/elec_tools.html", "keywords": "Fusion 360, Laser cutting, Calipers", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 20, "item": {"@type": "CreativeWork", "name": "Press-fit construction kit", "description": "Got the kerf wrong the first time (0.91 mm), remeasured it at 0.365 mm, and the pieces finally snapped together.", "url": "https://www.mustafaomran.com/PHYSCI-70/2D_design.html", "keywords": "Laser cutting, Kerf compensation, CAD", "author": {"@id": "https://www.mustafaomran.com/#me"}}}, {"@type": "ListItem", "position": 21, "item": {"@type": "CreativeWork", "name": "iPhone CAD model", "description": "Measured a real iPhone with calipers and rebuilt it in CAD, corner radii and camera bump included.", "url": "https://www.mustafaomran.com/PHYSCI-70/2D_design.html", "keywords": "Fusion 360, Reverse engineering, Calipers", "author": {"@id": "https://www.mustafaomran.com/#me"}}}]}]}</script>
 </head>
-<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-blue-500 selection:text-white">
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker></defs>
+</svg>
 
-    <!-- Background Ambient Effects -->
-    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
-                <!-- Signature Logo (Home Button) -->
-                <div class="h-12 flex items-center">
-                    <img src="assets/img/signature.svg" alt="Mustafa Omran Signature" class="h-12 w-auto signature-invert hover:opacity-80 transition-opacity">
-                </div>
-            </div>
-            
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 font-medium text-sm text-slate-400 items-center">
-                <a href="#about" class="hover:text-white transition-colors relative group py-2">
-                    About
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#experience" class="hover:text-white transition-colors relative group py-2">
-                    Experience
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#projects" class="hover:text-white transition-colors relative group py-2">
-                    Projects
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="assets/img/Mustafa's_Resume.pdf" target="_blank" class="hover:text-white transition-colors relative group py-2">
-                    Resume
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#contact" class="px-5 py-2.5 bg-white/5 hover:bg-white/10 text-white rounded-lg border border-white/10 transition-all">
-                    Contact Me
-                </a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-white/10 p-4">
-            <div class="flex flex-col space-y-4">
-                <a href="#about" class="text-slate-300 hover:text-white">About</a>
-                <a href="#experience" class="text-slate-300 hover:text-white">Experience</a>
-                <a href="#projects" class="text-slate-300 hover:text-white">Projects</a>
-                <a href="assets/img/Mustafa's_Resume.pdf" target="_blank" class="text-slate-300 hover:text-white">Resume</a>
-                <a href="#contact" class="text-blue-400 font-medium">Contact</a>
-            </div>
-        </div>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="./">Mustafa Omran</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a class="hide-sm" href="#publications">Publications</a>
+      <a href="assets/MustafaOmran_Resume.pdf">Resume</a>
+      <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      </button>
     </nav>
+  </div>
+</header>
 
-    <main class="relative z-10 pt-32 pb-20">
-        
-        <!-- Hero Section -->
-        <section class="max-w-7xl mx-auto px-6 min-h-[85vh] flex flex-col justify-center items-center text-center relative">
-            <h1 data-aos="fade-up" data-aos-delay="100" class="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
-                Hello! I'm <br>
-                <span class="gradient-text animate-float inline-block">Mustafa!</span>
-            </h1>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Electrical &amp; Computer Engineering · The University of Texas at Austin</p>
+      <h1>Mustafa Omran</h1>
+      <p class="lede">Embedded systems, RF, and Python software.</p>
+      <p class="intro">I'm an ECE student at UT Austin, graduating May 2028, focused on computer architecture and embedded systems. Below is every project: what I built, how I built it, and what came out of it.</p>
+      <div class="links">
+        <a class="btn primary" href="assets/MustafaOmran_Resume.pdf">Resume (PDF)</a>
+        <a class="btn" href="https://github.com/momran2401" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/mustafaahmedomran" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:momran@utexas.edu">momran@utexas.edu</a>
+      </div>
+    </div>
+  </section>
 
-            <p data-aos="fade-up" data-aos-delay="200" class="text-xl md:text-2xl text-slate-400 max-w-4xl leading-relaxed mb-10">
-                Honors Electrical & Computer Engineering in the Architecture, Computer Systems, and Embedded Systems (ACSES) track at the University of Texas at Austin.
-            </p>
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>21 builds, strongest first. Each diagram shows how the thing works.</p>
+      </div>
 
-            <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="#projects" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all shadow-lg shadow-blue-600/25 flex items-center group">
-                    View My Work
-                    <i data-lucide="arrow-down" class="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
-                </a>
-                <a href="#contact" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-medium transition-all border border-slate-700 hover:border-slate-600 flex items-center">
-                    <i data-lucide="mail" class="mr-2 w-5 h-5"></i>
-                    Get in Touch
-                </a>
-            </div>
+      <article class="feature">
+        <div>
+          <p class="meta">NIST · Boulder, CO · May to Aug 2026</p>
+          <h3><a href="projects/linda.html">LINDA: Live IQ Navigation &amp; Display Application</a></h3>
+          <p class="summary">A live radio-spectrum monitor for 5G interference research. I built it at NIST on top of their striqt signal-analysis library, and it's now published NIST software used by the NASCTN team. One server owns the radio and streams live spectrograms and power spectral density to a browser, an SSH terminal, a kiosk screen, or a CLI.</p>
+          <div class="stats">
+            <div class="stat"><b>~38k</b><span>lines of code</span></div>
+            <div class="stat"><b>~200</b><span>automated tests</span></div>
+            <div class="stat"><b>8</b><span>SDR families</span></div>
+            <div class="stat"><b>4</b><span>interfaces</span></div>
+          </div>
+          <ul class="tags">
+            <li>Python</li><li>FastAPI</li><li>WebSockets</li><li>SoapySDR</li><li>DSP</li><li>Linux / systemd</li><li>pytest</li><li>Claude Code &amp; Codex</li>
+          </ul>
+          <p class="more"><a href="projects/linda.html">Write-up →</a><span class="sep">·</span><a href="https://github.com/usnistgov/LINDA" rel="noopener">GitHub →</a><span class="sep">·</span><a href="https://doi.org/10.18434/mds2-4290" rel="noopener">DOI →</a></p>
+        </div>
+        <figure class="feature-shot">
+          <a href="projects/linda.html"><img src="assets/img/linda/linda-browser.jpg" alt="LINDA browser interface: two live spectrogram waterfalls at 3750 MHz, a power spectral density plot, a band monitor, and the operations log" width="1600" height="872" loading="lazy"></a>
+          <figcaption>Live on a Deepwave AIR-T at 3750 MHz (band n77). Architecture diagram in the write-up.</figcaption>
+        </figure>
+      </article>
 
-            <!-- Tech Stack Expanded -->
-            <div data-aos="fade-in" data-aos-delay="600" class="mt-20 pt-10 border-t border-white/5 w-full max-w-5xl">
-                <p class="text-sm text-slate-500 mb-6 uppercase tracking-widest font-semibold">Technical Toolbox</p>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
-                    <!-- Embedded -->
-                    <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 hover:border-blue-500/30 transition-colors">
-                        <div class="flex items-center space-x-2 mb-2 text-blue-400 font-bold text-sm">
-                            <i data-lucide="cpu" class="w-4 h-4"></i> <span>Embedded</span>
-                        </div>
-                        <ul class="text-slate-400 text-sm space-y-1">
-                            <li>C / C++</li>
-                            <li>Raspberry Pi & Arduino</li>
-                            <li>ESP32 / IoT</li>
-                            <li>Sensors & I2C/SPI</li>
-                        </ul>
-                    </div>
+      <div class="pgrid">
+        <article class="pcard">
+          <a class="pthumb" href="projects/lidar.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="LiDAR and IMU feed a Raspberry Pi and Arduino, which drive two LCDs and log to SD card and cloud."><rect class="box " x="8.0" y="8" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="25" text-anchor="middle">LiDAR sensor</text><text class="sub" x="82.5" y="40" text-anchor="middle">distance</text><rect class="box " x="163.0" y="8" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="25" text-anchor="middle">IMU</text><text class="sub" x="237.5" y="40" text-anchor="middle">guides your aim</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Raspberry Pi + Arduino</text><text class="sub" x="160.0" y="104" text-anchor="middle">~2,000 lines · self-tests on boot</text><rect class="box " x="8.0" y="136" width="97.3" height="40" rx="7"/><text class="label" x="56.7" y="153" text-anchor="middle">2x 16x2 LCD</text><text class="sub" x="56.7" y="168" text-anchor="middle">on-device UI</text><rect class="box " x="111.3" y="136" width="97.3" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">SD card</text><text class="sub" x="160.0" y="168" text-anchor="middle">local log</text><rect class="box " x="214.7" y="136" width="97.3" height="40" rx="7"/><text class="label" x="263.3" y="153" text-anchor="middle">Cloud</text><text class="sub" x="263.3" y="168" text-anchor="middle">backup log</text><path class="arrow" d="M82.5 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M237.5 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L56.7 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L263.3 134" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">FAA UAS Test Site · Texas A&amp;M ARI · 2025</p>
+          <h3><a href="projects/lidar.html">Field-ready LiDAR measurement device</a></h3>
+          <p>A rugged LiDAR measuring tool that 20 engineers at the test site used in the field. Raspberry Pi and Arduino in a 3D-printed case, an IMU that guides your aim, and startup checks that catch a bad sensor or loose connection before you measure.</p>
+          <ul class="facts"><li><b>20</b> engineers used it</li><li><b>~2,000</b> lines Python / C++</li><li><b>SD + cloud</b> redundant logging</li></ul>
+          <ul class="tags"><li>Raspberry Pi</li><li>Arduino</li><li>Python</li><li>C++</li><li>IMU</li><li>Calibration</li><li>3D printing</li></ul>
+          <p class="more"><a href="projects/lidar.html">Write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="projects/hexacopter.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 248" role="img" aria-label="Redundant comms and sensing feed the ArduPilot flight controller, powered by a safety-first power system, carrying a camera and gimbal."><rect class="box " x="8.0" y="8" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="33" text-anchor="middle">Redundant comms</text><rect class="box " x="163.0" y="8" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="33" text-anchor="middle">Redundant sensing</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">ArduPilot</text><text class="sub" x="160.0" y="104" text-anchor="middle">flight controller</text><rect class="box " x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">Safety-first power</text><text class="sub" x="160.0" y="168" text-anchor="middle">power management</text><rect class="box " x="8.0" y="200" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="217" text-anchor="middle">Camera + gimbal</text><text class="sub" x="160.0" y="232" text-anchor="middle">7S payload · ~11 min flight</text><path class="arrow" d="M82.5 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M237.5 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 178L160.0 198" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">FAA UAS Test Site · Texas A&amp;M ARI · 2025</p>
+          <h3><a href="projects/hexacopter.html">Hexacopter rebuild and flight test</a></h3>
+          <p>Took a decommissioned hexacopter and brought it back on ArduPilot, with redundant comms and sensing and a power setup built around safety. It flew about 11 minutes carrying a 7S camera and gimbal payload.</p>
+          <ul class="facts"><li><b>~11 min</b> flight time</li><li><b>7S</b> camera + gimbal payload</li><li><b>2x</b> comms and sensing</li></ul>
+          <ul class="tags"><li>ArduPilot</li><li>UAS</li><li>Power management</li><li>Flight testing</li></ul>
+          <p class="more"><a href="projects/hexacopter.html">Write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="projects/gimbal.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="The remote drives a local mirror gimbal and an RFD900X radio, which commands the three-axis gimbal over 900 MHz."><rect class="box hl" x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Remote controller</text><text class="sub" x="160.0" y="40" text-anchor="middle">operator input</text><rect class="box " x="8.0" y="72" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="89" text-anchor="middle">Mirror gimbal</text><text class="sub" x="82.5" y="104" text-anchor="middle">servos show the command</text><rect class="box " x="163.0" y="72" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="89" text-anchor="middle">RFD900X radio</text><text class="sub" x="237.5" y="104" text-anchor="middle">telemetry</text><rect class="box " x="163.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="153" text-anchor="middle">3-axis gimbal</text><text class="sub" x="237.5" y="168" text-anchor="middle">far end</text><path class="arrow" d="M160.0 50L82.5 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 50L237.5 70" marker-end="url(#ah)"/><path class="arrow" d="M237.5 114L237.5 134" marker-end="url(#ah)"/><text class="tag" x="245.5" y="128.0">900 MHz</text></svg></a>
+          <p class="meta">FAA UAS Test Site · Texas A&amp;M ARI · 2025</p>
+          <h3><a href="projects/gimbal.html">Three-axis remote gimbal controller</a></h3>
+          <p>A remote for a three-axis gimbal over a 900 MHz RFD900X telemetry link. The remote carries its own servo &quot;mirror gimbal&quot; that moves to whatever you command, so you see the orientation in real time.</p>
+          <ul class="facts"><li><b>3</b> axes</li><li><b>900 MHz</b> RFD900X link</li><li><b>Real time</b> mirror gimbal</li></ul>
+          <ul class="tags"><li>RFD900X</li><li>900 MHz telemetry</li><li>Servos</li><li>Embedded</li></ul>
+          <p class="more"><a href="projects/gimbal.html">Write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="projects/radar.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 220" role="img" aria-label="Radar field-of-view sketch: a coverage cone from the radar with an aim line and range rings."><path class="ring" d="M50 175 m80 0"/><path class="cone" d="M50 175 L220 5 A240 240 0 0 1 289 154 Z"/><path class="ring" d="M106.6 118.4 A80 80 0 0 1 129.7 168"/><path class="ring" d="M163.1 61.9 A160 160 0 0 1 209.4 161"/><path class="arrow" d="M50 175 L265 75" stroke-dasharray="5 4" marker-end="url(#ah)"/><text class="tag" x="236" y="66">AIM</text><text class="label" x="150" y="105">coverage cone</text><text class="sub" x="150" y="120">placement + alignment</text><rect class="box hl" x="22" y="166" width="44" height="22" rx="5"/><text class="sub" x="44" y="181" text-anchor="middle">radar</text><text class="sub" x="22" y="208">drawn live on a Canvas, sized for a phone</text></svg></a>
+          <p class="meta">FAA UAS Test Site · Texas A&amp;M ARI · 2025</p>
+          <h3><a href="projects/radar.html">Radar field-of-view and positioning app</a></h3>
+          <p>Radar setup at the test site was trial and error. I built a single-file web app that draws the coverage cone and recommends where to place and aim the radar. It runs on a phone, which is what you have in the field.</p>
+          <ul class="facts"><li><b>1</b> HTML file</li><li><b>0</b> installs</li><li><b>Phone</b> ready</li></ul>
+          <ul class="tags"><li>JavaScript (ES6)</li><li>Canvas API</li><li>HTML/CSS</li><li>Tailwind</li></ul>
+          <p class="more"><a href="projects/radar.html">Write-up →</a><span class=sep>·</span><a href="html/radarcalc.html">Try the tool →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="projects/hackathon.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 248" role="img" aria-label="Data from 71 wells goes into a Python ML workflow, run as 100 realizations, giving a 3-year forecast for 12 new wells."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">71 wells</text><text class="sub" x="160.0" y="40" text-anchor="middle">production data</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Python ML workflow</text><text class="sub" x="160.0" y="104" text-anchor="middle">built in 48 hours</text><rect class="box " x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">100 realizations</text><text class="sub" x="160.0" y="168" text-anchor="middle">uncertainty</text><rect class="box " x="8.0" y="200" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="217" text-anchor="middle">12 new wells</text><text class="sub" x="160.0" y="232" text-anchor="middle">3-year forecast with a range</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 178L160.0 198" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">UT Austin Hildebrand PGE · Jan 2026</p>
+          <h3><a href="projects/hackathon.html">Energy AI Hackathon, Quarterfinalist</a></h3>
+          <p>48 hours to predict three years of oil production for 12 new wells from 71 wells of data. We built a Python ML workflow, ran 100 probabilistic realizations to put real uncertainty on it, and pitched it to an industry panel.</p>
+          <ul class="facts"><li><b>48 h</b> start to pitch</li><li><b>71 → 12</b> wells in, wells predicted</li><li><b>100</b> realizations</li></ul>
+          <ul class="tags"><li>Python</li><li>Machine learning</li><li>Uncertainty quantification</li></ul>
+          <p class="more"><a href="projects/hackathon.html">Write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="projects/cement.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 248" role="img" aria-label="Nano-carbon black cement specimens go through custom fixtures into electrical, cycling and mechanical tests, ending in a 2025 paper."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Cement + nano-carbon black</text><text class="sub" x="160.0" y="40" text-anchor="middle">mixed and cast specimens</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Test fixtures + wiring</text><text class="sub" x="160.0" y="104" text-anchor="middle">built for clean, repeatable data</text><rect class="box " x="8.0" y="136" width="97.3" height="40" rx="7"/><text class="label" x="56.7" y="153" text-anchor="middle">Electrical</text><text class="sub" x="56.7" y="168" text-anchor="middle">conductivity</text><rect class="box " x="111.3" y="136" width="97.3" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">Cycling</text><text class="sub" x="160.0" y="168" text-anchor="middle">charge cycles</text><rect class="box " x="214.7" y="136" width="97.3" height="40" rx="7"/><text class="label" x="263.3" y="153" text-anchor="middle">Mechanical</text><text class="sub" x="263.3" y="168" text-anchor="middle">strength</text><rect class="box " x="8.0" y="200" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="217" text-anchor="middle">Paper</text><text class="sub" x="160.0" y="232" text-anchor="middle">Construction and Building Materials, 2025</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L56.7 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L263.3 134" marker-end="url(#ah)"/><path class="arrow" d="M56.7 178L160.0 198" marker-end="url(#ah)"/><path class="arrow" d="M160.0 178L160.0 198" marker-end="url(#ah)"/><path class="arrow" d="M263.3 178L160.0 198" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Texas A&amp;M–Corpus Christi · 2024 to 2025</p>
+          <h3><a href="projects/cement.html">Conductive cement composites</a></h3>
+          <p>Carbon makes cement conduct, which could let it store energy in smart infrastructure, but it can cost you strength. I built the test fixtures and wiring, ran the electrical, charge/discharge, and mechanical tests, and co-authored the 2025 paper.</p>
+          <ul class="facts"><li><b>1</b> peer-reviewed paper</li><li><b>3</b> kinds of testing</li><li><b>S-RISE</b> Scholar, 2025</li></ul>
+          <ul class="tags"><li>Test fixtures</li><li>Electrical characterization</li><li>Charge/discharge</li><li>Python</li><li>Publication</li></ul>
+          <p class="more"><a href="projects/cement.html">Write-up →</a><span class=sep>·</span><a href="https://doi.org/10.1016/j.conbuildmat.2025.142246" rel="noopener">Paper →</a></p>
+        </article>
+        <article class="pcard">
+          <div class="pthumb"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="Medical images feed ML models for tumor recognition; separately, an AlphaFold talk to 50+ people."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="33" text-anchor="middle">Medical images</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">ML models</text><text class="sub" x="160.0" y="104" text-anchor="middle">tumor recognition</text><rect class="box " x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">AlphaFold breakdown</text><text class="sub" x="160.0" y="168" text-anchor="middle">5-person team · 50+ attendees</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/></svg></div>
+          <p class="meta">MIT Jameel Clinic · Jul 2023</p>
+          <h3>MIT Jameel Clinic, AI &amp; Health</h3>
+          <p>Studied machine learning models for tumor recognition in medical images. My team of five broke down how AlphaFold predicts protein structure and presented it to 50+ people.</p>
+          <ul class="facts"><li><b>50+</b> attendees</li><li><b>5</b> person team</li></ul>
+          <ul class="tags"><li>Machine learning</li><li>Medical imaging</li><li>Presenting</li></ul>
+          
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/finalproject.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="An ESP32 and MPU6050 remote sends gestures over ESP-NOW to the ESP32 car, which has four ultrasonic sensors and two motor channels."><rect class="box hl" x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Remote</text><text class="sub" x="160.0" y="40" text-anchor="middle">ESP32 + MPU6050 + OLED</text><rect class="box " x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Car</text><text class="sub" x="160.0" y="104" text-anchor="middle">ESP32 + motor drivers</text><rect class="box " x="8.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="153" text-anchor="middle">4x HC-SR04</text><text class="sub" x="82.5" y="168" text-anchor="middle">one on each side</text><rect class="box " x="163.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="153" text-anchor="middle">2 motor channels</text><text class="sub" x="237.5" y="168" text-anchor="middle">drive and steer</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><text class="tag" x="168.0" y="64.0">ESP-NOW</text><path class="arrow" d="M160.0 114L82.5 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L237.5 134" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · Capstone</p>
+          <h3><a href="PHYSCI-70/finalproject.html">Gesture-controlled ESP32 car</a></h3>
+          <p>Tilt your hand and the car drives. An ESP32 + MPU6050 remote sends gestures to the car over ESP-NOW, and the car carries four HC-SR04 ultrasonic sensors.</p>
+          <ul class="facts"><li><b>ESP-NOW</b> remote link</li><li><b>4</b> ultrasonic sensors</li><li><b>&lt; $50</b> whole car</li></ul>
+          <ul class="tags"><li>ESP32</li><li>ESP-NOW</li><li>MPU6050</li><li>C++</li><li>Fusion 360</li></ul>
+          <p class="more"><a href="PHYSCI-70/finalproject.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/steppermotor.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 248" role="img" aria-label="A text message link opens a web interface that drives a stepper through a DRV8834, moving a cam and follower deadbolt."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="33" text-anchor="middle">Text message link</text><rect class="box " x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="97" text-anchor="middle">Web interface</text><rect class="box hl" x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">DRV8834 + stepper</text><text class="sub" x="160.0" y="168" text-anchor="middle">AccelStepper</text><rect class="box " x="8.0" y="200" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="217" text-anchor="middle">Cam + follower</text><text class="sub" x="160.0" y="232" text-anchor="middle">180-step deadbolt throw</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 178L160.0 198" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · Machine building</p>
+          <h3><a href="PHYSCI-70/steppermotor.html">IoT smart lock</a></h3>
+          <p>A stepper motor and a 3D-printed cam throw a deadbolt. Lock and unlock from a link in a text message.</p>
+          <ul class="facts"><li><b>180</b> steps per throw</li><li><b>220</b> step homing on boot</li><li><b>SMS</b> remote control</li></ul>
+          <ul class="tags"><li>Stepper motor</li><li>DRV8834</li><li>AccelStepper</li><li>3D printing</li><li>IoT</li></ul>
+          <p class="more"><a href="PHYSCI-70/steppermotor.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/iot.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="An ultrasonic sensor at the door trips under 10 cm and sends an SMS alert with the ESP32-CAM stream link."><rect class="box " x="8.0" y="8" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="25" text-anchor="middle">HC-SR04</text><text class="sub" x="82.5" y="40" text-anchor="middle">facing the door</text><rect class="box " x="163.0" y="8" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="25" text-anchor="middle">ESP32-CAM</text><text class="sub" x="237.5" y="40" text-anchor="middle">live video server</text><rect class="box hl" x="8.0" y="72" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="89" text-anchor="middle">Door opens</text><text class="sub" x="82.5" y="104" text-anchor="middle">trips under 10 cm</text><rect class="box " x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">Email-to-SMS alert</text><text class="sub" x="160.0" y="168" text-anchor="middle">with the camera link</text><path class="arrow" d="M82.5 50L82.5 70" marker-end="url(#ah)"/><path class="arrow" d="M82.5 114L160.0 134" marker-end="url(#ah)"/><path class="arrow" d="M237.5 50L160.0 134" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · IoT</p>
+          <h3><a href="PHYSCI-70/iot.html">Bedroom security system</a></h3>
+          <p>Live camera stream, an ultrasonic sensor watching the door, and a text alert the moment it opens.</p>
+          <ul class="facts"><li><b>&lt; 10 cm</b> trigger distance</li><li><b>Live</b> ESP32-CAM video</li><li><b>SMS</b> alert</li></ul>
+          <ul class="tags"><li>ESP32-CAM</li><li>HC-SR04</li><li>SMTP</li><li>Wi-Fi</li></ul>
+          <p class="more"><a href="PHYSCI-70/iot.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/elecOutput.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="A microphone triggers an Arduino that manages memory and drives NeoPixel turn signals and brake lights."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Microphone</text><text class="sub" x="160.0" y="40" text-anchor="middle">peak-to-peak level</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Arduino</text><text class="sub" x="160.0" y="104" text-anchor="middle">malloc() / free() · EEPROM</text><rect class="box " x="8.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="161" text-anchor="middle">Turn signals</text><rect class="box " x="163.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="161" text-anchor="middle">Brake lights</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L82.5 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L237.5 134" marker-end="url(#ah)"/><text class="tag" x="206.8" y="128.0">NEOPIXEL x7</text></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · Output devices</p>
+          <h3><a href="PHYSCI-70/elecOutput.html">Smart vehicle lighting</a></h3>
+          <p>Voice-activated turn signals and brake lights on NeoPixels, with manual heap management to keep the Arduino from running out of SRAM.</p>
+          <ul class="facts"><li><b>7</b> NeoPixels</li><li><b>Voice</b> activated</li><li><b>malloc / free</b> SRAM managed</li></ul>
+          <ul class="tags"><li>Arduino</li><li>NeoPixel</li><li>C++</li><li>Memory management</li></ul>
+          <p class="more"><a href="PHYSCI-70/elecOutput.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/cnc.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 248" role="img" aria-label="A hollow rubber chicken is filled, molded in silicone, and cast in bismuth alloy."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Rubber chicken</text><text class="sub" x="160.0" y="40" text-anchor="middle">hollow original</text><rect class="box " x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Silicone fill</text><text class="sub" x="160.0" y="104" text-anchor="middle">stops it collapsing</text><rect class="box hl" x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">Silicone mold</text><text class="sub" x="160.0" y="168" text-anchor="middle">1:1 mix, roped against buoyancy</text><rect class="box " x="8.0" y="200" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="217" text-anchor="middle">Bismuth pour</text><text class="sub" x="160.0" y="232" text-anchor="middle">first too hot; reinforced, recast</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 178L160.0 198" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · Molding</p>
+          <h3><a href="PHYSCI-70/cnc.html">Silicone mold and bismuth casting</a></h3>
+          <p>Turned a rubber chicken into metal. The first pour was too hot and melted right through the mold.</p>
+          <ul class="facts"><li><b>1:1</b> silicone mix</li><li><b>Bismuth</b> alloy</li><li><b>1</b> leak, then fixed</li></ul>
+          <ul class="tags"><li>Silicone molding</li><li>Casting</li><li>Process control</li></ul>
+          <p class="more"><a href="PHYSCI-70/cnc.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/cnc.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="Script lettering goes through MIT Mods to G-code, cut on a Roland SRM-20 and then a ShopBot."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Script lettering</text><text class="sub" x="160.0" y="40" text-anchor="middle">cursive toolpaths were too rough</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">MIT Mods</text><text class="sub" x="160.0" y="104" text-anchor="middle">G-code</text><rect class="box " x="8.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="153" text-anchor="middle">Roland SRM-20</text><text class="sub" x="82.5" y="168" text-anchor="middle">first cut</text><rect class="box " x="163.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="153" text-anchor="middle">ShopBot</text><text class="sub" x="237.5" y="168" text-anchor="middle">scaled up</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L82.5 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L237.5 134" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · CNC</p>
+          <h3><a href="PHYSCI-70/cnc.html">CNC nameplate</a></h3>
+          <p>Started on a Roland SRM-20 with G-code from MIT Mods, then scaled up to the ShopBot.</p>
+          <ul class="facts"><li><b>2</b> mills</li><li><b>MIT Mods</b> G-code</li><li><b>Paper test</b> Z zero</li></ul>
+          <ul class="tags"><li>CNC</li><li>G-code</li><li>Roland SRM-20</li><li>ShopBot</li></ul>
+          <p class="more"><a href="PHYSCI-70/cnc.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/3D_design.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 248" role="img" aria-label="A Fusion 360 model is reoriented in PrusaSlicer, scaled and given 10% infill, saving 2 hours 36 minutes."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="33" text-anchor="middle">Fusion 360 model</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">PrusaSlicer</text><text class="sub" x="160.0" y="104" text-anchor="middle">rotate 90° · drop extra supports</text><rect class="box " x="8.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="161" text-anchor="middle">0.5x scale</text><rect class="box " x="163.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="161" text-anchor="middle">10% infill</text><rect class="box " x="8.0" y="200" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="217" text-anchor="middle">Print</text><text class="sub" x="160.0" y="232" text-anchor="middle">2 h 36 min faster</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L82.5 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L237.5 134" marker-end="url(#ah)"/><path class="arrow" d="M82.5 178L160.0 198" marker-end="url(#ah)"/><path class="arrow" d="M237.5 178L160.0 198" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · 3D printing</p>
+          <h3><a href="PHYSCI-70/3D_design.html">Laptop cooling riser</a></h3>
+          <p>Cut 2 hours 36 minutes of print time by fixing orientation, supports, scale, and infill.</p>
+          <ul class="facts"><li><b>−2 h 36 m</b> print time</li><li><b>10%</b> infill</li><li><b>0.5x</b> scale</li></ul>
+          <ul class="tags"><li>Fusion 360</li><li>PrusaSlicer</li><li>3D printing</li></ul>
+          <p class="more"><a href="PHYSCI-70/3D_design.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/3D_design.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="The iPhone LiDAR sensor feeds PolyCam, producing a 3D model."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">iPhone LiDAR</text><text class="sub" x="160.0" y="40" text-anchor="middle">light return time</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">PolyCam</text><text class="sub" x="160.0" y="104" text-anchor="middle">capture</text><rect class="box " x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">3D model</text><text class="sub" x="160.0" y="168" text-anchor="middle">glass and mirrors break it</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · 3D scanning</p>
+          <h3><a href="PHYSCI-70/3D_design.html">Scanning classmates in 3D</a></h3>
+          <p>Captured people in 3D with PolyCam and the iPhone&#x27;s LiDAR sensor, and learned why glass and mirrors break it.</p>
+          <ul class="facts"><li><b>iPhone</b> LiDAR</li><li><b>PolyCam</b> capture</li></ul>
+          <ul class="tags"><li>3D scanning</li><li>LiDAR</li><li>PolyCam</li></ul>
+          <p class="more"><a href="PHYSCI-70/3D_design.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/elecInput.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 120" role="img" aria-label="Three experiments: tilt drives motors, a clap lights an LED, a capacitive sensor sounds a buzzer."><rect class="box hl" x="8.0" y="8" width="97.3" height="40" rx="7"/><text class="label" x="56.7" y="25" text-anchor="middle">MPU6050</text><text class="sub" x="56.7" y="40" text-anchor="middle">hand tilt</text><rect class="box " x="111.3" y="8" width="97.3" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Microphone</text><text class="sub" x="160.0" y="40" text-anchor="middle">clap</text><rect class="box " x="214.7" y="8" width="97.3" height="40" rx="7"/><text class="label" x="263.3" y="25" text-anchor="middle">2 sheets</text><text class="sub" x="263.3" y="40" text-anchor="middle">capacitive</text><rect class="box " x="8.0" y="72" width="97.3" height="40" rx="7"/><text class="label" x="56.7" y="89" text-anchor="middle">Motors</text><text class="sub" x="56.7" y="104" text-anchor="middle">drive / stop</text><rect class="box " x="111.3" y="72" width="97.3" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">LED</text><text class="sub" x="160.0" y="104" text-anchor="middle">on for 2 s</text><rect class="box " x="214.7" y="72" width="97.3" height="40" rx="7"/><text class="label" x="263.3" y="89" text-anchor="middle">Buzzer</text><text class="sub" x="263.3" y="104" text-anchor="middle">spill warning</text><path class="arrow" d="M56.7 50L56.7 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M263.3 50L263.3 70" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · Input devices</p>
+          <h3><a href="PHYSCI-70/elecInput.html">Sensor experiments</a></h3>
+          <p>First gesture-car prototype, a clap switch, and a capacitive tilt alarm for a water bottle.</p>
+          <ul class="facts"><li><b>3</b> experiments</li><li><b>MPU6050</b> tilt control</li></ul>
+          <ul class="tags"><li>MPU6050</li><li>Microphone</li><li>Capacitive sensing</li><li>Arduino</li></ul>
+          <p class="more"><a href="PHYSCI-70/elecInput.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/microcontroller.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="A piezo tap goes to an Arduino that toggles a geared motor and beeps a buzzer."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Piezo sensor</text><text class="sub" x="160.0" y="40" text-anchor="middle">tap on A0</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Arduino</text><text class="sub" x="160.0" y="104" text-anchor="middle">counter + debounce</text><rect class="box " x="8.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="82.5" y="153" text-anchor="middle">Geared motor</text><text class="sub" x="82.5" y="168" text-anchor="middle">PWM 255 / 0</text><rect class="box " x="163.0" y="136" width="149.0" height="40" rx="7"/><text class="label" x="237.5" y="153" text-anchor="middle">Buzzer</text><text class="sub" x="237.5" y="168" text-anchor="middle">445 Hz beep</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L82.5 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L237.5 134" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · Microcontrollers</p>
+          <h3><a href="PHYSCI-70/microcontroller.html">Piezo vehicle</a></h3>
+          <p>Tap it and it goes, tap it again and it stops. The first motor didn&#x27;t have the torque, so it got a gearbox.</p>
+          <ul class="facts"><li><b>15</b> loop benchmarks</li><li><b>445 Hz</b> buzzer feedback</li><li><b>Geared</b> motor</li></ul>
+          <ul class="tags"><li>Arduino</li><li>PWM</li><li>Piezo</li><li>C++</li></ul>
+          <p class="more"><a href="PHYSCI-70/microcontroller.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/elec_tools.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 248" role="img" aria-label="A DC motor with a custom friction-fit adapter drives a belt to the wheels of a cardboard car."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">DC motor</text><text class="sub" x="160.0" y="40" text-anchor="middle">6 mm shaft</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Friction-fit adapter</text><text class="sub" x="160.0" y="104" text-anchor="middle">13 mm, laser-cut</text><rect class="box " x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">Belt drive</text><text class="sub" x="160.0" y="168" text-anchor="middle">stays on now</text><rect class="box " x="8.0" y="200" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="217" text-anchor="middle">Cardboard car</text><text class="sub" x="160.0" y="232" text-anchor="middle">25 x 15 cm chassis, 17 cm wheels</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/><path class="arrow" d="M160.0 178L160.0 198" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · Electronics &amp; tools</p>
+          <h3><a href="PHYSCI-70/elec_tools.html">Motorized car</a></h3>
+          <p>The belt kept slipping off the motor, so I measured the shaft and designed a friction-fit adapter.</p>
+          <ul class="facts"><li><b>6 mm</b> motor shaft</li><li><b>13 mm</b> adapter</li><li><b>25 x 15 cm</b> chassis</li></ul>
+          <ul class="tags"><li>Fusion 360</li><li>Laser cutting</li><li>Calipers</li></ul>
+          <p class="more"><a href="PHYSCI-70/elec_tools.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/2D_design.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 210" role="img" aria-label="Press-fit joint: a slot cut into cardboard sized from the board thickness and measured laser kerf."><rect class="box dim" x="140" y="12" width="40" height="92" rx="2"/><text class="sub" x="190" y="40">second piece slides in</text><path class="cut" d="M30 80 H140 V130 H180 V80 H290 V170 H30 Z"/><path class="dim-line" d="M140 140 H180" marker-start="url(#ah)" marker-end="url(#ah)"/><text class="tag" x="122" y="158">SLOT = BOARD − KERF</text><text class="label" x="30" y="194">4.4 mm cardboard</text><text class="sub" x="160" y="194">kerf 0.365 mm (first guess: 0.91)</text><text class="sub" x="40" y="100">150 mm triangle</text></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · 2D design</p>
+          <h3><a href="PHYSCI-70/2D_design.html">Press-fit construction kit</a></h3>
+          <p>Got the kerf wrong the first time (0.91 mm), remeasured it at 0.365 mm, and the pieces finally snapped together.</p>
+          <ul class="facts"><li><b>0.365 mm</b> measured kerf</li><li><b>4.4 mm</b> cardboard</li><li><b>150 mm</b> triangle</li></ul>
+          <ul class="tags"><li>Laser cutting</li><li>Kerf compensation</li><li>CAD</li></ul>
+          <p class="more"><a href="PHYSCI-70/2D_design.html">Harvard write-up →</a></p>
+        </article>
+        <article class="pcard">
+          <a class="pthumb" href="PHYSCI-70/2D_design.html" tabindex="-1" aria-hidden="true"><svg class="diagram mini" viewBox="0 0 320 184" role="img" aria-label="Caliper measurements become a parametric Fusion 360 model of an iPhone."><rect class="box " x="8.0" y="8" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="25" text-anchor="middle">Digital calipers</text><text class="sub" x="160.0" y="40" text-anchor="middle">thickness, length, width, notch</text><rect class="box hl" x="8.0" y="72" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="89" text-anchor="middle">Fusion 360</text><text class="sub" x="160.0" y="104" text-anchor="middle">parametric model</text><rect class="box " x="8.0" y="136" width="304.0" height="40" rx="7"/><text class="label" x="160.0" y="153" text-anchor="middle">Digital twin</text><text class="sub" x="160.0" y="168" text-anchor="middle">radii, buttons, camera bump</text><path class="arrow" d="M160.0 50L160.0 70" marker-end="url(#ah)"/><path class="arrow" d="M160.0 114L160.0 134" marker-end="url(#ah)"/></svg></a>
+          <p class="meta">Harvard PHYS S-12 · Summer 2022 · CAD</p>
+          <h3><a href="PHYSCI-70/2D_design.html">iPhone CAD model</a></h3>
+          <p>Measured a real iPhone with calipers and rebuilt it in CAD, corner radii and camera bump included.</p>
+          <ul class="facts"><li><b>Calipers</b> every dimension</li><li><b>Parametric</b> Fusion 360</li></ul>
+          <ul class="tags"><li>Fusion 360</li><li>Reverse engineering</li><li>Calipers</li></ul>
+          <p class="more"><a href="PHYSCI-70/2D_design.html">Harvard write-up →</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-                    <!-- Robotics -->
-                    <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 hover:border-purple-500/30 transition-colors">
-                        <div class="flex items-center space-x-2 mb-2 text-purple-400 font-bold text-sm">
-                            <i data-lucide="plane" class="w-4 h-4"></i> <span>Robotics</span>
-                        </div>
-                        <ul class="text-slate-400 text-sm space-y-1">
-                            <li>ArduPilot / PX4</li>
-                            <li>UAV Systems</li>
-                            <li>Motor Control</li>
-                            <li>PID Tuning</li>
-                        </ul>
-                    </div>
+  <section class="section" id="skills">
+    <div class="wrap">
+      <div class="section-head"><h2>Skills</h2></div>
+      <dl class="skills">
+        <div><dt>Programming</dt><dd>Python, C/C++, ARM Assembly, MATLAB, JavaScript, Julia, SQL, Bash, HTML/CSS, LaTeX</dd></div>
+        <div><dt>Software / AI</dt><dd>FastAPI, WebSockets, REST APIs, pytest, NumPy, CUDA, MPI, Linux, Git, ML, AI coding agents (Claude Code, Codex)</dd></div>
+        <div><dt>Hardware / Embedded</dt><dd>ARM Cortex-M0+, ESP32, Raspberry Pi, I2C/SPI/PWM, ADC/DAC, SDR, oscilloscope</dd></div>
+        <div><dt>Signal processing</dt><dd>DSP, FFT/STFT, spectral analysis, 5G-NR (PSS/SSS, SSB), IQ data, calibration, digital modulation</dd></div>
+        <div><dt>Prototyping</dt><dd>Fusion 360, PCB design, 3D printing, CNC, soldering; hardware testing, validation, debugging</dd></div>
+        <div><dt>Tools</dt><dd>Code Composer Studio, SoapySDR, ArduPilot, systemd, xarray/Zarr, Plotly, Jupyter, Excel</dd></div>
+        <div><dt>Languages</dt><dd>English, French, Arabic (fluent), Spanish (limited)</dd></div>
+      </dl>
+    </div>
+  </section>
 
-                    <!-- Software -->
-                    <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 hover:border-cyan-500/30 transition-colors">
-                        <div class="flex items-center space-x-2 mb-2 text-cyan-400 font-bold text-sm">
-                            <i data-lucide="code" class="w-4 h-4"></i> <span>Software</span>
-                        </div>
-                        <ul class="text-slate-400 text-sm space-y-1">
-                            <li>Python & Data Science</li>
-                            <li>MATLAB</li>
-                            <li>HTML/JS/CSS</li>
-                            <li>Git & Linux</li>
-                        </ul>
-                    </div>
+  <section class="section" id="publications">
+    <div class="wrap">
+      <div class="section-head"><h2>Publications and software</h2></div>
+      <ol class="pubs">
+        <li><b>Omran, M.</b> (2026). <i>Live IQ navigation and display application (LINDA)</i> (Version 1.0.2) [Computer software]. National Institute of Standards and Technology. <a href="https://doi.org/10.18434/mds2-4290" rel="noopener">doi.org/10.18434/mds2-4290</a></li>
+        <li>Soliman, N., Ioannidou, K., Divoux, T., Backov, R., <b>Omran, M.</b>, Nîrca, T., &amp; Pellenq, R. J.-M. (2025). Nano-carbon black (nCB)-dispersed cement composites: A macro-to-nano investigation revealing trade-offs between electrical conductivity and mechanical strength. <i>Construction and Building Materials, 489</i>, 142246. <a href="https://doi.org/10.1016/j.conbuildmat.2025.142246" rel="noopener">doi.org/10.1016/j.conbuildmat.2025.142246</a></li>
+      </ol>
+    </div>
+  </section>
 
-                    <!-- Design -->
-                    <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5 hover:border-pink-500/30 transition-colors">
-                        <div class="flex items-center space-x-2 mb-2 text-pink-400 font-bold text-sm">
-                            <i data-lucide="box" class="w-4 h-4"></i> <span>Fabrication</span>
-                        </div>
-                        <ul class="text-slate-400 text-sm space-y-1">
-                            <li>CAD (SolidWorks/Fusion)</li>
-                            <li>3D Printing</li>
-                            <li>Laser Cutting</li>
-                            <li>PCB Design</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section class="section" id="about">
+    <div class="wrap about">
+      <div>
+        <div class="section-head"><h2>About</h2></div>
+        <p>I've worked at NIST, at the FAA's UAS test site in Corpus Christi, in a materials lab at Texas A&amp;M, and at MIT's Jameel Clinic. Right now I'm at UT Austin, where I'm also a research assistant on Project DUAL, a long-running study of bilingual families.</p>
+        <p>I speak English, French, and Arabic. When I'm not soldering or writing code, I'm swimming or playing rugby.</p>
+      </div>
+      <img src="assets/img/mustafa.jpg" alt="Photo of Mustafa Omran" width="240" height="320" loading="lazy">
+    </div>
+  </section>
+</main>
 
-        <!-- Experience Timeline Section -->
-        <section id="experience" class="py-24 relative">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">Experience</h2>
-                </div>
+<footer class="footer">
+  <div class="wrap">
+    <h2>Let's talk.</h2>
+    <div class="links">
+      <a class="btn primary" href="mailto:momran@utexas.edu">momran@utexas.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/mustafaahmedomran" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/momran2401" rel="noopener">GitHub</a>
+      <a class="btn" href="assets/MustafaOmran_Resume.pdf">Resume</a>
+    </div>
+    <small>© 2026 Mustafa Omran</small>
+  </div>
+</footer>
 
-                <div class="relative timeline-line space-y-12">
-                    
-                    <!-- 1. UT Austin (Jan 2026 - Present) -->
-                    <!-- Title Right, Desc Left (Alternating start) -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <!-- Desc Side (Left) -->
-                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
-                             <div class="md:hidden mb-2 pl-2">
-                                <span class="text-amber-400 text-sm font-bold">Jan 2026 - Present</span>
-                                <h3 class="text-xl font-bold text-white">The University of Texas at Austin</h3>
-                             </div>
-                             <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-amber-500">
-                                    <li>Conduct research as part of Project DUAL (Developmental Understanding Across Languages), a longitudinal study in the Department of Human Development and Family Sciences.</li>
-                                    <li>Assist with data processing and management for bilingual and immigrant family research, ensuring accuracy across multi-year datasets.</li>
-                                    <li>Transcribe and code Spanish- and English-language interviews for qualitative analyses.</li>
-                                    <li>Support study operations including participant communication and IRB compliance.</li>
-                                    <li>Collaborate with a multidisciplinary team examining bilingualism and physiological stress outcomes.</li>
-                                </ul>
-                             </div>
-                        </div>
-                        <!-- Dot -->
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <!-- Title Side (Right) -->
-                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
-                            <h3 class="text-2xl font-bold text-white">The University of Texas at Austin</h3>
-                            <p class="text-slate-400 font-medium">Research Assistant - Project DUAL</p>
-                            <span class="text-amber-400 font-bold tracking-wider text-sm uppercase">Jan 2026 - Present</span>
-                        </div>
-                    </div>
-
-                    <!-- 2. FAA (May 2025 - Sept 2025) -->
-                    <!-- Title Left, Desc Right -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <!-- Title Side (Left) -->
-                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
-                            <span class="text-blue-400 font-bold tracking-wider text-sm uppercase">May 2025 - Sept 2025</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">Federal Aviation Administration</h3>
-                            <p class="text-slate-400 font-medium">Engineering Intern</p>
-                        </div>
-                        <!-- Dot -->
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <!-- Desc Side (Right) -->
-                        <div class="pl-10 md:pl-10" data-aos="fade-left">
-                            <div class="md:hidden mb-2">
-                                <span class="text-blue-400 text-sm font-bold">May 2025 - Sept 2025</span>
-                                <h3 class="text-xl font-bold text-white">Federal Aviation Administration</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-blue-500">
-                                    <li>Designed and built a field-ready LiDAR measurement device (Raspberry Pi + Arduino) with IMU-based orientation guidance, calibration + sensor self-tests, and redundant data capture (SD + cloud); ~2000 lines of Python + C++.</li>
-                                    <li>Delivered a rugged 3D-printed enclosure and serviceable wiring layout; implemented fault checks to detect sensor/connection issues.</li>
-                                    <li>Developed a mobile-friendly radar field-of-view web app to visualize radar cones and recommend alignment.</li>
-                                    <li>Rebuilt and flight-tested a decommissioned hexacopter using ArduPilot with redundant comms and safety power management.</li>
-                                    <li>Built a 3-axis remote gimbal controller using 900 MHz (RFD900X) with real-time feedback.</li>
-                                    <li>Created clear user-facing documentation to support reliable field use.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3. TAMU S-RISE (May 2025 - Aug 2025) -->
-                    <!-- Title Right, Desc Left -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
-                            <div class="md:hidden mb-2 pl-2">
-                                <span class="text-emerald-400 text-sm font-bold">May 2025 - Aug 2025</span>
-                                <h3 class="text-xl font-bold text-white">Texas A&M University (S-RISE)</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-emerald-500">
-                                    <li>Selected for S-RISE, a competitive, university-funded undergraduate research program.</li>
-                                    <li>Developed and tested conductive cement composites using carbon-based additives to improve multifunctional performance for smart infrastructure.</li>
-                                    <li>Mixed and cast cementitious specimens and performed mechanical testing.</li>
-                                    <li>Conducted electrical characterization and analyzed results using Python/Excel.</li>
-                                    <li>Produced and delivered the final research presentation for the program showcase.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
-                            <h3 class="text-2xl font-bold text-white">Texas A&M University (S-RISE)</h3>
-                            <p class="text-slate-400 font-medium">S-RISE Scholar - Student Research Assistant</p>
-                            <span class="text-emerald-400 font-bold tracking-wider text-sm uppercase">May 2025 - Aug 2025</span>
-                        </div>
-                    </div>
-
-                    <!-- 4. TAMU Undergraduate Research (Sept 2024 - Aug 2025) -->
-                    <!-- Title Left, Desc Right -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
-                            <span class="text-cyan-400 font-bold tracking-wider text-sm uppercase">Sept 2024 - Aug 2025</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">Texas A&M University - Corpus Christi</h3>
-                            <p class="text-slate-400 font-medium">Undergraduate Research Assistant</p>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="pl-10 md:pl-10" data-aos="fade-left">
-                            <div class="md:hidden mb-2">
-                                <span class="text-cyan-400 text-sm font-bold">Sept 2024 - Aug 2025</span>
-                                <h3 class="text-xl font-bold text-white">Texas A&M University - Corpus Christi</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-cyan-500">
-                                    <li>Co-authored a peer-reviewed journal article in Construction and Building Materials (2025) on nano-carbon black (nCB) dispersed cement composites.</li>
-                                    <li>Supported research on conductive composite supercapacitors for energy storage.</li>
-                                    <li>Built/modified test setups and wiring for electrical measurements; ensured clean data collection.</li>
-                                    <li>Performed charge/discharge cycling and processed results into clear plots.</li>
-                                    <li>Led data processing and analysis to support ongoing research deliverables.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 5. Material Science Grader (Feb 2025 - May 2025) -->
-                    <!-- Title Right, Desc Left -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
-                            <div class="md:hidden mb-2 pl-2">
-                                <span class="text-purple-400 text-sm font-bold">Feb 2025 - May 2025</span>
-                                <h3 class="text-xl font-bold text-white">TAMU - Corpus Christi</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-purple-500">
-                                    <li>Graded labs and assignments for Construction Materials Design and Materials Science courses.</li>
-                                    <li>Applied consistent grading standards and maintained accurate records.</li>
-                                    <li>Coordinated with course staff to resolve edge cases and ensure rubric alignment.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
-                            <h3 class="text-2xl font-bold text-white">TAMU - Corpus Christi</h3>
-                            <p class="text-slate-400 font-medium">Material Science & Construction Grader</p>
-                            <span class="text-purple-400 font-bold tracking-wider text-sm uppercase">Feb 2025 - May 2025</span>
-                        </div>
-                    </div>
-
-                    <!-- 6. BASEC (Mar 2023 - June 2024) -->
-                    <!-- Title Left, Desc Right -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
-                            <span class="text-rose-400 font-bold tracking-wider text-sm uppercase">Mar 2023 - June 2024</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">BASEC</h3>
-                            <p class="text-slate-400 font-medium">Assistant Educator</p>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-rose-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="pl-10 md:pl-10" data-aos="fade-left">
-                            <div class="md:hidden mb-2">
-                                <span class="text-rose-400 text-sm font-bold">Mar 2023 - June 2024</span>
-                                <h3 class="text-xl font-bold text-white">BASEC</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-rose-500">
-                                    <li>Led and managed a group of ~30 middle school students with disabilities, maintaining a structured environment.</li>
-                                    <li>Delivered 1:1 homework tutoring across a general middle-school curriculum.</li>
-                                    <li>Facilitated small-group review sessions and guided students through answers.</li>
-                                    <li>Used gamified challenges to re-engage reluctant learners.</li>
-                                    <li>Applied behavior-support training and maintained student safety as CPR-certified staff.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 7. Harvard (July 2023 - Aug 2023) -->
-                    <!-- Title Right, Desc Left -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
-                            <div class="md:hidden mb-2 pl-2">
-                                <span class="text-accent-blue text-sm font-bold">July 2023 - Aug 2023</span>
-                                <h3 class="text-xl font-bold text-white">Harvard University</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-blue-500">
-                                    <li>Oversaw the preparation and maintenance of critical lab equipment to support engineering projects for 30+ students.</li>
-                                    <li>Ensured adherence to applicable precise standards.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-blue-600 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
-                            <h3 class="text-2xl font-bold text-white">Harvard University</h3>
-                            <p class="text-slate-400 font-medium">Student Assistant</p>
-                            <span class="text-blue-500 font-bold tracking-wider text-sm uppercase">July 2023 - Aug 2023</span>
-                        </div>
-                    </div>
-
-                    <!-- 8. MIT Intern (July 2023) -->
-                    <!-- Title Left, Desc Right -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="hidden md:block text-right pr-10" data-aos="fade-right">
-                            <span class="text-purple-400 font-bold tracking-wider text-sm uppercase">July 2023</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">MIT Jameel Clinic</h3>
-                            <p class="text-slate-400 font-medium">Student Intern</p>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="pl-10 md:pl-10" data-aos="fade-left">
-                            <div class="md:hidden mb-2">
-                                <span class="text-purple-400 text-sm font-bold">July 2023</span>
-                                <h3 class="text-xl font-bold text-white">MIT Jameel Clinic</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside marker:text-purple-500">
-                                    <li>Learned about machine learning models for tumor recognition in medical imaging.</li>
-                                    <li>Employed rigorous data analysis and algorithm development.</li>
-                                    <li>Delivered presentations to cross-functional teams.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 9. MIT Research (Jun 2021 - Sept 2021) -->
-                    <!-- Title Right, Desc Left -->
-                    <div class="relative md:grid md:grid-cols-2 md:gap-10 items-center">
-                        <div class="pl-10 md:pl-0 md:pr-10 md:text-right order-1" data-aos="fade-right">
-                            <div class="md:hidden mb-2 pl-2">
-                                <span class="text-cyan-400 text-sm font-bold">Jun 2021 - Sept 2021</span>
-                                <h3 class="text-xl font-bold text-white">MIT School of Engineering</h3>
-                            </div>
-                            <div class="glass-panel p-6 rounded-2xl hover:bg-slate-800/50 transition-colors text-left md:text-right">
-                                <ul class="space-y-3 text-slate-300 text-sm leading-relaxed list-disc list-inside md:list-none marker:text-cyan-500">
-                                    <li>MIT Concrete Sustainability Hub (MIT CSHub).</li>
-                                    <li>Conducted technical research on advanced material properties, contributing to electron conductivity projects.</li>
-                                    <li>Applied analytical methods to materials science.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900 transform -translate-x-1/2 md:translate-x-[-50%] mt-1.5 z-10"></div>
-                        <div class="hidden md:block pl-10 order-2" data-aos="fade-left">
-                            <h3 class="text-2xl font-bold text-white">MIT School of Engineering</h3>
-                            <p class="text-slate-400 font-medium">Research Assistant</p>
-                            <span class="text-cyan-400 font-bold tracking-wider text-sm uppercase">Jun 2021 - Sept 2021</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Grid -->
-        <section id="projects" class="py-24 bg-slate-900/50">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-                    <div>
-                        <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">Engineering Portfolio</h2>
-                        <p class="text-slate-400 max-w-xl">A collection of hardware, software, and fabrication projects.</p>
-                    </div>
-                </div>
-
-                <!-- Highlight Project (LiDAR) -->
-                <div data-aos="fade-up" class="group relative rounded-3xl overflow-hidden bg-slate-800 border border-white/10 mb-12 project-card">
-                    <div class="grid md:grid-cols-5 h-full">
-                        <div class="md:col-span-3 relative h-64 md:h-auto overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=1000" alt="LiDAR Device" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
-                        </div>
-                        <div class="md:col-span-2 p-8 md:p-12 flex flex-col justify-center relative">
-                            <div class="absolute top-0 right-0 p-36 bg-blue-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-                            
-                            <div class="flex items-center space-x-2 mb-6">
-                                <span class="px-3 py-1 text-xs font-bold text-blue-400 bg-blue-400/10 border border-blue-400/20 rounded-full">Embedded C++</span>
-                                <span class="px-3 py-1 text-xs font-bold text-white bg-slate-700 rounded-full">FAA</span>
-                            </div>
-                            
-                            <h3 class="text-3xl font-bold text-white mb-4">Rugged LiDAR Measurement Device</h3>
-                            <p class="text-slate-400 mb-8 leading-relaxed">
-                                A field-ready measurement tool built for FAA engineers. Features an IMU-based orientation guidance system, redundant SD+Cloud logging, and dual LCD interface. Written in ~2000 lines of C++ and Python.
-                            </p>
-                            
-                            <ul class="flex flex-wrap gap-2 mb-8 text-sm text-slate-500">
-                                <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-1 text-green-500"></i> Raspberry Pi</li>
-                                <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-1 text-green-500"></i> Arduino</li>
-                                <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-1 text-green-500"></i> 3D Printed Enclosure</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Hexacopter -->
-                    <article data-aos="fade-up" data-aos-delay="100" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 project-card">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Drone">
-                            <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">ArduPilot Hexacopter</h4>
-                            <p class="text-slate-400 text-sm mb-4">Rebuilt a decommissioned UAV with redundant comms and safety power management. 11-min flight time with 7S payload.</p>
-                            <span class="text-xs font-mono text-blue-300">#UAV #Robotics</span>
-                        </div>
-                    </article>
-
-                    <!-- Radar Tool -->
-                    <article data-aos="fade-up" data-aos-delay="200" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 project-card">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Radar">
-                            <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Radar FOV Visualizer</h4>
-                            <p class="text-slate-400 text-sm mb-4">Mobile web app using HTML5 Canvas to visualize radar cones and recommend placement geometry for field ops.</p>
-                            <span class="text-xs font-mono text-blue-300">#WebTool #Geometry</span>
-                            <a href="html/radarcalc.html" class="text-xs font-bold text-white hover:text-blue-400 flex items-center mt-2">View Tool <i data-lucide="arrow-right" class="w-3 h-3 ml-1"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Digital Fab -->
-                    <article data-aos="fade-up" data-aos-delay="300" class="glass-panel rounded-2xl overflow-hidden group hover:border-blue-500/30 project-card">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="assets/img/portfolio/IMG_0153.jpg" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=500'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Fab">
-                            <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors"></div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Digital Fabrication</h4>
-                            <p class="text-slate-400 text-sm mb-4">A collection of 10+ weeks of projects from PHYS S-12, including laser cutting, molding, and IoT machines.</p>
-                            <a href="html/PHYS_S-12.html" class="text-xs font-bold text-white hover:text-blue-400 flex items-center mt-2">View Coursework <i data-lucide="arrow-right" class="w-3 h-3 ml-1"></i></a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- About / Skills -->
-        <section id="about" class="py-24">
-            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-right">
-                    <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">About Me</h2>
-                    <div class="space-y-4 text-slate-400 text-lg leading-relaxed">
-                        <p>
-                            I'm an engineer obsessed with reliability. Whether it's a UAV flying an autonomous mission or a sensor node collecting data in the field, I enjoy the challenge of building systems that <em class="text-white not-italic">just work</em>.
-                        </p>
-                        <p>
-                            Currently pursuing <strong>Electrical & Computer Engineering</strong> at UT Austin. I thrive in roles where I can own the full build: requirements → wiring → firmware → testing.
-                        </p>
-                        <p>
-                            Trilingual in English, Arabic, and French. When I'm not soldering or coding, I'm a competitive swimmer and rugby player.
-                        </p>
-                    </div>
-                </div>
-                <!-- Profile Image -->
-                <div data-aos="fade-left" class="flex justify-center md:justify-end">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 group">
-                         <!-- Decorative Blur Blob -->
-                        <div class="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
-                        <img src="assets/img/5BECFFD3-0AC8-4120-8097-F213C9BF6C5E_1_105_c.jpeg" alt="Mustafa Omran" class="relative w-full h-full object-cover rounded-2xl border-2 border-white/10 shadow-2xl transform transition duration-500 hover:scale-105">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer id="contact" class="bg-black py-20 border-t border-white/10">
-            <div class="max-w-4xl mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold mb-8">Ready to Build?</h2>
-                <p class="text-slate-500 mb-10">Currently open to internships and research opportunities in Autonomy & Robotics.</p>
-                
-                <div class="flex justify-center space-x-6 mb-16">
-                    <a href="mailto:momran@utexas.edu" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
-                        <i data-lucide="mail" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mustafaahmedomran" target="_blank" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
-                        <i data-lucide="linkedin" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
-                    </a>
-                    <a href="https://github.com/momran2401" target="_blank" class="p-4 bg-slate-900 rounded-full hover:bg-blue-600 hover:scale-110 transition-all duration-300 group">
-                        <i data-lucide="github" class="w-6 h-6 text-slate-300 group-hover:text-white"></i>
-                    </a>
-                </div>
-                
-                <div class="text-slate-600 text-sm">
-                    <p>&copy; 2026 Mustafa Omran. Built with Tailwind & Coffee in Texas.</p>
-                </div>
-            </div>
-        </footer>
-
-    </main>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-            easing: 'ease-out-cubic',
-        });
-
-        // Initialize Lucide Icons
-        lucide.createIcons();
-    </script>
 </body>
 </html>

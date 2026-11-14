@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radar Field-of-View and Positioning App | Mustafa Omran</title>
+  <meta name="description" content="A mobile-friendly single-file web app (HTML, ES6, Tailwind, Canvas) that visualizes radar coverage cones and recommends placement and alignment, replacing trial-and-error setup.">
+  <link rel="canonical" href="https://www.mustafaomran.com/projects/radar.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mustafa Omran">
+  <meta property="og:title" content="Radar Field-of-View and Positioning App">
+  <meta property="og:description" content="A mobile-friendly single-file web app (HTML, ES6, Tailwind, Canvas) that visualizes radar coverage cones and recommends placement and alignment, replacing trial-and-error setup.">
+  <meta property="og:url" content="https://www.mustafaomran.com/projects/radar.html">
+  <meta property="og:image" content="https://www.mustafaomran.com/assets/img/mustafa.jpg">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/paper.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Mustafa Omran</a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#projects">Projects</a>
+      <a class="hide-sm" href="../index.html#publications">Publications</a>
+      <a href="../assets/MustafaOmran_Resume.pdf">Resume</a>
+      <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="crumbs"><a href="../index.html#projects">Projects</a> / Radar app</p>
+  <div class="article-head">
+    <p class="meta">FAA UAS Test Site, Texas A&amp;M Autonomy Research Institute<span class="sep">/</span>Corpus Christi, TX<span class="sep">/</span>May to Sep 2025</p>
+    <h1>Radar field-of-view and positioning app</h1>
+    <p class="dek">A phone-friendly web tool that replaced trial-and-error radar setup at the test site.</p>
+    <ul class="tags"><li>JavaScript (ES6)</li><li>Canvas API</li><li>HTML/CSS</li><li>Tailwind</li><li>Mobile</li></ul>
+    <div class="links"><a class="btn primary" href="../html/radarcalc.html">Try the tool</a></div>
+  </div>
+
+  <article class="article narrow">
+
+    <h2>The problem</h2>
+    <p>Setting up a radar at the test site was trial and error. Put it somewhere, aim it, check what it covers, move it, try again.</p>
+
+    <h2>What I built</h2>
+    <p>A web app that draws the radar's field-of-view cone on a canvas and recommends where to place it and how to align it. You see the coverage before you move anything.</p>
+    <p>It's a single HTML file: HTML, CSS, ES6 JavaScript, Tailwind from a CDN, and the Canvas API. Nothing to install and no build step. It's built to work on a phone, since that's what you actually have with you in the field.</p>
+    <p><a href="../html/radarcalc.html">Open the tool →</a></p>
+
+    <div class="next">
+      <a href="gimbal.html">← Remote gimbal controller</a>
+      <a href="hackathon.html">Next: Energy AI Hackathon →</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <h2>Let's talk.</h2>
+    <div class="links">
+      <a class="btn primary" href="mailto:momran@utexas.edu">momran@utexas.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/mustafaahmedomran" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/momran2401" rel="noopener">GitHub</a>
+      <a class="btn" href="../assets/MustafaOmran_Resume.pdf">Resume</a>
+    </div>
+    <small>© 2026 Mustafa Omran</small>
+  </div>
+</footer>
+
+</body>
+</html>
