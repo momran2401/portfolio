@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Applier, a Local Job-Application Assistant | Mustafa Omran</title>
+  <meta name="description" content="A job-application assistant that runs on my Mac: tailors a one-page LaTeX resume to each posting, drafts cover letters, fills forms with Playwright, submits only after approval, and tracks everything. Python, FastAPI, React, TypeScript.">
+  <link rel="canonical" href="https://www.mustafaomran.com/projects/jobapplier.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mustafa Omran">
+  <meta property="og:title" content="Job Applier, a Local Job-Application Assistant">
+  <meta property="og:description" content="A job-application assistant that runs on my Mac: tailors a one-page LaTeX resume to each posting, drafts cover letters, fills forms with Playwright, submits only after approval, and tracks everything. Python, FastAPI, React, TypeScript.">
+  <meta property="og:url" content="https://www.mustafaomran.com/projects/jobapplier.html">
+  <meta property="og:image" content="https://www.mustafaomran.com/assets/img/mustafa.jpg">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/paper.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Mustafa Omran</a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#projects">Projects</a>
+      <a class="hide-sm" href="../index.html#publications">Publications</a>
+      <a href="../assets/MustafaOmran_Resume.pdf">Resume</a>
+      <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="crumbs"><a href="../index.html#projects">Projects</a> / Job Applier</p>
+  <div class="article-head">
+    <p class="meta">Personal project<span class="sep">/</span>Oct to Nov 2026</p>
+    <h1>Job Applier</h1>
+    <p class="dek">A job-application assistant that runs on my Mac. It tailors my resume, fills the forms, and doesn't submit anything until I say so.</p>
+    <ul class="tags"><li>Python</li><li>FastAPI</li><li>SQLite</li><li>Playwright</li><li>React 19</li><li>TypeScript</li><li>Vite</li><li>Codex / Claude / Ollama</li></ul>
+    <div class="links"><a class="btn primary" href="https://github.com/momran2401/jobApplier" rel="noopener">GitHub: momran2401/jobApplier</a></div>
+  </div>
+
+  <article class="article narrow">
+
+    <h2>Why I built it</h2>
+    <p>Applying for internships is the same steps over and over. Tweak the resume, write a cover letter, fill the same form on a different portal, then lose track of where you applied and who wrote back. I built something to do the repetitive part and leave the decisions to me.</p>
+
+    <h2>What it does</h2>
+    <ul>
+      <li><b>One master profile.</b> I feed it my resume, LaTeX source, LinkedIn export, and transcript. It proposes what to add, I review it, and I mark it verified.</li>
+      <li><b>Tailored resume.</b> For each posting it rewrites the skills section of my LaTeX resume to fit the role. Always one page.</li>
+      <li><b>Cover letters</b> when a posting asks for one, plus likely application questions with answers.</li>
+      <li><b>Form filling.</b> It opens the application in its own Chrome window, fills it in, and stops at review. Nothing gets submitted until I approve it.</li>
+      <li><b>Tracking.</b> Every application lands in a Google Sheet, and it watches my inbox for replies that need action.</li>
+      <li><b>Networking.</b> It builds a list of people to reach out to and drafts first messages that I review and send myself.</li>
+    </ul>
+    <p>It also gives each tailored resume a match report: how much of the posting's requirements it covers, plus an optional score from HackerRank's open-source intern rubric.</p>
+
+    <h2>Three modes</h2>
+    <ul>
+      <li><b>Advisor:</b> tailored resume, cover letter, and likely questions. I apply myself.</li>
+      <li><b>AI Applier:</b> fills the form and stops at review. I approve, it submits.</li>
+      <li><b>Autonomous:</b> submits without review, but only within strict limits. There's a daily cap, and anything it isn't sure about gets parked for me with the reason.</li>
+    </ul>
+
+    <h2>Rules live in code, not in the prompt</h2>
+    <p>I don't take a model's word for it, so the important rules are checked in code after it answers. A networking draft has to be 15 to 65 words with exactly one question, no banned asks, and its source has to be a page the app actually read. If a draft fails, it's flagged for review instead of going out. It never invents qualifications. Stop cancels everything in progress.</p>
+
+    <h2>How it's built</h2>
+    <ul>
+      <li><b>Backend:</b> Python, FastAPI, SQLite, and Playwright for the browser automation.</li>
+      <li><b>Frontend:</b> React 19, TypeScript, and Vite.</li>
+      <li><b>AI:</b> swappable between my ChatGPT Plus login through the Codex CLI, the Claude API, or a local model through Ollama.</li>
+      <li><b>Privacy:</b> everything stays on my machine. Data lives in a local folder, and passwords and the sheet link live in the macOS Keychain.</li>
+    </ul>
+    <p>About 6,000 lines of Python, about 1,400 lines of TypeScript, and 104 tests.</p>
+
+    <div class="next">
+      <a href="linda.html">← LINDA</a>
+      <a href="lidar.html">Next: Field LiDAR device →</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <h2>Let's talk.</h2>
+    <div class="links">
+      <a class="btn primary" href="mailto:momran@utexas.edu">momran@utexas.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/mustafaahmedomran" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/momran2401" rel="noopener">GitHub</a>
+      <a class="btn" href="../assets/MustafaOmran_Resume.pdf">Resume</a>
+    </div>
+    <small>© 2026 Mustafa Omran</small>
+  </div>
+</footer>
+
+</body>
+</html>
