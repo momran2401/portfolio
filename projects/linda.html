@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LINDA, NIST Live Spectrum Monitor | Mustafa Omran</title>
+  <meta name="description" content="LINDA is NIST's live radio-spectrum monitoring tool for 5G interference research. About 38k lines, about 200 tests, 8 SDR families, FastAPI/WebSocket streaming, hardware readback verification, and one-command Linux deployment.">
+  <link rel="canonical" href="https://www.mustafaomran.com/projects/linda.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mustafa Omran">
+  <meta property="og:title" content="LINDA: Live IQ Navigation & Display Application">
+  <meta property="og:description" content="How I built NIST's live radio-spectrum monitor: architecture, hardware verification, the fidelity audit, testing, and deployment.">
+  <meta property="og:url" content="https://www.mustafaomran.com/projects/linda.html">
+  <meta property="og:image" content="https://www.mustafaomran.com/assets/img/mustafa.jpg">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/paper.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Mustafa Omran</a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#projects">Projects</a>
+      <a class="hide-sm" href="../index.html#publications">Publications</a>
+      <a href="../assets/MustafaOmran_Resume.pdf">Resume</a>
+      <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="crumbs"><a href="../index.html#projects">Projects</a> / LINDA</p>
+  <div class="article-head">
+    <p class="meta">NIST Communications Technology Laboratory<span class="sep">/</span>Boulder, CO<span class="sep">/</span>May to Aug 2026</p>
+    <h1>LINDA: Live IQ Navigation &amp; Display Application</h1>
+    <p class="dek">A live radio-spectrum monitor for 5G interference research. Published as NIST software and used by NIST's NASCTN team.</p>
+    <div class="stats" style="max-width:640px">
+      <div class="stat"><b>~38k</b><span>lines of code</span></div>
+      <div class="stat"><b>~200</b><span>automated tests</span></div>
+      <div class="stat"><b>8</b><span>SDR families</span></div>
+      <div class="stat"><b>4</b><span>interfaces</span></div>
+    </div>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/usnistgov/LINDA" rel="noopener">GitHub: usnistgov/LINDA</a>
+      <a class="btn" href="https://doi.org/10.18434/mds2-4290" rel="noopener">DOI 10.18434/mds2-4290</a>
+    </div>
+  </div>
+
+  <figure class="figure shot">
+    <img src="../assets/img/linda/linda-browser.jpg" alt="LINDA browser interface on a Deepwave AIR-T: two spectrogram waterfalls at 3750 MHz in band n77, a power spectral density plot with mean and max traces, a band monitor, and the operations log" width="1600" height="872">
+    <figcaption>The browser UI on a Deepwave AIR8201B, tuned to 3750 MHz (band n77). Two receive channels, PSD with mean and max traces, a band monitor on the left, and the live log. This is AHAWI mode replaying a burst-aligned capture.</figcaption>
+  </figure>
+
+  <article class="article narrow">
+    <h2>What it is</h2>
+    <p>Researchers studying cellular interference need to see what a software-defined radio is picking up, live, while they're still in front of it. NIST already had striqt, a powerful but complex Python library for radio acquisition and signal analysis. My job was to turn that into something people could actually sit down and use.</p>
+    <p>LINDA is the result. One server owns the radio and shares the live stream with everyone who connects. You get scrolling spectrogram waterfalls and power spectral density (PSD) plots in a browser, in an SSH terminal, fullscreen on the radio's own display, or through a command-line client. There's also a synthetic demo mode, so you can develop and test without any hardware plugged in.</p>
+    <p>It's about 38,000 lines of Python, JavaScript, HTML/CSS, and Bash, with about 200 automated tests.</p>
+
+    <div class="shot-pair">
+      <figure class="figure shot">
+        <img src="../assets/img/linda/linda-phone.jpg" alt="LINDA on a phone, signed in as a read-only viewer, showing band 41 spectrograms and a PSD plot" width="700" height="1195" loading="lazy">
+        <figcaption>Same server, on a phone, signed in as a read-only viewer.</figcaption>
+      </figure>
+      <figure class="figure shot">
+        <img src="../assets/img/linda/linda-terminal.jpg" alt="LINDA terminal monitor drawing two text-mode spectrogram waterfalls over SSH" width="1400" height="384" loading="lazy">
+        <figcaption>The terminal monitor over SSH, here in demo mode with synthetic IQ. Same backend, no browser needed.</figcaption>
+      </figure>
+    </div>
+
+    <h2>How it's put together</h2>
+    <figure class="figure">
+      <div class="diagram-box">
+        <svg class="diagram" viewBox="0 0 520 440" role="img" aria-label="LINDA stack: browser, terminal, kiosk and CLI clients talk to LINDA, which runs on striqt, then SoapySDR, then the SDR hardware. Transmit goes from LINDA straight to SoapySDR.">
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker></defs>
+          <rect class="box" x="10" y="10" width="115" height="44" rx="8"/><text class="label" x="67.5" y="30" text-anchor="middle">Browser</text><text class="sub" x="67.5" y="46" text-anchor="middle">many users</text>
+          <rect class="box" x="135" y="10" width="115" height="44" rx="8"/><text class="label" x="192.5" y="30" text-anchor="middle">SSH terminal</text><text class="sub" x="192.5" y="46" text-anchor="middle">curses waterfall</text>
+          <rect class="box" x="260" y="10" width="115" height="44" rx="8"/><text class="label" x="317.5" y="30" text-anchor="middle">Kiosk</text><text class="sub" x="317.5" y="46" text-anchor="middle">radio's own screen</text>
+          <rect class="box" x="385" y="10" width="115" height="44" rx="8"/><text class="label" x="442.5" y="30" text-anchor="middle">CLI</text><text class="sub" x="442.5" y="46" text-anchor="middle">radioctl</text>
+          <path class="arrow" d="M67.5 56V82M192.5 56V82M317.5 56V82M442.5 56V82" marker-end="url(#ah)"/>
+          <rect class="box hl" x="10" y="84" width="490" height="96" rx="10"/>
+          <text class="tag" x="26" y="104">WHAT I BUILT</text>
+          <text class="label" x="26" y="126" style="font-size:18px">LINDA</text>
+          <text class="sub" x="26" y="148">FastAPI + WebSocket server · acquire and compute threads</text>
+          <text class="sub" x="26" y="166">verified settings · ops audit log · recording · transmit · installer</text>
+          <path class="arrow" d="M210 182V208" marker-end="url(#ah)"/>
+          <rect class="box" x="10" y="210" width="400" height="64" rx="10"/>
+          <text class="label" x="26" y="236">striqt</text>
+          <text class="sub" x="26" y="256">NIST's analysis library: spectrogram, PSD, 5G-NR, calibration</text>
+          <path class="arrow" d="M210 276V302" marker-end="url(#ah)"/>
+          <path class="arrow" d="M455 182V302" marker-end="url(#ah)"/>
+          <text class="tag" x="463" y="246">TX</text>
+          <rect class="box" x="10" y="304" width="490" height="44" rx="10"/>
+          <text class="label" x="26" y="331">SoapySDR</text><text class="sub" x="104" y="331">one driver API for every radio</text>
+          <path class="arrow" d="M255 350V376" marker-end="url(#ah)"/>
+          <rect class="box dim" x="10" y="378" width="490" height="52" rx="10"/>
+          <text class="label" x="26" y="399">SDR hardware</text>
+          <text class="sub" x="26" y="418" style="font-size:10.5px">AIR-T (Jetson) · Pluto · USRP · RTL-SDR · HackRF · Airspy · bladeRF · LimeSDR</text>
+        </svg>
+      </div>
+      <figcaption>striqt does the radio sources, DSP, calibration, and data format. LINDA turns it into a running, multi-user instrument. striqt is receive-only, so transmit goes straight to SoapySDR.</figcaption>
+    </figure>
+
+    <p>The one rule I held to: <b>all radio, DSP, and configuration logic lives in one place</b> (<code>live/core/</code>, 20 modules). The browser, terminal, kiosk, and CLI are thin wrappers on top of it. Fix a bug once, and it's fixed in all four.</p>
+
+    <h3>Two threads, one ring buffer</h3>
+    <p>Radios don't wait for you. If you stop draining samples, the hardware buffer overflows and you lose data. So one thread (the Acquirer) does nothing but pull IQ samples into a 4-million-sample ring buffer per channel. No math on that thread at all. A second thread (the Computer) reads from the buffer and builds the spectrograms.</p>
+
+    <h3>Honest about what it's showing</h3>
+    <p>There are four DSP backends: a dependency-free FFT quicklook, a calibrated striqt spectrogram, striqt PSD with time statistics, and a 5G SSB spectrogram. Every frame that goes to the screen carries a header saying which backend actually ran, the real frequency axis, the FFT size, bin averaging, and hop size. If the SSB backend can't run at your sample rate, it falls back and says so on the label instead of quietly showing you something else.</p>
+    <p>For periodic signals like 20 ms 5G SSB bursts, there's a capture-and-replay mode (AHAWI) that grabs one long capture, analyzes it in a single striqt pass, and replays it with the bursts lined up so they hold still on screen.</p>
+
+    <h3>Getting frames to the browser</h3>
+    <p>The web side is FastAPI and uvicorn. Live frames go out over a WebSocket as compact binary messages: a JSON header plus the data, with optional 8-bit quantization that makes them about 4x smaller.</p>
+
+    <h2>Proving the radio did what you asked</h2>
+    <p>This was the part I cared about most. When you change a setting on a radio, the driver might clamp it, round it, or silently ignore it. A pretty plot of the wrong thing is worse than no plot.</p>
+    <ul>
+      <li><b>Readback.</b> After every change, LINDA reads the setting back from the hardware and checks that fresh data frames reflect it. The UI marks each setting as verified, mismatched, or unverified.</li>
+      <li><b>Safe changes.</b> New settings get clamped or snapped to legal values, test-run, and only then applied. If anything fails, it falls back to the last good settings and the stream keeps going.</li>
+      <li><b>Operations audit log.</b> Every change that touches the radio moves through requested, validated, applying, applied, readback, and data-path stages, and ends as SUCCESS, VERIFIED, MISMATCH, UNVERIFIED, or FAILED. You can watch it live in the OPS tab.</li>
+      <li><b>Hardware qualification tool.</b> <code>hardware_qual.py</code> goes through the radio's settings one by one and confirms each one actually applies, by reading it back from the hardware.</li>
+    </ul>
+
+    <h2>The audit</h2>
+    <p>Partway through the summer I ran a fidelity audit on the whole pipeline. Basically: is what's on screen actually true? It turned up three real problems:</p>
+    <ul>
+      <li>a <b>52 to 103 kHz error</b> in the calibrated frequency axis,</li>
+      <li>a <b>slow frame rate</b> on real hardware,</li>
+      <li>and an SSB path that didn't work at standard sample rates.</li>
+    </ul>
+    <p>I root-caused them, fixed them, and logged every fix with its verification steps so someone else can check the work. I also went back through the older viewer scripts LINDA replaced and documented 21 bugs, all verified fixed.</p>
+
+    <h2>Many users, one radio</h2>
+    <p>One server holds the radio and everyone else watches. There are three roles: admin (full control), viewer, and intern (read-only). Sessions use an HMAC-SHA256 signed cookie with the role baked in, so it can't be edited by hand. The first version used a key that could be derived; I caught that with a forged-cookie test and replaced it with a random secret.</p>
+    <p>LINDA can also transmit (CW, two-tone, chirp, noise) on radios that support it. That's admin-only, you have to acknowledge a legal notice the server actually enforces, and every connected user gets a banner while it's on the air.</p>
+    <p>On top of that: recording to validated Zarr archives, GPS tagging that records a missing fix as invalid instead of crashing, and live measurements like channel power, occupancy, and a 5G PSS/SSS cell search.</p>
+
+    <h2>Testing</h2>
+    <p>About 200 pytest functions. They run without a radio or striqt installed, and they also run on the radio host itself. Some of the bigger groups:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Area</th><th>Tests</th></tr></thead>
+        <tbody>
+          <tr><td>Transmit</td><td>44</td></tr>
+          <tr><td>Configuration validation</td><td>23</td></tr>
+          <tr><td>AHAWI capture and replay</td><td>22</td></tr>
+          <tr><td>Recordings and pull tool</td><td>18</td></tr>
+          <tr><td>GPS (against a fake gpsd)</td><td>13</td></tr>
+          <tr><td>Master clock</td><td>11</td></tr>
+          <tr><td>Finite-capture mode</td><td>11</td></tr>
+          <tr><td>Operations log</td><td>10</td></tr>
+          <tr><td>Auth over HTTP with a live demo server</td><td>8</td></tr>
+          <tr><td>Readback verification</td><td>7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>One command to deploy</h2>
+    <p>Setting up a radio host used to mean drivers, Python environments, and service files by hand. Now it's one command: <code>install_linda.sh</code> (1,555 lines of Bash, safe to re-run).</p>
+    <ul>
+      <li>Checks the machine first: root, distro, architecture, Python, disk, port.</li>
+      <li>Looks over USB to see which radio is plugged in, then installs only that radio's drivers.</li>
+      <li>Pins striqt to the exact version that was verified on the radio.</li>
+      <li>Proves the install worked by importing everything, finding the radio, and taking a real capture.</li>
+      <li>Sets up the systemd service, logins, and the deployment mode you want: web, kiosk, hotspot, ethernet, or terminal.</li>
+    </ul>
+    <p>The systemd service caps restarts at 10 in 5 minutes. That limit came from a real incident where the service restarted 142 times and kept the radio locked the whole time. There's also an uninstaller that removes only what the installer added.</p>
+    <p>It runs on Debian, Raspberry Pi OS, and Ubuntu, on x86-64 and ARM64. The main targets are Raspberry Pi with a PlutoSDR and Deepwave AIR-T radios, which run on NVIDIA Jetson.</p>
+
+    <h2>Radios it supports</h2>
+    <p>Eight SDR families through SoapySDR: Deepwave AIR-T (AIR8201B, AIR7201B, AIR7101B), PlutoSDR, USRP/UHD, RTL-SDR, HackRF, Airspy, bladeRF, and LimeSDR, plus generic SoapySDR devices. Each radio has an adapter that probes its channels, rate limits, and master clock. Getting the master clock right per radio is what fixed a bug that kept a USRP B205mini from opening at all.</p>
+
+    <h2>How I built it</h2>
+    <p>I built LINDA with AI coding agents, mainly Claude Code and OpenAI Codex. That's stated in the public README. The agents wrote a lot of code fast. My job was the design, deciding what "correct" means for a radio, and reviewing, testing, and editing everything they produced before it shipped. The readback checks, the audit, and the test suite are a big part of how I kept that honest.</p>
+
+    <div class="callout">
+      <p><b>Credit.</b> LINDA is NIST software, from the National Institute of Standards and Technology. It was developed in connection with the NIST SURF project "Development of visualization frontends for cellular 5G-NR measurements" and is built on NIST's striqt library. Cite it as: Omran, M. (2026). <i>Live IQ navigation and display application (LINDA)</i> (Version 1.0.2) [Computer software]. National Institute of Standards and Technology. <a href="https://doi.org/10.18434/mds2-4290" rel="noopener">https://doi.org/10.18434/mds2-4290</a></p>
+    </div>
+
+    <div class="next">
+      <a href="../index.html#projects">← All projects</a>
+      <a href="lidar.html">Next: Field LiDAR device →</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <h2>Let's talk.</h2>
+    <div class="links">
+      <a class="btn primary" href="mailto:momran@utexas.edu">momran@utexas.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/mustafaahmedomran" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/momran2401" rel="noopener">GitHub</a>
+      <a class="btn" href="../assets/MustafaOmran_Resume.pdf">Resume</a>
+    </div>
+    <small>© 2026 Mustafa Omran</small>
+  </div>
+</footer>
+
+</body>
+</html>

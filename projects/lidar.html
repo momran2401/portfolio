@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field-Ready LiDAR Measurement Device | Mustafa Omran</title>
+  <meta name="description" content="A rugged Raspberry Pi and Arduino LiDAR device used by 20 engineers at an FAA UAS test site: IMU-guided aiming, calibration, self-tests, startup fault checks, SD and cloud logging.">
+  <link rel="canonical" href="https://www.mustafaomran.com/projects/lidar.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mustafa Omran">
+  <meta property="og:title" content="Field-Ready LiDAR Measurement Device">
+  <meta property="og:description" content="A rugged Raspberry Pi and Arduino LiDAR device used by 20 engineers at an FAA UAS test site: IMU-guided aiming, calibration, self-tests, startup fault checks, SD and cloud logging.">
+  <meta property="og:url" content="https://www.mustafaomran.com/projects/lidar.html">
+  <meta property="og:image" content="https://www.mustafaomran.com/assets/img/mustafa.jpg">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/paper.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Mustafa Omran</a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#projects">Projects</a>
+      <a class="hide-sm" href="../index.html#publications">Publications</a>
+      <a href="../assets/MustafaOmran_Resume.pdf">Resume</a>
+      <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="crumbs"><a href="../index.html#projects">Projects</a> / LiDAR device</p>
+  <div class="article-head">
+    <p class="meta">FAA UAS Test Site, Texas A&amp;M Autonomy Research Institute<span class="sep">/</span>Corpus Christi, TX<span class="sep">/</span>May to Sep 2025</p>
+    <h1>Field-ready LiDAR measurement device</h1>
+    <p class="dek">A rugged measuring tool that 20 engineers and field users at the FAA test site picked up and used.</p>
+    <ul class="tags"><li>Raspberry Pi</li><li>Arduino</li><li>Python</li><li>C++</li><li>IMU</li><li>Calibration</li><li>Self-tests</li><li>3D printing</li></ul>
+  </div>
+
+  <article class="article narrow">
+
+    <h2>The goal</h2>
+    <p>The Autonomy Research Institute in Corpus Christi is one of seven FAA UAS test sites in the country. The engineers there needed a LiDAR tool for taking measurements in the field, and it had to work for people who didn't build it. Working on my desk wasn't enough. It had to tell you when something was wrong, and it had to hold up out there.</p>
+
+    <h2>What's inside</h2>
+    <ul>
+      <li><b>Raspberry Pi and Arduino</b>, with about 2,000 lines of Python and C++ between them.</li>
+      <li><b>An IMU</b> that tracks orientation and guides your aim, so you know you're pointed the right way before you take a reading.</li>
+      <li><b>Two 16x2 LCDs</b> as the interface. No laptop needed.</li>
+      <li><b>Redundant logging</b> to an SD card and to the cloud, so one failing doesn't cost you the data.</li>
+      <li><b>A rugged 3D-printed enclosure</b> with a wiring layout you can actually open up and service.</li>
+    </ul>
+
+    <h2>Making it trustworthy</h2>
+    <p>A measurement tool is only useful if you believe the number. So I built in calibration and sensor self-tests. On startup, the device runs fault checks on its sensors and connections. If something's unplugged or not responding, it tells you what's wrong and how to fix it before you start measuring.</p>
+    <p>I also wrote the setup, calibration, and troubleshooting docs, so someone in the field could run it, and fix it, without calling me.</p>
+
+    <div class="next">
+      <a href="../index.html#projects">← All projects</a>
+      <a href="hexacopter.html">Next: Hexacopter rebuild →</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <h2>Let's talk.</h2>
+    <div class="links">
+      <a class="btn primary" href="mailto:momran@utexas.edu">momran@utexas.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/mustafaahmedomran" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/momran2401" rel="noopener">GitHub</a>
+      <a class="btn" href="../assets/MustafaOmran_Resume.pdf">Resume</a>
+    </div>
+    <small>© 2026 Mustafa Omran</small>
+  </div>
+</footer>
+
+</body>
+</html>
