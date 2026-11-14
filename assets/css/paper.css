@@ -146,7 +146,7 @@ code { background: var(--field); padding: .1em .35em; border-radius: 4px; }
 @media (min-width: 1000px) { .pgrid { grid-template-columns: repeat(3, 1fr); } }
 .pcard { display: flex; flex-direction: column; min-width: 0; }
 .pthumb {
-  display: grid; place-items: center; aspect-ratio: 5 / 4; padding: 10px;
+  display: block; aspect-ratio: 5 / 4; padding: 0; overflow: hidden;
   background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
   transition: border-color .2s ease;
 }
@@ -161,6 +161,23 @@ a.pthumb:hover { border-color: var(--accent); }
 .pcard .more .sep { margin: 0 8px; color: var(--muted); }
 .facts { list-style: none; margin: 14px 0 0; padding: 10px 0 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12.5px; color: var(--muted); }
 .facts b { font: 500 16px/1.2 var(--serif); color: var(--text); margin-right: 3px; }
+/* Project illustrations: thin ink lines on a faint blueprint grid */
+.ill { width: 100%; height: 100%; display: block; }
+.ill .gridline { fill: none; stroke: var(--line); stroke-width: .6; }
+.ill .ln { fill: none; stroke: var(--text); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ill .ln2 { fill: none; stroke: var(--muted); stroke-width: 1; stroke-linecap: round; }
+.ill .ln2.faint { opacity: .35; }
+.ill .ac { fill: none; stroke: var(--accent); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ill .ac.thick { stroke-width: 2.6; }
+.ill .pf { fill: var(--raised); }
+.ill .af { fill: var(--accent); stroke: none; }
+.ill .sf { fill: var(--accent-soft); stroke: none; }
+.ill .dash { stroke-dasharray: 4 5; }
+.ill text { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; }
+.ill .t { fill: var(--muted); }
+.ill .ta { fill: var(--accent); }
+.ill .tb { fill: var(--bg); font-size: 9.5px; font-weight: 500; }
+.ill .big { font-size: 24px; font-family: var(--serif); }
 .diagram.mini .label { font-size: 12.5px; }
 .diagram.mini .sub { font-size: 10.5px; }
 .diagram .cone { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
